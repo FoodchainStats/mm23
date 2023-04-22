@@ -15,6 +15,7 @@ Imports:
     lubridate,
     readr,
     stats,
+    stringr,
     tibble,
     tidyr,
     utils
