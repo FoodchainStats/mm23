@@ -27,12 +27,12 @@ Download the latest MM23 from ONS.
 library(mm23)
 
 # Puts the data in a temporary file and returns its name
-# mm23 <- acquire_mm23()
-# metadata <- mm23 |> get_mm23_metadata()
+mm23 <- acquire_mm23()
+metadata <- mm23 |> get_mm23_metadata()
 
 # Or specify a location
-# mm23 <- acquire_mm23("~/data")
-# data <- read.csv("~/data/mm23.csv")
+mm23 <- acquire_mm23("~/data")
+data <- read.csv("~/data/mm23.csv")
 ```
 
 You’ll still need to render `README.Rmd` regularly, to keep `README.md`
