@@ -7,7 +7,9 @@
 <!-- badges: end -->
 
 Wrangle MM23 data. Functions to acquire and manipulate consumer price
-inflation series as published by the Office for National Statistics.
+inflation series as published by the Office for National Statistics. The
+`mm23.csv` file they publish is a bit of a nightmare to deal with. This
+package aims to help you get the data into a more usable form.
 
 ## Installation
 
@@ -21,14 +23,15 @@ devtools::install_github("FoodchainStats/mm23", auth_token = "Your GitHub PAT")
 
 ## Example
 
-Download the latest MM23 from ONS.
+Download the latest MM23 from ONS. `acquire_mm23` will download the full
+latest `mm23.csv` file, and return its location. By default it puts it
+into a temporary file, but you can specify where you want to put it.
 
 ``` r
 library(mm23)
 
 # Puts the data in a temporary file and returns its name
 mm23 <- acquire_mm23()
-metadata <- mm23 |> get_mm23_metadata()
 
 # Or specify a location
 mm23 <- acquire_mm23("~/data")
@@ -48,6 +51,10 @@ The get\_\* functions will return data in a tidy format, eg:
 | 1947-07-01 | CZFB |   0.8 | M      |
 | 1947-07-01 | CZFG |   0.0 | M      |
 
+Its more efficient to use `acquire_mm23` first so as to only download
+the data once. But if used without parameters the `get_mm23_*` functions
+will download the latest data.
+
 ``` r
 mm23 <- acquire_mm23()
 m <- get_mm23_month(mm23)
@@ -57,7 +64,7 @@ y <- get_mm23_year(mm23)
 data <- dplyr::bind_rows(m, q, y)
 ```
 
-Use get_mm23_metadata() to return details of what each series CDID
+Use `get_mm23_metadata()` to return details of what each series CDID
 represents. You can join data and metadata by CDID.
 
 | cdid | title                                                       | category             | level | pre_unit | unit | release_date | next_release | important_notes |
@@ -73,12 +80,6 @@ mm23 <- acquire_mm23()
 metadata <- get_mm23_metadata(mm23)
 
 m |>
-filter(CDID == "L55O") |>
+filter(cdid == "L55O") |>
 left_join(metadata)
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
