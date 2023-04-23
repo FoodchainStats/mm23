@@ -23,6 +23,6 @@ datasets/consumerpriceindices/current/mm23.csv"
     tmp <- tempfile()
 download.file(url, tmp)
 rawfile <- tmp
-get_mm23_month(rawfile)
+get_mm23_metadata(rawfile)
 }
 }

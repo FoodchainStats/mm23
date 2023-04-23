@@ -4,6 +4,7 @@
 #'   download from ONS.
 #'
 #' @return A tibble containing date, CDID and value.
+#' @importFrom rlang .data
 #' @export
 #'
 #' @examples
@@ -27,14 +28,19 @@ get_mm23_month <- function(rawfile){
   message("Processing month")
 
   mm23_month <- readr::read_csv(rawfile, skip = 1, show_col_types = FALSE) |>
-    dplyr::filter(nchar(CDID) == 8) |>
-    dplyr::mutate(CDID = lubridate::ym(CDID)) |>
-    dplyr::rename(date = CDID) |>
+    dplyr::filter(nchar(.data$CDID) == 8) |>
+    dplyr::mutate(CDID = lubridate::ym(.data$CDID)) |>
+    dplyr::rename(date = .data$CDID) |>
     tidyr::pivot_longer(cols = 2:tidyr::last_col(), names_to = "cdid") |>
     # tidyr::pivot_longer(cols = 2:ncol(.), names_to = "cdid") |>
-    dplyr::mutate(value = as.numeric(value),
+    dplyr::mutate(value = as.numeric(.data$value),
                   period = "M") |>
-    dplyr::filter(!is.na(value))
+    dplyr::filter(!is.na(.data$value))
+
+  # clean up if file was downloaded
+  if(missing(rawfile)){
+    unlink(rawfile)
+  }
 
   return(mm23_month)
 }

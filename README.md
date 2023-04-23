@@ -35,6 +35,48 @@ mm23 <- acquire_mm23("~/data")
 data <- read.csv("~/data/mm23.csv")
 ```
 
+## Getting data
+
+The get\_\* functions will return data in a tidy format, eg:
+
+| date       | cdid | value | period |
+|:-----------|:-----|------:|:-------|
+| 1947-06-01 | CDKO |  28.9 | M      |
+| 1947-07-01 | CDKO |  29.1 | M      |
+| 1947-07-01 | CDKP |   1.2 | M      |
+| 1947-07-01 | CZEQ |   0.7 | M      |
+| 1947-07-01 | CZFB |   0.8 | M      |
+| 1947-07-01 | CZFG |   0.0 | M      |
+
+``` r
+mm23 <- acquire_mm23()
+m <- get_mm23_month(mm23)
+q <- get_mm23_quarter(mm23)
+y <- get_mm23_year(mm23)
+
+data <- dplyr::bind_rows(m, q, y)
+```
+
+Use get_mm23_metadata() to return details of what each series CDID
+represents. You can join data and metadata by CDID.
+
+| cdid | title                                                       | category             | level | pre_unit | unit | release_date | next_release | important_notes |
+|:-----|:------------------------------------------------------------|:---------------------|------:|:---------|:-----|:-------------|:-------------|:----------------|
+| L5MS | CPIH 1mth: Medical services (S) 2015=100                    | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
+| J39L | 05.5.2.1 Non-Motorized Small Tools                          | CPIH Annual rate (%) |     4 | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
+| L8AI | CPI WEIGHTS 05.3.1.3 Cookers                                | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
+| L7QE | CPI ANNUAL RATE 05.3.2.3 Irons 2015=100                     | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
+| D7JZ | CPI MONTHLY RATE 03.2 : FOOTWEAR INCLUDING REPAIRS 2015=100 | NA                   |    NA | NA       | %    | 19-04-2023   | 24 May 2023  | NA              |
+
+``` r
+mm23 <- acquire_mm23()
+metadata <- get_mm23_metadata(mm23)
+
+m |>
+filter(CDID == "L55O") |>
+left_join(metadata)
+```
+
 You’ll still need to render `README.Rmd` regularly, to keep `README.md`
 up-to-date. `devtools::build_readme()` is handy for this. You could also
 use GitHub Actions to re-render `README.Rmd` every time you push. An

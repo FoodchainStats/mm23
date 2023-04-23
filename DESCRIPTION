@@ -15,6 +15,7 @@ Imports:
     janitor,
     lubridate,
     readr,
+    rlang,
     stats,
     stringr,
     tibble,
