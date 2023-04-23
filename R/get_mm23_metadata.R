@@ -19,7 +19,7 @@
 get_mm23_metadata <- function(rawfile){
 
     if(missing(rawfile)){
-    url <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindices/current/mm23.csv"
+    url <- mm23_url()
     tmp <- tempfile()
     utils::download.file(url, tmp)
     rawfile <- tmp

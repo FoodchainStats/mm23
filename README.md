@@ -23,9 +23,9 @@ devtools::install_github("FoodchainStats/mm23", auth_token = "Your GitHub PAT")
 
 ## Example
 
-Download the latest MM23 from ONS. `acquire_mm23` will download the full
-latest `mm23.csv` file, and return its location. By default it puts it
-into a temporary file, but you can specify where you want to put it.
+Download the latest MM23 from ONS. `acquire_mm23()` will download the
+full latest `mm23.csv` file, and return its location. By default it puts
+it into a temporary file, but you can specify where you want to put it.
 
 ``` r
 library(mm23)
