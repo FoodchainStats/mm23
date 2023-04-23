@@ -14,7 +14,7 @@
 #' my_mm23 <- get_mm23("~/data")
 #' }
 acquire_mm23 <- function(path){
-    url <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindices/current/mm23.csv"
+    url <- mm23_url()
 
   if(missing(path)){
     tmp <- tempfile()
