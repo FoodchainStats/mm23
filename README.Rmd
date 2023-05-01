@@ -100,3 +100,62 @@ left_join(metadata)
 
 ```
 
+## Weights
+
+Still figuring out how to sort out getting CPIH weights. But here is some code
+that basically works
+
+```r
+library(mm23)
+library(dplyr)
+library(tidyr)
+library(unpivotr)
+library(tidyxl)
+
+file <- "~/Downloads/consumerpriceinflationdetailedreferencetables2.xlsx"
+
+mm23 <- acquire_mm23()
+metadata <- get_mm23_metadata(mm23)
+yr <- get_mm23_year(mm23)
+
+make_weights <- function(annual_data, series, start = "1998-01-01", end = "2023-12-01"){
+
+  data <- annual_data |> 
+    dplyr::filter(.data$cdid == series)
+  
+  dates <- data.frame(date = (seq.Date(as.Date(start), as.Date(end),by = "month")))
+  
+  weights <- dates |> 
+    dplyr::left_join(data) |> 
+    tidyr::fill(cdid:period, .direction = "down")
+  
+  return(weights)
+}
+
+
+wts <- metadata |> 
+  filter(category == "CPIH Weights") |> 
+  select(cdid) |> 
+  unlist()
+
+weights <- purrr::map(wts, make_weights, annual_data = yr, start = "2017-01-01") |> 
+  purrr::list_rbind() |> select(-period)
+
+
+janweights <- tidyxl::xlsx_cells(file, sheets = "Table 11") |> 
+  dplyr::filter(row >=7 & row < 371 & col > 1) |> 
+  unpivotr::behead("up", "year") |> 
+  unpivotr::behead("left", "cdid") |> 
+  unpivotr::behead("left", "title")  |> 
+  dplyr::filter(!is.na(numeric)) |> 
+  dplyr::filter(stringr::str_detect(year, "Jan") == TRUE) |> 
+  dplyr::mutate(date = lubridate::ym(year),
+         cdid = stringr::str_trim(cdid)) |> 
+  dplyr::select(date, cdid, value = numeric) |> 
+  dplyr::filter(!cdid %in% c("L5DD","L5DE", "L5F3", "L5F4", "L5FP", "J4XP", "L5G8")) |> 
+  unique()
+
+final_weights <- rows_update(weights, janweights, by = c("date", "cdid"))
+
+
+```
