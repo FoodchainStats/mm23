@@ -203,6 +203,70 @@ get_mm23_metadata <- function(rawfile){
     dplyr::select("cdid", "title", "category", "level") |>
     dplyr::arrange(.data$title)
 
+  # CPI Annual rate --------------------------------------------------------------
+
+  message("Processing CPI Annual rates")
+
+  cpi_ann1 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI ANNUAL RATE [0-9][0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI ANNUAL RATE ")) |>
+    dplyr::mutate(level = 1)
+
+  cpi_ann2 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI ANNUAL RATE [0-9][0-9]\\.[0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI ANNUAL RATE ")) |>
+    dplyr::mutate(level = 2)
+
+  cpi_ann3 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI ANN[A-Z]* RATE [0-9][0-9]\\.[0-9].[0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI ANN[A-Z]* RATE ")) |>
+    dplyr::mutate(level = 3)
+
+
+  cpi_ann4 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI ANNUAL RATE [0-9][0-9]\\.[0-9].[0-9].[0-9]")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI ANNUAL RATE ")) |>
+    dplyr::mutate(level = 4)
+
+
+  cpi_ann_rate_cdids <- dplyr::bind_rows(list(cpi_ann1, cpi_ann2, cpi_ann3, cpi_ann4)) |>
+    dplyr::mutate(title = stringr::str_to_title(stringr::str_remove(.data$title, " 2015=100"))) |>
+    dplyr::mutate(category = "CPI Annual rate (%)") |>
+    dplyr::select("cdid", "title", "category", "level") |>
+    dplyr::arrange(.data$title)
+
+  # CPI Monthly rate -------------------------------------------------------------
+
+  message("Processing CPI Monthly rate")
+
+  cpi_mth1 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI MONTHLY RATE [0-9][0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI MONTHLY RATE ")) |>
+    dplyr::mutate(level = 1)
+
+  cpi_mth2 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI MONTHLY RATE [0-9][0-9]\\.[0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI MONTHLY RATE ")) |>
+    dplyr::mutate(level = 2)
+
+  cpi_mth3 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI MONTHLY RATE [0-9][0-9]\\.[0-9].[0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI MONTHLY RATE ")) |>
+    dplyr::mutate(level = 3)
+
+
+  cpi_mth4 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI MONTHLY RATE [0-9][0-9]\\.[0-9].[0-9].[0-9]")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI MONTHLY RATE ")) |>
+    dplyr::mutate(level = 4)
+
+
+  cpi_mth_rate_cdids <- dplyr::bind_rows(list(cpi_mth1, cpi_mth2, cpi_mth3, cpi_mth4)) |>
+    dplyr::mutate(title = stringr::str_to_title(stringr::str_remove(.data$title, " 2015=100"))) |>
+    dplyr::mutate(category = "CPI Monthly rate (%)") |>
+    dplyr::select("cdid", "title", "category", "level") |>
+    dplyr::arrange(.data$title)
+
 
   # rebuild metadata
 
@@ -213,7 +277,9 @@ get_mm23_metadata <- function(rawfile){
                            cpih_cont_mth_chg_cdids,
                            rpi_avg_price_cdids,
                            rpi_12_mth_cdids,
-                           cpih_wt_cdids))
+                           cpih_wt_cdids,
+                           cpi_ann_rate_cdids,
+                           cpi_mth_rate_cdids))
 
   metadata <- metadata |>
     dplyr::left_join(series, by = "cdid") |>
