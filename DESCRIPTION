@@ -14,10 +14,13 @@ Imports:
     dplyr,
     janitor,
     lubridate,
+    purrr,
     readr,
     rlang,
     stats,
     stringr,
     tibble,
     tidyr,
+    tidyxl,
+    unpivotr,
     utils
