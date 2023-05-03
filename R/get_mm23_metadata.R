@@ -105,6 +105,38 @@ get_mm23_metadata <- function(rawfile){
     dplyr::arrange(.data$title)
 
 
+# CPIH Index -------------------------------------------------------------------
+
+
+  message("Processing CPIH index")
+
+  cpih_index1 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPIH INDEX [0-9][0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPIH INDEX ")) |>
+    dplyr::mutate(level = 1)
+
+  cpih_index2 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPIH INDEX [0-9][0-9]\\.[0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPIH INDEX ")) |>
+    dplyr::mutate(level = 2)
+
+  cpih_index3 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPIH INDEX [0-9][0-9]\\.[0-9].[0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPIH INDEX ")) |>
+    dplyr::mutate(level = 3)
+
+
+  cpih_index4 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPIH INDEX [0-9][0-9]\\.[0-9].[0-9].[0-9]")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPIH INDEX ")) |>
+    dplyr::mutate(level = 4)
+
+
+  cpih_index_cdids <- dplyr::bind_rows(list(cpih_index1, cpih_index2, cpih_index3, cpih_index4)) |>
+    dplyr::mutate(title = stringr::str_to_title(stringr::str_remove(.data$title, " 2015=100"))) |>
+    dplyr::mutate(category = "CPIH Index") |>
+    dplyr::select("cdid", "title", "category", "level") |>
+    dplyr::arrange(.data$title)
 
 
 
@@ -279,7 +311,8 @@ get_mm23_metadata <- function(rawfile){
                            rpi_12_mth_cdids,
                            cpih_wt_cdids,
                            cpi_ann_rate_cdids,
-                           cpi_mth_rate_cdids))
+                           cpi_mth_rate_cdids,
+                           cpih_index_cdids))
 
   metadata <- metadata |>
     dplyr::left_join(series, by = "cdid") |>
