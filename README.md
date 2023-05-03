@@ -40,7 +40,7 @@ data <- read.csv("~/data/mm23.csv")
 
 ## Getting data
 
-The get\_\* functions will return data in a tidy format, eg:
+The `get_mm23_*` functions will return data in a tidy format, eg:
 
 | date       | cdid | value | period |
 |:-----------|:-----|------:|:-------|
@@ -65,15 +65,8 @@ data <- dplyr::bind_rows(m, q, y)
 ```
 
 Use `get_mm23_metadata()` to return details of what each series CDID
-represents. You can join data and metadata by CDID.
-
-| cdid | title                                                       | category             | level | pre_unit | unit | release_date | next_release | important_notes |
-|:-----|:------------------------------------------------------------|:---------------------|------:|:---------|:-----|:-------------|:-------------|:----------------|
-| L5MS | CPIH 1mth: Medical services (S) 2015=100                    | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
-| J39L | 05.5.2.1 Non-Motorized Small Tools                          | CPIH Annual rate (%) |     4 | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
-| L8AI | CPI WEIGHTS 05.3.1.3 Cookers                                | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
-| L7QE | CPI ANNUAL RATE 05.3.2.3 Irons 2015=100                     | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
-| D7JZ | CPI MONTHLY RATE 03.2 : FOOTWEAR INCLUDING REPAIRS 2015=100 | NA                   |    NA | NA       | %    | 19-04-2023   | 24 May 2023  | NA              |
+represents. Here is a random sample of its output. You can join data and
+metadata by CDID, for example with:
 
 ``` r
 mm23 <- acquire_mm23()
@@ -84,61 +77,22 @@ filter(cdid == "L55O") |>
 left_join(metadata)
 ```
 
+| cdid | title                                                       | category             | level | pre_unit | unit | release_date | next_release | important_notes |
+|:-----|:------------------------------------------------------------|:---------------------|------:|:---------|:-----|:-------------|:-------------|:----------------|
+| L5MS | CPIH 1mth: Medical services (S) 2015=100                    | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
+| J39L | 05.5.2.1 Non-Motorized Small Tools                          | CPIH Annual rate (%) |     4 | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
+| L8AI | CPI WEIGHTS 05.3.1.3 Cookers                                | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
+| L7QE | CPI ANNUAL RATE 05.3.2.3 Irons 2015=100                     | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
+| D7JZ | CPI MONTHLY RATE 03.2 : FOOTWEAR INCLUDING REPAIRS 2015=100 | NA                   |    NA | NA       | %    | 19-04-2023   | 24 May 2023  | NA              |
+
 ## Weights
 
-Still figuring out how to sort out getting CPIH weights. But here is
-some code that basically works
+CPIH weights are a problem. They are adjusted twice a year (since 2017),
+in December and January. But the mm23 dataset only has a single weight
+for each year. The only place the full weights are exposed are in the
+‘detailed reference tables’ spreadsheet. So there is now a new function
+`get_cpih_weights` which generates a weights dataset. It may not be very
+robust, it needs some testing, but if everything is in the right place
+it works OK.
 
-``` r
-library(mm23)
-library(dplyr)
-library(tidyr)
-library(unpivotr)
-library(tidyxl)
-
-file <- "~/Downloads/consumerpriceinflationdetailedreferencetables2.xlsx"
-
-mm23 <- acquire_mm23()
-metadata <- get_mm23_metadata(mm23)
-yr <- get_mm23_year(mm23)
-
-make_weights <- function(annual_data, series, start = "1998-01-01", end = "2023-12-01"){
-
-  data <- annual_data |> 
-    dplyr::filter(.data$cdid == series)
-  
-  dates <- data.frame(date = (seq.Date(as.Date(start), as.Date(end),by = "month")))
-  
-  weights <- dates |> 
-    dplyr::left_join(data) |> 
-    tidyr::fill(cdid:period, .direction = "down")
-  
-  return(weights)
-}
-
-
-wts <- metadata |> 
-  filter(category == "CPIH Weights") |> 
-  select(cdid) |> 
-  unlist()
-
-weights <- purrr::map(wts, make_weights, annual_data = yr, start = "2017-01-01") |> 
-  purrr::list_rbind() |> select(-period)
-
-
-janweights <- tidyxl::xlsx_cells(file, sheets = "Table 11") |> 
-  dplyr::filter(row >=7 & row < 371 & col > 1) |> 
-  unpivotr::behead("up", "year") |> 
-  unpivotr::behead("left", "cdid") |> 
-  unpivotr::behead("left", "title")  |> 
-  dplyr::filter(!is.na(numeric)) |> 
-  dplyr::filter(stringr::str_detect(year, "Jan") == TRUE) |> 
-  dplyr::mutate(date = lubridate::ym(year),
-         cdid = stringr::str_trim(cdid)) |> 
-  dplyr::select(date, cdid, value = numeric) |> 
-  dplyr::filter(!cdid %in% c("L5DD","L5DE", "L5F3", "L5F4", "L5FP", "J4XP", "L5G8")) |> 
-  unique()
-
-final_weights <- rows_update(weights, janweights, by = c("date", "cdid"))
-
-```
+It returns a dataset with a weight for every month.
