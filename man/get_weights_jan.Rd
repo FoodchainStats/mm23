@@ -6,6 +6,11 @@
 \usage{
 get_weights_jan()
 }
+\value{
+A dataframe of the January weights as published in Table 11 of the
+CPI reference tables spreadsheet. They are not included in mm23 which only
+has the weight at annual level.
+}
 \description{
 Get January CPIH weights
 }

@@ -2,10 +2,15 @@
 % Please edit documentation in R/weights.R
 \name{get_cpih_weights}
 \alias{get_cpih_weights}
-\title{Title}
+\title{Create a CPIH weights dataset}
 \usage{
 get_cpih_weights()
 }
+\value{
+A dataframe of monthly CPIH weights, including the January weights
+which are not exposed in mm23 but only available in the Table 11 sheet of
+the reference tables spreadsheet.
+}
 \description{
-Title
+Create a CPIH weights dataset
 }

@@ -1,6 +1,8 @@
 #' Get January CPIH weights
 #'
-#' @return
+#' @return A dataframe of the January weights as published in Table 11 of the
+#'   CPI reference tables spreadsheet. They are not included in mm23 which only
+#'   has the weight at annual level.
 #'
 #' @examples
 get_weights_jan <- function() {
@@ -41,9 +43,11 @@ get_weights_jan <- function() {
 
 
 
-#' Title
+#' Create a CPIH weights dataset
 #'
-#' @return
+#' @return A dataframe of monthly CPIH weights, including the January weights
+#'   which are not exposed in mm23 but only available in the Table 11 sheet of
+#'   the reference tables spreadsheet.
 #' @export
 #'
 #' @examples
@@ -83,6 +87,35 @@ get_cpih_weights <- function() {
 }
 
 
+
+
+
+#' Get a reference table of CPIH CDIDs
+#'
+#' @return A data frame of CDIDs for overall index, weight, 1 month rate and 12
+#'   month rate for all CPIH series. Can be useful as a reference table.
+#' @export
+#'
+#' @examples
+get_cpih_cdid_lookup <- function() {
+  url <- reftables_url()
+
+  tmp <- tempfile()
+  utils::download.file(url, tmp)
+
+  cpih_series_ref <- tidyxl::xlsx_cells(tmp, sheets = "Table 3") |>
+    dplyr::filter(row >= 10 & row <= 182 & col <= 6 & col != 5) |>
+    unpivotr::behead("left", "weight") |>
+    unpivotr::behead("left", "index") |>
+    unpivotr::behead("left", "rate_monthly") |>
+    unpivotr::behead("left", "rate_annual") |>
+    dplyr::select(title = .data$character, .data$index, .data$weight, .data$rate_annual, .data$rate_monthly) |>
+    dplyr::filter(!is.na(.data$title) == TRUE)
+
+  return(cpih_series_ref)
+
+
+}
 
 # make_weight_series <- function(annual_data, series, start = "1998-01-01", end = "2023-12-01") {
 #   data <- annual_data |>
