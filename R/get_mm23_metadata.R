@@ -27,7 +27,7 @@ get_mm23_metadata <- function(rawfile){
 
   message("Processing metadata")
 
-  metadata <- readr::read_csv(rawfile, n_max = 6, show_col_types = FALSE,) |>
+  metadata <- readr::read_csv(rawfile, n_max = 6, show_col_types = FALSE) |>
     t() |>
     tibble::as_tibble(rownames = "series", .name_repair = "unique") |>
     (\(.) stats::setNames(., .[1,]))() |>

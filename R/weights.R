@@ -71,13 +71,13 @@ get_cpih_weights <- function() {
       dplyr::filter(.data$cdid == series)
     dates <- data.frame(date = (seq.Date(as.Date(start), as.Date(end),by = "month")))
     weights <- dates |>
-      dplyr::left_join(data) |>
+      dplyr::left_join(data, by = dplyr::join_by(date)) |>
       tidyr::fill(.data$cdid:.data$period, .direction = "down")
 
     return(weights)
   }
 
-  weights <- purrr::map(wts, make_weight_series, annual_data = yr) |>
+  weights <- purrr::map(wts, make_weight_series, annual_data = yr, .progress = "Getting weights") |>
     purrr::list_rbind() |>
     dplyr::select(-.data$period)
 
