@@ -14,3 +14,8 @@ the reference tables spreadsheet.
 \description{
 Create a CPIH weights dataset
 }
+\examples{
+\dontrun{
+weights <- get_cpih_weights()
+}
+}

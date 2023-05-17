@@ -148,7 +148,13 @@ $I^a_{Jan} = all\ items\ index\ for\ January\ based\ on\ previous\ month\ (Decem
 $I^a_{Dec} = all\ items\ index\ for\ December\ based\ on\ previous\ January = 100$
 
 Note that ‘all items’ doesn’t have to be all items CPIH, it can be a
-section (such as food).
+category total (such as food). It is important that the calculations are
+performed using **unchained indices** (i.e. based on previous January =
+100, or for the January index, based on previous December =100). For the
+month of interest, the contribution of each component of the CPI to the
+12-month rate is calculated. The same is done for the preceding month.
+The differences between the two are the contributions to the change in
+the CPI 12-month rate.
 
 $$
 (\frac{W^c_{y-1}} {W^a_{y-1}})
@@ -156,13 +162,13 @@ $$
 (\frac{({I^c_{Dec}} - {I^c_{t-12}})}{I^a_{t-12}})
 \times
 100
-\;\;+\;\;
+\ \ +\ \ 
 (\frac{W^c_y}{W^a_y})
 \times
 (\frac{({I^c_{Jan}}-100)}{I^a_{t-12}})
 \times
 I^a_{Dec}
-\;\;+\;\;
+\ \ +\ \
 (\frac{W^c_y}{W^a_y})
 \times
 (\frac{(I^c_t - 100)}{I^a_{t-12}})

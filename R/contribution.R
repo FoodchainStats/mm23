@@ -1,13 +1,13 @@
 #' Calculate contribution of a series to 'all items' 12 month rate
 #'
-#' @param year
-#' @param month
-#' @param all_items_index
-#' @param all_items_weight
-#' @param component_index
-#' @param component_weight
+#' @param year A year number
+#' @param month A month number
+#' @param all_items_index All items (or category) index
+#' @param all_items_weight All items (or category) weight
+#' @param component_index Component item index
+#' @param component_weight Component item weight
 #'
-#' @return
+#' @return A contribution value
 #' @export
 #'
 #' @examples
@@ -67,10 +67,10 @@ contribution <- function(year,
 
 
 
-#' Title
+#' Calculate Ia(Dec) for an index
 #'
-#' @param month
-#' @param value
+#' @param month A month number
+#' @param value An index value
 #'
 #' @return
 #' @export
@@ -94,10 +94,10 @@ I_x_Dec <- function(month, value){
 }
 
 
-#' Title
+#' Calculate Ia(Jan) for an index
 #'
-#' @param month
-#' @param value
+#' @param month A month number
+#' @param value An index value
 #'
 #' @return
 #' @export

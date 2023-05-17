@@ -2,13 +2,15 @@
 % Please edit documentation in R/contribution.R
 \name{I_x_Jan}
 \alias{I_x_Jan}
-\title{Title}
+\title{Calculate Ia(Jan) for an index}
 \usage{
 I_x_Jan(month, value)
 }
 \arguments{
-\item{value}{}
+\item{month}{A month number}
+
+\item{value}{An index value}
 }
 \description{
-Title
+Calculate Ia(Jan) for an index
 }

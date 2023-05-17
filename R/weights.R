@@ -51,6 +51,9 @@ get_weights_jan <- function() {
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' weights <- get_cpih_weights()
+#' }
 get_cpih_weights <- function() {
 
   mm23 <- acquire_mm23()
@@ -97,6 +100,9 @@ get_cpih_weights <- function() {
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' lookup <- get_cpih_cdid_lookup()
+#' }
 get_cpih_cdid_lookup <- function() {
   url <- reftables_url()
 

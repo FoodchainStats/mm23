@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{unchain}
 \alias{unchain}
-\title{Hopefully unchains a CPI series}
+\title{Unchains a CPI series}
 \usage{
 unchain(month, value)
 }
@@ -15,6 +15,28 @@ unchain(month, value)
 An unchained index value
 }
 \description{
-Requires a data set with a month variable, uses dplyr::lag to unchain using
-previous values. Assumes that CPI weights change twice a year.
+Use with dplyr::mutate to calculate an unchained index. Requires a dataset
+with a month variable, or use something like lubridate::month(date) to get
+the month as a number, uses dplyr::lag to unchain using previous values.
+Assumes that CPI weights change twice a year.
+}
+\examples{
+\dontrun{
+library(mm23)
+library(dplyr)
+library(lubridate)
+
+mm23 <- acquire_mm23()
+data <- get_mm23_month(mm23)
+wts <- get_cpih_weights()
+
+food_unchained <- data |>
+ filter(cdid \%in\% c("L522", "L523") & date >= "2017-01-01") |>
+  group_by(cdid) |>
+  mutate(
+    unchained_value = unchain(month(date), value)
+  ) |>
+  select(date, cdid, value = unchained_value)
+
+}
 }

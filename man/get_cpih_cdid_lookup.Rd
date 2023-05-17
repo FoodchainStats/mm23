@@ -13,3 +13,8 @@ month rate for all CPIH series. Can be useful as a reference table.
 \description{
 Get a reference table of CPIH CDIDs
 }
+\examples{
+\dontrun{
+lookup <- get_cpih_cdid_lookup()
+}
+}

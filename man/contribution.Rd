@@ -14,7 +14,20 @@ contribution(
 )
 }
 \arguments{
-\item{component_weight}{}
+\item{year}{A year number}
+
+\item{month}{A month number}
+
+\item{all_items_index}{All items (or category) index}
+
+\item{all_items_weight}{All items (or category) weight}
+
+\item{component_index}{Component item index}
+
+\item{component_weight}{Component item weight}
+}
+\value{
+A contribution value
 }
 \description{
 Calculate contribution of a series to 'all items' 12 month rate
