@@ -137,19 +137,32 @@ unchained <- food_unchained |>
 
 ```
 
+## Calculating contribution to ‘all items’ 12 month rate
+
+The calculation is as follows, where:
+
+$c = component\:c$ $a = \:'all\:items'\:CPI\:index$
+$W^c_{y} = weight\;of\;component\;c\;in\;year\;y$
+$I^c_t = index\;for\;component\;c\;in\;month\;t\;based\;on\;January\;of\;current\;year =100$
+$I^a_{Jan} = all\;items\;index\;for\;January\;based\;on\;previous\;month\;(December) = 100$
+$I^a_{Dec} = all\;items\;index\;for\;December\;based\;on\;previous\;January = 100$
+
+Note that ‘all items’ doesn’t have to be all items CPIH, it can be a
+section (such as food).
+
 $$
 (\frac{W^c_{y-1}} {W^a_{y-1}})
 \times
 (\frac{({I^c_{Dec}} - {I^c_{t-12}})}{I^a_{t-12}})
 \times
 100
-+
+\;\;+\;\;
 (\frac{W^c_y}{W^a_y})
 \times
 (\frac{({I^c_{Jan}}-100)}{I^a_{t-12}})
 \times
 I^a_{Dec}
-+
+\;\;+\;\;
 (\frac{W^c_y}{W^a_y})
 \times
 (\frac{(I^c_t - 100)}{I^a_{t-12}})
