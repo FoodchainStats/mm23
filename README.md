@@ -136,3 +136,7 @@ unchained <- food_unchained |>
 
 
 ```
+
+$$
+e = mc^2
+$$
