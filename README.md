@@ -96,3 +96,43 @@ robust, it needs some testing, but if everything is in the right place
 it works OK.
 
 It returns a dataset with a weight for every month.
+
+## Unchaining and calculating contribution
+
+Working on it…
+
+Some code to set up a test dataset
+
+``` r
+
+library(mm23)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+
+mm23 <- acquire_mm23()
+
+metadata <- get_mm23_metadata(mm23)
+data <- get_mm23_month(mm23)
+wts <- get_cpih_weights()
+lookup <- get_cpih_cdid_lookup()
+
+
+food_unchained <- data |> 
+  filter(cdid %in% c("L522", "L523") & date >= "2017-01-01") |> 
+  group_by(cdid) |> 
+  mutate(
+         unchained_value = unchain(month(date), value)
+         ) |> 
+select(date, cdid, value = unchained_value)
+
+
+foodwts <- wts |> 
+  filter(cdid %in% c("L5CY", "L5CZ") & date >= "2017-01-01" & date <= "2023-03-01") 
+
+unchained <- food_unchained |> 
+  bind_rows(foodwts) |> 
+  pivot_wider(names_from = cdid)
+
+
+```
