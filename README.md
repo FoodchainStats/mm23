@@ -91,9 +91,9 @@ CPIH weights are a problem. They are adjusted twice a year (since 2017),
 in December and January. But the mm23 dataset only has a single weight
 for each year. The only place the full weights are exposed are in the
 ‘detailed reference tables’ spreadsheet. So there is now a new function
-`get_cpih_weights` which generates a weights dataset. It may not be very
-robust, it needs some testing, but if everything is in the right place
-it works OK.
+`get_cpih_weights()` which generates a weights dataset. It may not be
+very robust, it needs some testing, but if everything is in the right
+place it works OK.
 
 It returns a dataset with a weight for every month.
 
@@ -126,7 +126,8 @@ The calculation is as follows, where:
 
 $c = component\ c$
 
-$a = 'all\ items'\ CPI\ index$
+$a =\ 'all\ items'\ CPI\ index$
+
 $W^c_{y} = weight\ of\ component\ c\ in\ year\ y$
 $I^c_t = index\ for\ component\ c\ in\ month\ t\ based\ on\ January\ of\ current\ year =100$
 $I^a_{Jan} = all\ items\ index\ for\ January\ based\ on\ previous\ month\ (December) = 100$
@@ -162,6 +163,12 @@ I^a_{Dec}
 \times
 I^a_{Dec}
 $$
+
+The `contribution()` function applies this calculation to a wide dataset
+(1 column with month number or date, and the indices and weights in
+subsequent columns). It can then be used in a `mutate()` call. It takes
+$I^a$, $W^a$, $I^c$, and $W^c$ as parameters, and leverages
+`dplyr::lag()` to do the rest. Example below.
 
 ## Putting it all together
 
