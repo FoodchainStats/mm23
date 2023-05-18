@@ -182,11 +182,14 @@ library(tidyr)
 library(lubridate)
 library(ggplot2)
 
+# Get our data together
 mm23 <- acquire_mm23()
 data <- get_mm23_month(mm23)
 wts <- get_cpih_weights()
 lookup <- get_cpih_cdid_lookup() # not needed here, just for reference
 
+
+# Select and unchain food indices
 food_cdids <- c("L523",
                 "L52I",
                 "L52J",
@@ -209,6 +212,8 @@ food_unchained <- data |>
   ) |> 
   select(date, cdid, value = unchained_value)
 
+
+# Extract the relevant food weights
 food_weights <- c("L5CZ",
                   "L5DH",
                   "L5DI",
@@ -226,6 +231,8 @@ food_weights <- c("L5CZ",
 foodwts <- wts |> 
   filter(cdid %in% food_weights & date >= "2017-01-01" & date <= "2023-03-01") 
 
+
+# Combine the indices and weights and calculate the contribution to annual rate
 unchained <- food_unchained |> 
   bind_rows(foodwts) |> 
   pivot_wider(names_from = cdid)
@@ -289,6 +296,7 @@ contribution <- unchained |>
                    )
 
 
+# put the data back into tidy form and plot some results
 cont <- contribution |> 
   select(date, bread:water) |> 
   pivot_longer(cols = bread:water) |> 
