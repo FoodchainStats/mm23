@@ -21,7 +21,7 @@ You can install the development version of mm23 from
 devtools::install_github("FoodchainStats/mm23", auth_token = "Your GitHub PAT")
 ```
 
-## Example
+## Get MM23
 
 Download the latest MM23 from ONS. `acquire_mm23()` will download the
 full latest `mm23.csv` file, and return its location. By default it puts
@@ -38,7 +38,7 @@ mm23 <- acquire_mm23("~/data")
 data <- read.csv("~/data/mm23.csv")
 ```
 
-## Getting data
+## Get MM23 data series and metadata
 
 The `get_mm23_*` functions will return data in a tidy format, eg:
 
