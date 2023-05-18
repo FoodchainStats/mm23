@@ -99,49 +99,34 @@ It returns a dataset with a weight for every month.
 
 ## Unchaining and calculating contribution
 
-Working on it…
-
-Some code to set up a test dataset
+The `unchain()` function can be used within a `mutate()` call to produce
+an unchained index. Its based on the assumption that CPI weights change
+twice a year, and so an unchained index is based on previous January =
+100, or for the January index, based on previous December = 100. Example
+code below.
 
 ``` r
 
 library(mm23)
 library(dplyr)
-library(tidyr)
 library(lubridate)
 
 mm23 <- acquire_mm23()
-
-metadata <- get_mm23_metadata(mm23)
 data <- get_mm23_month(mm23)
-wts <- get_cpih_weights()
-lookup <- get_cpih_cdid_lookup()
-
 
 food_unchained <- data |> 
   filter(cdid %in% c("L522", "L523") & date >= "2017-01-01") |> 
   group_by(cdid) |> 
-  mutate(
-         unchained_value = unchain(month(date), value)
-         ) |> 
-select(date, cdid, value = unchained_value)
-
-
-foodwts <- wts |> 
-  filter(cdid %in% c("L5CY", "L5CZ") & date >= "2017-01-01" & date <= "2023-03-01") 
-
-unchained <- food_unchained |> 
-  bind_rows(foodwts) |> 
-  pivot_wider(names_from = cdid)
-
-
+  mutate(unchained_value = unchain(month(date), value))
 ```
 
 ## Calculating contribution to ‘all items’ 12 month rate
 
 The calculation is as follows, where:
 
-$c = component\ c$ $a = 'all\ items'\ CPI\ index$
+$c = component\ c$
+
+$a = 'all\ items'\ CPI\ index$
 $W^c_{y} = weight\ of\ component\ c\ in\ year\ y$
 $I^c_t = index\ for\ component\ c\ in\ month\ t\ based\ on\ January\ of\ current\ year =100$
 $I^a_{Jan} = all\ items\ index\ for\ January\ based\ on\ previous\ month\ (December) = 100$
@@ -153,7 +138,7 @@ performed using **unchained indices** (i.e. based on previous January =
 100, or for the January index, based on previous December =100). For the
 month of interest, the contribution of each component of the CPI to the
 12-month rate is calculated. The same is done for the preceding month.
-The differences between the two are the contributions to the change in
+The differences between the two are the contributions to the *change* in
 the CPI 12-month rate.
 
 $$
@@ -180,6 +165,9 @@ $$
 
 ## Putting it all together
 
+Code to calculate the contribution to changes in food and non-alcoholic
+drinks inflation.
+
 ``` r
 library(mm23)
 library(dplyr)
@@ -188,11 +176,9 @@ library(lubridate)
 library(ggplot2)
 
 mm23 <- acquire_mm23()
-
-metadata <- get_mm23_metadata(mm23)
 data <- get_mm23_month(mm23)
 wts <- get_cpih_weights()
-lookup <- get_cpih_cdid_lookup()
+lookup <- get_cpih_cdid_lookup() # not needed here, just for reference
 
 food_cdids <- c("L523",
                 "L52I",
