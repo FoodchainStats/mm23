@@ -140,9 +140,7 @@ The calculation is as follows, where:
 
 $c = component\ c$
 
-
 $a =\ 'all\ items'\ CPI\ index$
-
 
 $W^c_{y} = weight\ of\ component\ c\ in\ year\ y$
 $I^c_t = index\ for\ component\ c\ in\ month\ t\ based\ on\ January\ of\ current\ year =100$
