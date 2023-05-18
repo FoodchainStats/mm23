@@ -194,3 +194,133 @@ I^a_{Dec}
 I^a_{Dec}
 $$
 
+## Putting it all together
+
+```r
+library(mm23)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(ggplot2)
+
+mm23 <- acquire_mm23()
+
+metadata <- get_mm23_metadata(mm23)
+data <- get_mm23_month(mm23)
+wts <- get_cpih_weights()
+lookup <- get_cpih_cdid_lookup()
+
+food_cdids <- c("L523",
+                "L52I",
+                "L52J",
+                "L52K",
+                "L52L",
+                "L52M",
+                "L52N",
+                "L52O",
+                "L52P",
+                "L52Q",
+                "L52S",
+                "L52T")
+
+
+food_unchained <- data |> 
+  filter(cdid %in% food_cdids & date >= "2017-01-01") |> 
+  group_by(cdid) |> 
+  mutate(
+    unchained_value = unchain(month(date), value)
+  ) |> 
+  select(date, cdid, value = unchained_value)
+
+food_weights <- c("L5CZ",
+                  "L5DH",
+                  "L5DI",
+                  "L5DJ",
+                  "L5DK",
+                  "L5DL",
+                  "L5DM",
+                  "L5DN",
+                  "L5DO",
+                  "L5DP",
+                  "L5DR",
+                  "L5DS")
+
+
+foodwts <- wts |> 
+  filter(cdid %in% food_weights & date >= "2017-01-01" & date <= "2023-03-01") 
+
+unchained <- food_unchained |> 
+  bind_rows(foodwts) |> 
+  pivot_wider(names_from = cdid)
+
+contribution <- unchained |> 
+            mutate(bread = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52I,
+                                        component_weight = L5DH),
+                   meat = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52J,
+                                        component_weight = L5DI),
+                   fish = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52K,
+                                        component_weight = L5DJ),
+                   dairy = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52L,
+                                        component_weight = L5DK),
+                   oils = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52M,
+                                        component_weight = L5DL),
+                   fruit = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52N,
+                                        component_weight = L5DM),
+                   vegetables = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52O,
+                                        component_weight = L5DN),
+                   sugar = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52P,
+                                        component_weight = L5DO),
+                   food_nec = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52Q,
+                                        component_weight = L5DP),
+                   coffee = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52S,
+                                        component_weight = L5DR),
+                   water = contribution(month = month(date),
+                                        all_items_index = L523,
+                                        all_items_weight = L5CZ,
+                                        component_index = L52T,
+                                        component_weight = L5DS)
+                   )
+
+
+cont <- contribution |> 
+  select(date, bread:water) |> 
+  pivot_longer(cols = bread:water) |> 
+  filter(!is.na(value))
+
+cont |> 
+  filter(date >= "2021-07-01") |> 
+  ggplot() +
+  geom_col(aes(x = date, y = value, fill = name)) +
+  labs(title = "Contribution to annual food and non-alc inflation rate")
+
+```
