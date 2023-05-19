@@ -5,6 +5,9 @@
 #'   has the weight at annual level.
 #'
 #' @examples
+#' \dontrun{
+#' get_weights_jan()
+#' }
 get_weights_jan <- function() {
   url <- reftables_url()
 

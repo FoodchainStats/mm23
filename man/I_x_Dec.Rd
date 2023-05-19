@@ -2,7 +2,7 @@
 % Please edit documentation in R/contribution.R
 \name{I_x_Dec}
 \alias{I_x_Dec}
-\title{Calculate Ia(Dec) for an index}
+\title{Calculate Ix(Dec) for an index}
 \usage{
 I_x_Dec(month, value)
 }
@@ -11,6 +11,14 @@ I_x_Dec(month, value)
 
 \item{value}{An index value}
 }
+\value{
+An index value for December
+}
 \description{
-Calculate Ia(Dec) for an index
+An index for December based on previous January = 100
+}
+\examples{
+\dontrun{
+I_x_Dec(month, value)
+}
 }

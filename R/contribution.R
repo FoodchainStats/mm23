@@ -1,6 +1,5 @@
 #' Calculate contribution of a series to 'all items' 12 month rate
 #'
-#' @param year A year number
 #' @param month A month number
 #' @param all_items_index All items (or category) index
 #' @param all_items_weight All items (or category) weight
@@ -11,7 +10,14 @@
 #' @export
 #'
 #' @examples
-contribution <- function(year,
+#' \dontrun{
+#' bread = contribution(month = month(date),
+#'   all_items_index = L523,
+#'   all_items_weight = L5CZ,
+#'   component_index = L52I,
+#'   component_weight = L5DH)
+#' }
+contribution <- function(
                  month,
                  all_items_index,
                  all_items_weight,
@@ -67,15 +73,19 @@ contribution <- function(year,
 
 
 
-#' Calculate Ia(Dec) for an index
+#' Calculate Ix(Dec) for an index
+#'
+#' An index for December based on previous January = 100
 #'
 #' @param month A month number
 #' @param value An index value
 #'
-#' @return
-#' @export
+#' @return An index value for December
 #'
 #' @examples
+#' \dontrun{
+#' I_x_Dec(month, value)
+#' }
 I_x_Dec <- function(month, value){
   dplyr::case_when(
     month == 1 ~ dplyr::lag(value, 1),
@@ -94,15 +104,19 @@ I_x_Dec <- function(month, value){
 }
 
 
-#' Calculate Ia(Jan) for an index
+#' Calculate Ix(Jan) for an index
+#'
+#' An index for January based on previous month (December) = 100
 #'
 #' @param month A month number
 #' @param value An index value
 #'
-#' @return
-#' @export
+#' @return An index value for January
 #'
 #' @examples
+#' \dontrun{
+#' I_x_Jan(month, value)
+#' }
 I_x_Jan <- function(month, value){
   dplyr::case_when(
     month == 1 ~ dplyr::lag(value, 12),

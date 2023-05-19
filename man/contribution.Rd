@@ -5,7 +5,6 @@
 \title{Calculate contribution of a series to 'all items' 12 month rate}
 \usage{
 contribution(
-  year,
   month,
   all_items_index,
   all_items_weight,
@@ -14,8 +13,6 @@ contribution(
 )
 }
 \arguments{
-\item{year}{A year number}
-
 \item{month}{A month number}
 
 \item{all_items_index}{All items (or category) index}
@@ -31,4 +28,13 @@ A contribution value
 }
 \description{
 Calculate contribution of a series to 'all items' 12 month rate
+}
+\examples{
+\dontrun{
+bread = contribution(month = month(date),
+  all_items_index = L523,
+  all_items_weight = L5CZ,
+  component_index = L52I,
+  component_weight = L5DH)
+}
 }

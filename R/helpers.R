@@ -5,7 +5,7 @@
 #'
 #' @examples
 #' url <- mm23_url()
-mm23_url <- function(){
+mm23_url <- function() {
   url <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindices/current/mm23.csv"
   return(url)
 }
@@ -20,10 +20,27 @@ mm23_url <- function(){
 #'
 #' @examples
 #' url <- reftables_url()
-reftables_url <- function(){
+reftables_url <- function() {
   url <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables2.xlsx"
   return(url)
 }
+
+
+#' Default url for the CPI average prices spreadsheet
+#'
+#' Its not clear yet if this url is stable, need to test over future months.
+#'
+#' @return url of data download spreadsheet
+#' @export
+#'
+#' @examples
+#' url <- prices_url()
+prices_url <- function() {
+  url <- "https://www.ons.gov.uk/visualisations/dvc2523/shopping-prices-comparison-tool/datadownload.xlsx"
+  return(url)
+}
+
+
 
 #' Unchains a CPI series
 #'

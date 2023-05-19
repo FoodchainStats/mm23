@@ -14,3 +14,8 @@ has the weight at annual level.
 \description{
 Get January CPIH weights
 }
+\examples{
+\dontrun{
+get_weights_jan()
+}
+}
