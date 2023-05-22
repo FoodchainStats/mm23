@@ -300,6 +300,37 @@ get_mm23_metadata <- function(rawfile){
     dplyr::arrange(.data$title)
 
 
+# CPI Weights----------------------------------------------------------------
+
+  message("Processing CPI Weights")
+
+  cpi_wt1 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI WEIGHTS [0-9][0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI WEIGHTS ")) |>
+    dplyr::mutate(level = 1)
+
+  cpi_wt2 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI WEIGHTS [0-9][0-9]\\.[0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI WEIGHTS ")) |>
+    dplyr::mutate(level = 2)
+
+  cpi_wt3 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI WEIGHTS [0-9][0-9]\\.[0-9].[0-9] ?:")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI WEIGHTS ")) |>
+    dplyr::mutate(level = 3)
+
+  cpi_wt4 <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI WEIGHTS [0-9][0-9]\\.[0-9].[0-9].[0-9]")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI WEIGHTS ")) |>
+    dplyr::mutate(level = 4)
+
+  cpi_wt_cdids <- dplyr::bind_rows(list(cpi_wt1, cpi_wt2, cpi_wt3, cpi_wt4)) |>
+    dplyr::mutate(title = stringr::str_to_title(.data$title)) |>
+    dplyr::mutate(category = "CPI Weights") |>
+    dplyr::select("cdid", "title", "category", "level") |>
+    dplyr::arrange(.data$title)
+
+
   # rebuild metadata
 
   series <- dplyr::bind_rows(list(cpih_ann_rate_cdids,
@@ -312,6 +343,7 @@ get_mm23_metadata <- function(rawfile){
                            cpih_wt_cdids,
                            cpi_ann_rate_cdids,
                            cpi_mth_rate_cdids,
+                           cpi_wt_cdids,
                            cpih_index_cdids))
 
   metadata <- metadata |>

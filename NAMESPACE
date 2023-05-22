@@ -2,6 +2,7 @@
 
 export(acquire_mm23)
 export(contribution)
+export(get_cpi_weights)
 export(get_cpih_cdid_lookup)
 export(get_cpih_weights)
 export(get_mm23_metadata)
