@@ -331,6 +331,18 @@ get_mm23_metadata <- function(rawfile){
     dplyr::arrange(.data$title)
 
 
+
+  # Contributions to CPI annual rate -------------------------------------------
+  message("Processing CPI contributions to annual rate")
+
+  cpi_cont_ann_cdids <- metadata |>
+    dplyr::filter(stringr::str_detect(.data$title, "CPI: Contribution to all items annual rate: ")) |>
+    dplyr::mutate(title = stringr::str_remove(.data$title, "CPI: Contribution to all items annual rate: ")) |>
+    dplyr::mutate(category = "CPI contribution to all items annual rate") |>
+    dplyr::select("cdid", "title", "category") |>
+    dplyr::arrange(.data$title)
+
+
   # rebuild metadata
 
   series <- dplyr::bind_rows(list(cpih_ann_rate_cdids,
@@ -338,13 +350,14 @@ get_mm23_metadata <- function(rawfile){
                            cpih_cont_ann_cdids,
                            cpih_cont_ann_chg_cdids,
                            cpih_cont_mth_chg_cdids,
+                           cpih_wt_cdids,
+                           cpih_index_cdids,
                            rpi_avg_price_cdids,
                            rpi_12_mth_cdids,
-                           cpih_wt_cdids,
                            cpi_ann_rate_cdids,
                            cpi_mth_rate_cdids,
                            cpi_wt_cdids,
-                           cpih_index_cdids))
+                           cpi_cont_ann_cdids))
 
   metadata <- metadata |>
     dplyr::left_join(series, by = "cdid") |>
