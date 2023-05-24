@@ -36,7 +36,7 @@ reftables_url <- function() {
 #' @examples
 #' url <- prices_url()
 prices_url <- function() {
-  url <- "https://www.ons.gov.uk/visualisations/dvc2523/shopping-prices-comparison-tool/datadownload.xlsx"
+  url <- "https://github.com/henryjameslau/cpi-items-actions/raw/main/datadownload.xlsx"
   return(url)
 }
 
