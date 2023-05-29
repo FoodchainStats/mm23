@@ -89,13 +89,12 @@ columns). It can then be used in a `mutate()` call. It takes $I^a$, $W^a$,
 $I^c$, and $W^c$ as parameters, and leverages `dplyr::lag()` to do the rest.
 Example below.
 
-## CPIH food weight contribution
+## Contribution - data setup
 
-Code to calculate the contribution to changes in food and non-alcoholic drinks
-inflation.
+Lets get the data we need for the calculations and reduce the need for lots of
+downloads.
 
-
-```{r cpih_contribution, message=FALSE}
+```{r data_setup, message=FALSE}
 library(mm23)
 library(dplyr)
 library(tidyr)
@@ -105,7 +104,19 @@ library(ggplot2)
 # Get our data together
 mm23 <- acquire_mm23()
 data <- get_mm23_month(mm23)
-wts <- get_cpih_weights()
+cpih_wts <- get_cpih_weights()
+cpi_wts <- get_cpi_weights()
+
+```
+
+
+## CPIH food weight contribution
+
+Code to calculate the contribution to changes in food and non-alcoholic drinks
+inflation.
+
+
+```{r cpih_contribution, message=FALSE}
 
 # Select and unchain food indices
 food_cdids <- c("L523", "L52I", "L52J", "L52K",
@@ -126,7 +137,7 @@ food_weights <- c("L5CZ", "L5DH", "L5DI", "L5DJ",
                   "L5DO", "L5DP", "L5DR", "L5DS")
 
 
-foodwts <- wts |> 
+foodwts <- cpih_wts |> 
   filter(cdid %in% food_weights & date >= "2017-01-01" & date <= "2023-03-01") 
 
 
@@ -212,18 +223,6 @@ cont |>
 
 ## CPI food weight ontribution
 ```{r cpi_contribution, message=FALSE}
-library(mm23)
-library(dplyr)
-library(tidyr)
-library(lubridate)
-library(ggplot2)
-
-# Get our data together
-mm23 <- acquire_mm23()
-data <- get_mm23_month(mm23)
-wts <- get_cpi_weights()
-
-
 # Select and unchain food indices
 food_cdids <- c("D7BU",
                 "D7D5",
@@ -263,7 +262,7 @@ food_weights <- c("CHZR",
                   "CJWL")
 
 
-foodwts <- wts |> 
+foodwts <- cpi_wts |> 
   filter(cdid %in% food_weights & date >= "2017-01-01" & date <= "2023-03-01") 
 
 
