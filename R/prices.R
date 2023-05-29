@@ -20,6 +20,10 @@ get_price_data <- function(file) {
     file <- tmp
   }
 
+  if(is.na(readxl::excel_format(file))) {
+    stop(paste("File", file, "is not an xlsx spreadsheet"))
+  }
+
   avgprice <- readxl::read_excel(file, sheet = "averageprice") |>
     tidyr::pivot_longer(!.data$ITEM_ID) |>
     dplyr::mutate(ITEM_ID = as.character(.data$ITEM_ID),
@@ -58,6 +62,10 @@ get_price_metadata <- function(file) {
     tmp <- tempfile()
     utils::download.file(url, tmp)
     file <- tmp
+  }
+
+  if(is.na(readxl::excel_format(file))) {
+    stop(paste("File", file, "is not an xlsx spreadsheet"))
   }
 
   price_metadata <- readxl::read_excel(file, sheet = "metadata") |>

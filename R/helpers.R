@@ -1,6 +1,6 @@
 #' Default url for the current mm23 dataset
 #'
-#' @return url of mme23 data
+#' @return url of mm23 data
 #' @export
 #'
 #' @examples
@@ -13,7 +13,8 @@ mm23_url <- function() {
 
 #' Default url for the CPI reference tables spreadsheet
 #'
-#' Its not clear yet if this url is stable, need to test over future months.
+#' @description Its not clear yet if this url is stable, need to test over
+#'   future months.
 #'
 #' @return url of reference tables
 #' @export
