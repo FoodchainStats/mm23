@@ -30,7 +30,7 @@ You can install the development version of mm23 from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("FoodchainStats/mm23", auth_token = "Your GitHub PAT")
+devtools::install_github("FoodchainStats/mm23")
 ```
 
 ## Get MM23
