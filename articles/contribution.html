@@ -158,51 +158,14 @@ non-alcoholic drinks inflation.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://foodchainstats.github.io/mm23/">mm23</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'lubridate'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     date, intersect, setdiff, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get our data together</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mm23_month.html">get_mm23_month</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Processing month</span></span>
 <span><span class="va">wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpih_weights.html">get_cpih_weights</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Processing metadata</span></span>
-<span><span class="co">#&gt; New names:</span></span>
-<span><span class="co">#&gt; Processing CPIH annual rates</span></span>
-<span><span class="co">#&gt; Processing CPIH monthly rates</span></span>
-<span><span class="co">#&gt; Processing CPIH index</span></span>
-<span><span class="co">#&gt; Processing RPI average prices</span></span>
-<span><span class="co">#&gt; Processing CPIH contributions to annual rate</span></span>
-<span><span class="co">#&gt; Processing CPIH contributions to monthly change in rate</span></span>
-<span><span class="co">#&gt; Processing monthly change in annual rate</span></span>
-<span><span class="co">#&gt; Processing RPI 12 month change</span></span>
-<span><span class="co">#&gt; Processing CPIH Weights</span></span>
-<span><span class="co">#&gt; Processing CPI Annual rates</span></span>
-<span><span class="co">#&gt; Processing CPI Monthly rate</span></span>
-<span><span class="co">#&gt; Processing CPI Weights</span></span>
-<span><span class="co">#&gt; Processing CPI contributions to annual rate</span></span>
-<span><span class="co">#&gt; Processing year</span></span>
-<span><span class="co">#&gt; Getting weights <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■ </span> 74% | ETA: 1s</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...1`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...2`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...3`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...4`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...5`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...6`</span></span>
 <span></span>
 <span><span class="co"># Select and unchain food indices</span></span>
 <span><span class="va">food_cdids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"L523"</span>, <span class="st">"L52I"</span>, <span class="st">"L52J"</span>, <span class="st">"L52K"</span>,</span>
@@ -290,14 +253,317 @@ non-alcoholic drinks inflation.</p>
 <span>                                        component_weight <span class="op">=</span> <span class="va">L5DS</span><span class="op">)</span></span>
 <span>                   <span class="op">)</span></span>
 <span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">contribution</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "|date       |      L523|      L52I|      L52J|      L52K|      L52L|      L52M|      L52N|      L52O|      L52P|      L52Q|      L52S|      L52T| L5CZ| L5DH| L5DI| L5DJ| L5DK| L5DL| L5DM| L5DN| L5DO| L5DP| L5DR| L5DS|      bread|       meat|       fish|      dairy|       oils|      fruit| vegetables|      sugar|   food_nec|     coffee|      water|"</span></span>
-<span><span class="co">#&gt; [2] "|:----------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|"</span></span>
-<span><span class="co">#&gt; [3] "|2017-01-01 |        NA|        NA|        NA|        NA|        NA|        NA|        NA|        NA|        NA|        NA|        NA|        NA|   81|   12|   16|    3|    9|    2|    7|   10|   10|    2|    3|    7|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|"</span></span>
-<span><span class="co">#&gt; [4] "|2017-02-01 | 100.81466| 101.93878| 100.41580| 104.59082| 100.62500| 100.68160| 101.28459| 102.28453|  96.84418| 102.32794| 104.18744|  99.48613|   81|   12|   16|    3|    9|    2|    7|   10|   10|    2|    3|    7|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|"</span></span>
-<span><span class="co">#&gt; [5] "|2017-03-01 | 101.12016| 102.34694| 100.51975| 104.59082| 102.29167| 103.40798| 102.47036| 102.49221|  97.23866| 102.32794| 103.19043|  98.04728|   81|   12|   16|    3|    9|    2|    7|   10|   10|    2|    3|    7|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|"</span></span>
-<span><span class="co">#&gt; [6] "|2017-04-01 | 101.32383| 103.16327| 101.35135| 103.29341| 101.45833|  96.68939| 102.27273| 102.59605|  98.52071| 102.02429| 104.78564|  98.35560|   81|   12|   16|    3|    9|    2|    7|   10|   10|    2|    3|    7|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|         NA|"</span></span>
-<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">contribution</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="4%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="2%">
+<col width="1%">
+<col width="1%">
+<col width="2%">
+<col width="1%">
+<col width="2%">
+<col width="4%">
+<col width="2%">
+<col width="3%">
+<col width="2%">
+<col width="2%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">date</th>
+<th align="right">L523</th>
+<th align="right">L52I</th>
+<th align="right">L52J</th>
+<th align="right">L52K</th>
+<th align="right">L52L</th>
+<th align="right">L52M</th>
+<th align="right">L52N</th>
+<th align="right">L52O</th>
+<th align="right">L52P</th>
+<th align="right">L52Q</th>
+<th align="right">L52S</th>
+<th align="right">L52T</th>
+<th align="right">L5CZ</th>
+<th align="right">L5DH</th>
+<th align="right">L5DI</th>
+<th align="right">L5DJ</th>
+<th align="right">L5DK</th>
+<th align="right">L5DL</th>
+<th align="right">L5DM</th>
+<th align="right">L5DN</th>
+<th align="right">L5DO</th>
+<th align="right">L5DP</th>
+<th align="right">L5DR</th>
+<th align="right">L5DS</th>
+<th align="right">bread</th>
+<th align="right">meat</th>
+<th align="right">fish</th>
+<th align="right">dairy</th>
+<th align="right">oils</th>
+<th align="right">fruit</th>
+<th align="right">vegetables</th>
+<th align="right">sugar</th>
+<th align="right">food_nec</th>
+<th align="right">coffee</th>
+<th align="right">water</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2017-01-01</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">81</td>
+<td align="right">12</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">2017-02-01</td>
+<td align="right">100.8147</td>
+<td align="right">101.9388</td>
+<td align="right">100.4158</td>
+<td align="right">104.5908</td>
+<td align="right">100.6250</td>
+<td align="right">100.68160</td>
+<td align="right">101.2846</td>
+<td align="right">102.2845</td>
+<td align="right">96.84418</td>
+<td align="right">102.3279</td>
+<td align="right">104.1874</td>
+<td align="right">99.48613</td>
+<td align="right">81</td>
+<td align="right">12</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-03-01</td>
+<td align="right">101.1202</td>
+<td align="right">102.3469</td>
+<td align="right">100.5198</td>
+<td align="right">104.5908</td>
+<td align="right">102.2917</td>
+<td align="right">103.40798</td>
+<td align="right">102.4704</td>
+<td align="right">102.4922</td>
+<td align="right">97.23866</td>
+<td align="right">102.3279</td>
+<td align="right">103.1904</td>
+<td align="right">98.04728</td>
+<td align="right">81</td>
+<td align="right">12</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">2017-04-01</td>
+<td align="right">101.3238</td>
+<td align="right">103.1633</td>
+<td align="right">101.3514</td>
+<td align="right">103.2934</td>
+<td align="right">101.4583</td>
+<td align="right">96.68939</td>
+<td align="right">102.2727</td>
+<td align="right">102.5961</td>
+<td align="right">98.52071</td>
+<td align="right">102.0243</td>
+<td align="right">104.7856</td>
+<td align="right">98.35560</td>
+<td align="right">81</td>
+<td align="right">12</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-05-01</td>
+<td align="right">101.4257</td>
+<td align="right">102.5510</td>
+<td align="right">101.0395</td>
+<td align="right">105.5888</td>
+<td align="right">102.2917</td>
+<td align="right">99.80526</td>
+<td align="right">101.6798</td>
+<td align="right">101.4538</td>
+<td align="right">100.00000</td>
+<td align="right">102.7328</td>
+<td align="right">103.4895</td>
+<td align="right">99.28058</td>
+<td align="right">81</td>
+<td align="right">12</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">2017-06-01</td>
+<td align="right">101.3238</td>
+<td align="right">102.8571</td>
+<td align="right">101.4553</td>
+<td align="right">107.6846</td>
+<td align="right">102.2917</td>
+<td align="right">102.04479</td>
+<td align="right">101.2846</td>
+<td align="right">100.5192</td>
+<td align="right">97.33728</td>
+<td align="right">101.2146</td>
+<td align="right">105.0847</td>
+<td align="right">99.58890</td>
+<td align="right">81</td>
+<td align="right">12</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># put the data back into tidy form and plot some results</span></span>
 <span><span class="va">cont</span> <span class="op">&lt;-</span> <span class="va">contribution</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">bread</span><span class="op">:</span><span class="va">water</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -309,12 +575,12 @@ non-alcoholic drinks inflation.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Contribution to annual food and non-alc inflation rate"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="contribution_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<p><img src="contribution_files/figure-html/cpih_contribution-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="cpi-food-weight-ontribution">CPI food weight ontribution<a class="anchor" aria-label="anchor" href="#cpi-food-weight-ontribution"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://foodchainstats.github.io/mm23/">mm23</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
@@ -324,31 +590,7 @@ non-alcoholic drinks inflation.</p>
 <span><span class="co"># Get our data together</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mm23_month.html">get_mm23_month</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Processing month</span></span>
 <span><span class="va">wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpi_weights.html">get_cpi_weights</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Processing metadata</span></span>
-<span><span class="co">#&gt; New names:</span></span>
-<span><span class="co">#&gt; Processing CPIH annual rates</span></span>
-<span><span class="co">#&gt; Processing CPIH monthly rates</span></span>
-<span><span class="co">#&gt; Processing CPIH index</span></span>
-<span><span class="co">#&gt; Processing RPI average prices</span></span>
-<span><span class="co">#&gt; Processing CPIH contributions to annual rate</span></span>
-<span><span class="co">#&gt; Processing CPIH contributions to monthly change in rate</span></span>
-<span><span class="co">#&gt; Processing monthly change in annual rate</span></span>
-<span><span class="co">#&gt; Processing RPI 12 month change</span></span>
-<span><span class="co">#&gt; Processing CPIH Weights</span></span>
-<span><span class="co">#&gt; Processing CPI Annual rates</span></span>
-<span><span class="co">#&gt; Processing CPI Monthly rate</span></span>
-<span><span class="co">#&gt; Processing CPI Weights</span></span>
-<span><span class="co">#&gt; Processing CPI contributions to annual rate</span></span>
-<span><span class="co">#&gt; Processing year</span></span>
-<span><span class="co">#&gt; Getting weights <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 79% | ETA: 1s</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...1`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...2`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...3`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...4`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...5`</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...6`</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Select and unchain food indices</span></span>
@@ -469,7 +711,7 @@ non-alcoholic drinks inflation.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Contribution to annual food and non-alc inflation rate"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="contribution_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="contribution_files/figure-html/cpi_contribution-1.png" width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
