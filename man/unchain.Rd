@@ -15,9 +15,9 @@ unchain(month, value)
 An unchained index value
 }
 \description{
-Use with dplyr::mutate to calculate an unchained index. Requires a dataset
+Use with \code{\link[dplyr:mutate]{dplyr::mutate()}} to calculate an unchained index. Requires a dataset
 with a month variable, or use something like lubridate::month(date) to get
-the month as a number, uses dplyr::lag to unchain using previous values.
+the month as a number, uses \code{\link[dplyr:lead-lag]{dplyr::lag()}} to unchain using previous values.
 Assumes that CPI weights change twice a year.
 }
 \examples{

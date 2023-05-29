@@ -36,10 +36,15 @@ can be used to unchain a series. The formula is valid for data after 2018
 when the CPI weights updated twice a year, and is set out below.
 
 \eqn{c = component\ c}
+
 \eqn{a =\ 'all\ items'\ CPI\ index}
+
 \eqn{W^c_{y} = weight\ of\ component\ c\ in\ year\ y}
+
 \eqn{I^c_t = index\ for\ component\ c\ in\ month\ t\ based\ on\ January\ of\ current\ year =100}
+
 \eqn{I^a_{Jan} = all\ items\ index\ for\ January\ based\ on\ previous\ month\ (December) = 100}
+
 \eqn{I^a_{Dec} = all\ items\ index\ for\ December\ based\ on\ previous\ January = 100}
 
 \deqn{
