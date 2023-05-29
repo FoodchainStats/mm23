@@ -26,3 +26,5 @@ Imports:
     unpivotr,
     utils
 URL: https://foodchainstats.github.io/mm23/
+Suggests: 
+    rmarkdown

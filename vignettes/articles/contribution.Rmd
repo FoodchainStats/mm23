@@ -1,0 +1,14 @@
+---
+title: "Calculating contribution to annual rate using mm23"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(mm23)
+```
