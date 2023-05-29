@@ -1,5 +1,5 @@
 ---
-title: "Calculating contribution to annual rate using mm23"
+title: "Calculating contribution to annual rate"
 ---
 
 ```{r, include = FALSE}
@@ -95,7 +95,7 @@ Code to calculate the contribution to changes in food and non-alcoholic drinks
 inflation.
 
 
-```r
+```{r}
 library(mm23)
 library(dplyr)
 library(tidyr)
