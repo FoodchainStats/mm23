@@ -27,7 +27,29 @@ contribution(
 A contribution value
 }
 \description{
-Calculate contribution of a series to 'all items' 12 month rate
+A short description...
+
+\deqn{
+(\frac{W^c_{y-1}} {W^a_{y-1}})
+\times
+(\frac{({I^c_{Dec}} - {I^c_{t-12}})}{I^a_{t-12}})
+\times
+100
+\ \ +\ \
+(\frac{W^c_y}{W^a_y})
+\times
+(\frac{({I^c_{Jan}}-100)}{I^a_{t-12}})
+\times
+I^a_{Dec}
+\ \ +\ \
+(\frac{W^c_y}{W^a_y})
+\times
+(\frac{(I^c_t - 100)}{I^a_{t-12}})
+\times
+\frac{I^a_{Jan}}{100}
+\times
+I^a_{Dec}
+}{asciitext}
 }
 \examples{
 \dontrun{

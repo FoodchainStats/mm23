@@ -10,7 +10,8 @@ reftables_url()
 url of reference tables
 }
 \description{
-Its not clear yet if this url is stable, need to test over future months.
+Its not clear yet if this url is stable, need to test over
+future months.
 }
 \examples{
 url <- reftables_url()

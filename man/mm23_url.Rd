@@ -7,7 +7,7 @@
 mm23_url()
 }
 \value{
-url of mme23 data
+url of mm23 data
 }
 \description{
 Default url for the current mm23 dataset

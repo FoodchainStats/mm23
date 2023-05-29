@@ -77,13 +77,13 @@ filter(cdid == "L55O") |>
 left_join(metadata)
 ```
 
-| cdid | title                                                       | category             | level | pre_unit | unit | release_date | next_release | important_notes |
-|:-----|:------------------------------------------------------------|:---------------------|------:|:---------|:-----|:-------------|:-------------|:----------------|
-| L5MS | CPIH 1mth: Medical services (S) 2015=100                    | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
-| J39L | 05.5.2.1 Non-Motorized Small Tools                          | CPIH Annual rate (%) |     4 | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
-| L8AI | CPI WEIGHTS 05.3.1.3 Cookers                                | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
-| L7QE | CPI ANNUAL RATE 05.3.2.3 Irons 2015=100                     | NA                   |    NA | NA       | NA   | 19-04-2023   | 24 May 2023  | NA              |
-| D7JZ | CPI MONTHLY RATE 03.2 : FOOTWEAR INCLUDING REPAIRS 2015=100 | NA                   |    NA | NA       | %    | 19-04-2023   | 24 May 2023  | NA              |
+| cdid | title                                                                 | category            | level | pre_unit | unit                   | release_date | next_release | important_notes |
+|:-----|:----------------------------------------------------------------------|:--------------------|------:|:---------|:-----------------------|:-------------|:-------------|:----------------|
+| D7CL | CPI INDEX 05.4 : GLASSWARE, TABLEWARE AND HOUSEHOLD UTENSILS 2015=100 | NA                  |    NA | NA       | Index, base year = 100 | 24-05-2023   | 21 June 2023 | NA              |
+| L5L9 | CPIH 12mth: Vehicles, spare parts & accessories (G) 2015=100          | NA                  |    NA | NA       | %                      | 24-05-2023   | 21 June 2023 | NA              |
+| D7EU | CPI INDEX 09.3.4/5 : Pets, related products and services 2015=100     | NA                  |    NA | NA       | Index, base year = 100 | 24-05-2023   | 21 June 2023 | NA              |
+| CZGZ | RPI:Weights (parts per 1000) - Food                                   | NA                  |    NA | NA       | Parts per 1000         | 24-05-2023   | 21 June 2023 | NA              |
+| L7QP | 05.6.1.2 Other Non-Durable Small Household Articles                   | CPI Annual rate (%) |     4 | NA       | NA                     | 24-05-2023   | 21 June 2023 | NA              |
 
 ## Weights
 
