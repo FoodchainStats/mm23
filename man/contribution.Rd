@@ -27,7 +27,20 @@ contribution(
 A contribution value
 }
 \description{
-A short description...
+The contribution function implements the formula for calculating the
+contribution of a cpi component to its parent level, as set out in the ONS
+\href{https://www.ons.gov.uk/economy/inflationandpriceindices/methodologies/consumerpricesindicestechnicalmanual2019#weights}{CPI Technical Manual}.
+
+The function must be applied to an unchained index. The \code{\link[=unchain]{unchain()}} function
+can be used to unchain a series. The formula is valid for data after 2018
+when the CPI weights updated twice a year, and is set out below.
+
+\eqn{c = component\ c}
+\eqn{a =\ 'all\ items'\ CPI\ index}
+\eqn{W^c_{y} = weight\ of\ component\ c\ in\ year\ y}
+\eqn{I^c_t = index\ for\ component\ c\ in\ month\ t\ based\ on\ January\ of\ current\ year =100}
+\eqn{I^a_{Jan} = all\ items\ index\ for\ January\ based\ on\ previous\ month\ (December) = 100}
+\eqn{I^a_{Dec} = all\ items\ index\ for\ December\ based\ on\ previous\ January = 100}
 
 \deqn{
 (\frac{W^c_{y-1}} {W^a_{y-1}})
@@ -50,6 +63,10 @@ I^a_{Dec}
 \times
 I^a_{Dec}
 }{asciitext}
+
+You should apply \code{\link[=contribution]{contribution()}} to a wide dataframe: one that has a field
+containing the dates for the series, and columns containing the relevant
+series indices and their weights.
 }
 \examples{
 \dontrun{

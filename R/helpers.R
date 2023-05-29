@@ -45,9 +45,9 @@ prices_url <- function() {
 
 #' Unchains a CPI series
 #'
-#' Use with dplyr::mutate to calculate an unchained index. Requires a dataset
+#' Use with [dplyr::mutate()] to calculate an unchained index. Requires a dataset
 #' with a month variable, or use something like lubridate::month(date) to get
-#' the month as a number, uses dplyr::lag to unchain using previous values.
+#' the month as a number, uses [dplyr::lag()] to unchain using previous values.
 #' Assumes that CPI weights change twice a year.
 #'
 #' @param month The month number for the index
