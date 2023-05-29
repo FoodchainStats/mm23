@@ -95,7 +95,7 @@ Code to calculate the contribution to changes in food and non-alcoholic drinks
 inflation.
 
 
-```{r}
+```{r cpih_contribution, message=FALSE}
 library(mm23)
 library(dplyr)
 library(tidyr)
@@ -193,7 +193,7 @@ contribution <- unchained |>
                                         component_weight = L5DS)
                    )
 
-knitr::kable(contribution) |> head()
+head(contribution) |> knitr::kable()
 
 # put the data back into tidy form and plot some results
 cont <- contribution |> 
@@ -211,7 +211,7 @@ cont |>
 
 
 ## CPI food weight ontribution
-```{r}
+```{r cpi_contribution, message=FALSE}
 library(mm23)
 library(dplyr)
 library(tidyr)
