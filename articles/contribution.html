@@ -151,10 +151,10 @@ weights in subsequent columns). It can then be used in a
 <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html" class="external-link">dplyr::lag()</a></code> to do the rest. Example below.</p>
 </div>
 <div class="section level2">
-<h2 id="cpih-food-weight-contribution">CPIH food weight contribution<a class="anchor" aria-label="anchor" href="#cpih-food-weight-contribution"></a>
+<h2 id="contribution---data-setup">Contribution - data setup<a class="anchor" aria-label="anchor" href="#contribution---data-setup"></a>
 </h2>
-<p>Code to calculate the contribution to changes in food and
-non-alcoholic drinks inflation.</p>
+<p>Lets get the data we need for the calculations and reduce the need
+for lots of downloads.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://foodchainstats.github.io/mm23/">mm23</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -165,8 +165,16 @@ non-alcoholic drinks inflation.</p>
 <span><span class="co"># Get our data together</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mm23_month.html">get_mm23_month</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
-<span><span class="va">wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpih_weights.html">get_cpih_weights</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
+<span><span class="va">cpih_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpih_weights.html">get_cpih_weights</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">cpi_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpi_weights.html">get_cpi_weights</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="cpih-food-weight-contribution">CPIH food weight contribution<a class="anchor" aria-label="anchor" href="#cpih-food-weight-contribution"></a>
+</h2>
+<p>Code to calculate the contribution to changes in food and
+non-alcoholic drinks inflation.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># Select and unchain food indices</span></span>
 <span><span class="va">food_cdids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"L523"</span>, <span class="st">"L52I"</span>, <span class="st">"L52J"</span>, <span class="st">"L52K"</span>,</span>
 <span>                <span class="st">"L52L"</span>, <span class="st">"L52M"</span>, <span class="st">"L52N"</span>, <span class="st">"L52O"</span>,</span>
@@ -186,7 +194,7 @@ non-alcoholic drinks inflation.</p>
 <span>                  <span class="st">"L5DO"</span>, <span class="st">"L5DP"</span>, <span class="st">"L5DR"</span>, <span class="st">"L5DS"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">wts</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">cpih_wts</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-03-01"</span><span class="op">)</span> </span>
 <span></span>
 <span></span>
@@ -562,7 +570,7 @@ non-alcoholic drinks inflation.</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># put the data back into tidy form and plot some results</span></span>
 <span><span class="va">cont</span> <span class="op">&lt;-</span> <span class="va">contribution</span> <span class="op">|&gt;</span> </span>
@@ -580,20 +588,8 @@ non-alcoholic drinks inflation.</p>
 <div class="section level2">
 <h2 id="cpi-food-weight-ontribution">CPI food weight ontribution<a class="anchor" aria-label="anchor" href="#cpi-food-weight-ontribution"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://foodchainstats.github.io/mm23/">mm23</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Get our data together</span></span>
-<span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mm23_month.html">get_mm23_month</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
-<span><span class="va">wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpi_weights.html">get_cpi_weights</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co"># Select and unchain food indices</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Select and unchain food indices</span></span>
 <span><span class="va">food_cdids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D7BU"</span>,</span>
 <span>                <span class="st">"D7D5"</span>,</span>
 <span>                <span class="st">"D7D6"</span>,</span>
@@ -632,7 +628,7 @@ non-alcoholic drinks inflation.</p>
 <span>                  <span class="st">"CJWL"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">wts</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">cpi_wts</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-03-01"</span><span class="op">)</span> </span>
 <span></span>
 <span></span>
