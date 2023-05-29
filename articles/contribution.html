@@ -70,13 +70,228 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://foodchainstats.github.io/mm23/">mm23</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
-<h2 id="some-test-heading">Some test heading<a class="anchor" aria-label="anchor" href="#some-test-heading"></a>
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
+<p>mm23 contains functions to reproduce the calculation of an items
+contribution to its parents annual inflation rate. These are quite
+niche, and rely on the data being in a specific structure. <em>Theres no
+real error checking in here (yet) so take care!</em></p>
+<p>This article will explain the steps needed to reproduce the
+calculation.</p>
 </div>
-  </main>
+<div class="section level2">
+<h2 id="weights">Weights<a class="anchor" aria-label="anchor" href="#weights"></a>
+</h2>
+<p>CPIH weights are a problem. They are adjusted twice a year (since
+2017), in December and January. But the mm23 dataset only has a single
+weight for each year. The only place the full weights are exposed are in
+the ‘detailed reference tables’ spreadsheet. The functions
+<code>get_cpi*_weights()</code> which generates a weights dataset.
+<em>It may not be very robust, it needs some testing, but if everything
+is in the right place it works OK.</em></p>
+<p>It returns a dataset with a weight for every month.</p>
+</div>
+<div class="section level2">
+<h2 id="unchaining-and-calculating-contribution">Unchaining and calculating contribution<a class="anchor" aria-label="anchor" href="#unchaining-and-calculating-contribution"></a>
+</h2>
+<p>The <code><a href="../reference/unchain.html">unchain()</a></code> function can be used within a
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate()</a></code> call to produce an unchained index. Its based on
+the assumption that CPI weights change twice a year, and so an unchained
+index is based on previous January = 100, or for the January index,
+based on previous December = 100. Example code below.</p>
+</div>
+<div class="section level2">
+<h2 id="calculating-contribution-to-all-items-12-month-rate">Calculating contribution to ‘all items’ 12 month rate<a class="anchor" aria-label="anchor" href="#calculating-contribution-to-all-items-12-month-rate"></a>
+</h2>
+<p>The calculation is as follows, where:</p>
+<p><span class="math inline">\(c = component\ c\)</span></p>
+<p><span class="math inline">\(a =\ 'all\ items'\ CPI\
+index\)</span></p>
+<p><span class="math inline">\(W^c_{y} = weight\ of\ component\ c\ in\
+year\ y\)</span> <span class="math inline">\(I^c_t = index\ for\
+component\ c\ in\ month\ t\ based\ on\ January\ of\ current\ year
+=100\)</span> <span class="math inline">\(I^a_{Jan} = all\ items\ index\
+for\ January\ based\ on\ previous\ month\ (December) = 100\)</span>
+<span class="math inline">\(I^a_{Dec} = all\ items\ index\ for\
+December\ based\ on\ previous\ January = 100\)</span></p>
+<p><span class="math display">\[
+(\frac{W^c_{y-1}} {W^a_{y-1}})
+\times
+(\frac{({I^c_{Dec}} - {I^c_{t-12}})}{I^a_{t-12}})
+\times
+100
+\ \ +\ \
+(\frac{W^c_y}{W^a_y})
+\times
+(\frac{({I^c_{Jan}}-100)}{I^a_{t-12}})
+\times
+I^a_{Dec}
+\ \ +\ \
+(\frac{W^c_y}{W^a_y})
+\times
+(\frac{(I^c_t - 100)}{I^a_{t-12}})
+\times
+\frac{I^a_{Jan}}{100}
+\times
+I^a_{Dec}
+\]</span></p>
+<p>Note that ‘all items’ doesn’t have to be all items CPIH, it can be a
+category total (such as food). It is important that the calculations are
+performed using <strong>unchained indices</strong> (i.e. based on
+previous January = 100, or for the January index, based on previous
+December =100). For the month of interest, the contribution of each
+component of the CPI to the 12-month rate is calculated. The same is
+done for the preceding month. The differences between the two are the
+contributions to the <em>change</em> in the CPI 12-month rate.</p>
+<p>The <code><a href="../reference/contribution.html">contribution()</a></code> function applies this calculation to
+a wide dataset (1 column with month number or date, and the indices and
+weights in subsequent columns). It can then be used in a
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate()</a></code> call. It takes <span class="math inline">\(I^a\)</span>, <span class="math inline">\(W^a\)</span>, <span class="math inline">\(I^c\)</span>, and <span class="math inline">\(W^c\)</span> as parameters, and leverages
+<code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html" class="external-link">dplyr::lag()</a></code> to do the rest. Example below.</p>
+</div>
+<div class="section level2">
+<h2 id="putting-it-all-together">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
+</h2>
+<p>Code to calculate the contribution to changes in food and
+non-alcoholic drinks inflation.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://foodchainstats.github.io/mm23/">mm23</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Get our data together</span></span>
+<span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mm23_month.html">get_mm23_month</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
+<span><span class="va">wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpih_weights.html">get_cpih_weights</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">lookup</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpih_cdid_lookup.html">get_cpih_cdid_lookup</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># not needed here, just for reference</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Select and unchain food indices</span></span>
+<span><span class="va">food_cdids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"L523"</span>,</span>
+<span>                <span class="st">"L52I"</span>,</span>
+<span>                <span class="st">"L52J"</span>,</span>
+<span>                <span class="st">"L52K"</span>,</span>
+<span>                <span class="st">"L52L"</span>,</span>
+<span>                <span class="st">"L52M"</span>,</span>
+<span>                <span class="st">"L52N"</span>,</span>
+<span>                <span class="st">"L52O"</span>,</span>
+<span>                <span class="st">"L52P"</span>,</span>
+<span>                <span class="st">"L52Q"</span>,</span>
+<span>                <span class="st">"L52S"</span>,</span>
+<span>                <span class="st">"L52T"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">food_unchained</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_cdids</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cdid</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    unchained_value <span class="op">=</span> <span class="fu"><a href="../reference/unchain.html">unchain</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>, <span class="va">value</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">cdid</span>, value <span class="op">=</span> <span class="va">unchained_value</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Extract the relevant food weights</span></span>
+<span><span class="va">food_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"L5CZ"</span>,</span>
+<span>                  <span class="st">"L5DH"</span>,</span>
+<span>                  <span class="st">"L5DI"</span>,</span>
+<span>                  <span class="st">"L5DJ"</span>,</span>
+<span>                  <span class="st">"L5DK"</span>,</span>
+<span>                  <span class="st">"L5DL"</span>,</span>
+<span>                  <span class="st">"L5DM"</span>,</span>
+<span>                  <span class="st">"L5DN"</span>,</span>
+<span>                  <span class="st">"L5DO"</span>,</span>
+<span>                  <span class="st">"L5DP"</span>,</span>
+<span>                  <span class="st">"L5DR"</span>,</span>
+<span>                  <span class="st">"L5DS"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">wts</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-03-01"</span><span class="op">)</span> </span>
+<span></span>
+<span></span>
+<span><span class="co"># Combine the indices and weights and calculate the contribution to annual rate</span></span>
+<span><span class="va">unchained</span> <span class="op">&lt;-</span> <span class="va">food_unchained</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">foodwts</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">cdid</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">contribution</span> <span class="op">&lt;-</span> <span class="va">unchained</span> <span class="op">|&gt;</span> </span>
+<span>            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>bread <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52I</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DH</span><span class="op">)</span>,</span>
+<span>                   meat <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52J</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DI</span><span class="op">)</span>,</span>
+<span>                   fish <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52K</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DJ</span><span class="op">)</span>,</span>
+<span>                   dairy <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52L</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DK</span><span class="op">)</span>,</span>
+<span>                   oils <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52M</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DL</span><span class="op">)</span>,</span>
+<span>                   fruit <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52N</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DM</span><span class="op">)</span>,</span>
+<span>                   vegetables <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52O</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DN</span><span class="op">)</span>,</span>
+<span>                   sugar <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52P</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DO</span><span class="op">)</span>,</span>
+<span>                   food_nec <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52Q</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DP</span><span class="op">)</span>,</span>
+<span>                   coffee <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52S</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DR</span><span class="op">)</span>,</span>
+<span>                   water <span class="op">=</span> <span class="fu"><a href="../reference/contribution.html">contribution</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                                        all_items_index <span class="op">=</span> <span class="va">L523</span>,</span>
+<span>                                        all_items_weight <span class="op">=</span> <span class="va">L5CZ</span>,</span>
+<span>                                        component_index <span class="op">=</span> <span class="va">L52T</span>,</span>
+<span>                                        component_weight <span class="op">=</span> <span class="va">L5DS</span><span class="op">)</span></span>
+<span>                   <span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># put the data back into tidy form and plot some results</span></span>
+<span><span class="va">cont</span> <span class="op">&lt;-</span> <span class="va">contribution</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">bread</span><span class="op">:</span><span class="va">water</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">bread</span><span class="op">:</span><span class="va">water</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cont</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2021-07-01"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Contribution to annual food and non-alc inflation rate"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://foodchainstats.github.io/mm23/">mm23</a></span><span class="op">)</span></span></code></pre></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
