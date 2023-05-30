@@ -11,7 +11,7 @@
 #' file <- acquire_mm23()
 #' data <- file |> get_mm23_metadata()
 #'
-#' my_mm23 <- get_mm23("~/data")
+#' my_mm23 <- acquire_mm23("~/data")
 #' }
 acquire_mm23 <- function(path){
     url <- mm23_url()

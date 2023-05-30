@@ -221,7 +221,7 @@ cont |>
 ```
 
 
-## CPI food weight ontribution
+## CPI food weight contribution
 ```{r cpi_contribution, message=FALSE}
 # Select and unchain food indices
 food_cdids <- c("D7BU", "D7D5", "D7D6", "D7D7",

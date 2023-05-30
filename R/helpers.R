@@ -93,7 +93,7 @@ unchain <- function(month, value) {
 }
 
 
-#' To get rid of NOTE abouot use of ggplot in vignette
+#' To get rid of NOTE about use of ggplot in vignette
 #'
 #' https://r-pkgs.org/dependencies-in-practice.html#how-to-not-use-a-package-in-imports
 #'
