@@ -165,8 +165,8 @@ for lots of downloads.</p>
 <span><span class="co"># Get our data together</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mm23_month.html">get_mm23_month</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
-<span><span class="va">cpih_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpih_weights.html">get_cpih_weights</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">cpi_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpi_weights.html">get_cpi_weights</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">cpih_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpih_weights.html">get_cpih_weights</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
+<span><span class="va">cpi_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpi_weights.html">get_cpi_weights</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="cpih-food-weight-contribution">CPIH food weight contribution<a class="anchor" aria-label="anchor" href="#cpih-food-weight-contribution"></a>
@@ -195,7 +195,7 @@ non-alcoholic drinks inflation.</p>
 <span></span>
 <span></span>
 <span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">cpih_wts</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-03-01"</span><span class="op">)</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-04-01"</span><span class="op">)</span> </span>
 <span></span>
 <span></span>
 <span><span class="co"># Combine the indices and weights and calculate the contribution to annual rate</span></span>
@@ -261,10 +261,9 @@ non-alcoholic drinks inflation.</p>
 <span>                                        component_weight <span class="op">=</span> <span class="va">L5DS</span><span class="op">)</span></span>
 <span>                   <span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">contribution</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">contribution</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
 <colgroup>
-<col width="4%">
 <col width="3%">
 <col width="3%">
 <col width="3%">
@@ -277,29 +276,30 @@ non-alcoholic drinks inflation.</p>
 <col width="3%">
 <col width="3%">
 <col width="3%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="2%">
-<col width="1%">
-<col width="1%">
-<col width="2%">
-<col width="1%">
-<col width="2%">
-<col width="4%">
-<col width="2%">
 <col width="3%">
-<col width="2%">
-<col width="2%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">date</th>
@@ -341,232 +341,232 @@ non-alcoholic drinks inflation.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2017-01-01</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">81</td>
-<td align="right">12</td>
+<td align="left">2022-11-01</td>
+<td align="right">114.2593</td>
+<td align="right">114.5891</td>
+<td align="right">113.77304</td>
+<td align="right">113.56080</td>
+<td align="right">125.5725</td>
+<td align="right">123.2833</td>
+<td align="right">106.1697</td>
+<td align="right">113.0930</td>
+<td align="right">107.6779</td>
+<td align="right">122.0276</td>
+<td align="right">108.5446</td>
+<td align="right">112.84322</td>
+<td align="right">93</td>
+<td align="right">17</td>
 <td align="right">16</td>
+<td align="right">4</td>
+<td align="right">10</td>
 <td align="right">3</td>
 <td align="right">9</td>
+<td align="right">12</td>
+<td align="right">9</td>
+<td align="right">4</td>
 <td align="right">2</td>
 <td align="right">7</td>
-<td align="right">10</td>
-<td align="right">10</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">7</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">2.994832</td>
+<td align="right">2.838987</td>
+<td align="right">0.6893079</td>
+<td align="right">2.901972</td>
+<td align="right">0.8981052</td>
+<td align="right">0.7761416</td>
+<td align="right">2.072839</td>
+<td align="right">0.9085616</td>
+<td align="right">1.023208</td>
+<td align="right">0.2333597</td>
+<td align="right">1.186465</td>
 </tr>
 <tr class="even">
-<td align="left">2017-02-01</td>
-<td align="right">100.8147</td>
-<td align="right">101.9388</td>
-<td align="right">100.4158</td>
-<td align="right">104.5908</td>
-<td align="right">100.6250</td>
-<td align="right">100.68160</td>
-<td align="right">101.2846</td>
-<td align="right">102.2845</td>
-<td align="right">96.84418</td>
-<td align="right">102.3279</td>
-<td align="right">104.1874</td>
-<td align="right">99.48613</td>
-<td align="right">81</td>
-<td align="right">12</td>
+<td align="left">2022-12-01</td>
+<td align="right">116.1111</td>
+<td align="right">115.7895</td>
+<td align="right">115.13094</td>
+<td align="right">116.97288</td>
+<td align="right">130.8206</td>
+<td align="right">126.3615</td>
+<td align="right">105.7412</td>
+<td align="right">114.3264</td>
+<td align="right">109.8315</td>
+<td align="right">124.1475</td>
+<td align="right">108.2629</td>
+<td align="right">115.50044</td>
+<td align="right">93</td>
+<td align="right">17</td>
 <td align="right">16</td>
+<td align="right">4</td>
+<td align="right">10</td>
 <td align="right">3</td>
 <td align="right">9</td>
+<td align="right">12</td>
+<td align="right">9</td>
+<td align="right">4</td>
 <td align="right">2</td>
 <td align="right">7</td>
-<td align="right">10</td>
-<td align="right">10</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">7</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">2.787685</td>
+<td align="right">2.670362</td>
+<td align="right">0.8309566</td>
+<td align="right">3.284607</td>
+<td align="right">0.9288176</td>
+<td align="right">0.6260246</td>
+<td align="right">1.922127</td>
+<td align="right">1.2661940</td>
+<td align="right">1.041416</td>
+<td align="right">0.2242176</td>
+<td align="right">1.344757</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-03-01</td>
-<td align="right">101.1202</td>
-<td align="right">102.3469</td>
-<td align="right">100.5198</td>
-<td align="right">104.5908</td>
-<td align="right">102.2917</td>
-<td align="right">103.40798</td>
-<td align="right">102.4704</td>
-<td align="right">102.4922</td>
-<td align="right">97.23866</td>
-<td align="right">102.3279</td>
-<td align="right">103.1904</td>
-<td align="right">98.04728</td>
-<td align="right">81</td>
+<td align="left">2023-01-01</td>
+<td align="right">100.5582</td>
+<td align="right">100.1595</td>
+<td align="right">99.91575</td>
+<td align="right">98.87809</td>
+<td align="right">100.2188</td>
+<td align="right">100.2498</td>
+<td align="right">100.2431</td>
+<td align="right">100.9959</td>
+<td align="right">102.4723</td>
+<td align="right">102.3014</td>
+<td align="right">105.1171</td>
+<td align="right">99.61656</td>
+<td align="right">95</td>
+<td align="right">17</td>
+<td align="right">17</td>
+<td align="right">4</td>
+<td align="right">11</td>
+<td align="right">3</td>
+<td align="right">8</td>
 <td align="right">12</td>
-<td align="right">16</td>
-<td align="right">3</td>
-<td align="right">9</td>
+<td align="right">10</td>
+<td align="right">4</td>
 <td align="right">2</td>
 <td align="right">7</td>
-<td align="right">10</td>
-<td align="right">10</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">7</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">2.917176</td>
+<td align="right">2.606726</td>
+<td align="right">0.6903395</td>
+<td align="right">3.345625</td>
+<td align="right">0.6120382</td>
+<td align="right">0.5817383</td>
+<td align="right">2.010291</td>
+<td align="right">1.3349894</td>
+<td align="right">1.155103</td>
+<td align="right">0.3092179</td>
+<td align="right">1.160235</td>
 </tr>
 <tr class="even">
-<td align="left">2017-04-01</td>
-<td align="right">101.3238</td>
-<td align="right">103.1633</td>
-<td align="right">101.3514</td>
-<td align="right">103.2934</td>
-<td align="right">101.4583</td>
-<td align="right">96.68939</td>
-<td align="right">102.2727</td>
-<td align="right">102.5961</td>
-<td align="right">98.52071</td>
-<td align="right">102.0243</td>
-<td align="right">104.7856</td>
-<td align="right">98.35560</td>
-<td align="right">81</td>
-<td align="right">12</td>
-<td align="right">16</td>
+<td align="left">2023-02-01</td>
+<td align="right">102.1412</td>
+<td align="right">102.3089</td>
+<td align="right">101.77066</td>
+<td align="right">101.28593</td>
+<td align="right">102.4017</td>
+<td align="right">101.4330</td>
+<td align="right">102.1019</td>
+<td align="right">103.3689</td>
+<td align="right">100.7488</td>
+<td align="right">103.3382</td>
+<td align="right">103.7129</td>
+<td align="right">101.77059</td>
+<td align="right">96</td>
+<td align="right">17</td>
+<td align="right">17</td>
+<td align="right">4</td>
+<td align="right">11</td>
 <td align="right">3</td>
-<td align="right">9</td>
+<td align="right">8</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">4</td>
 <td align="right">2</td>
 <td align="right">7</td>
-<td align="right">10</td>
-<td align="right">10</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">7</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">3.064247</td>
+<td align="right">2.809134</td>
+<td align="right">0.6793269</td>
+<td align="right">3.346209</td>
+<td align="right">0.9916517</td>
+<td align="right">0.7353628</td>
+<td align="right">2.368973</td>
+<td align="right">1.4549059</td>
+<td align="right">1.221748</td>
+<td align="right">0.3701921</td>
+<td align="right">1.134471</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-01</td>
-<td align="right">101.4257</td>
-<td align="right">102.5510</td>
-<td align="right">101.0395</td>
-<td align="right">105.5888</td>
-<td align="right">102.2917</td>
-<td align="right">99.80526</td>
-<td align="right">101.6798</td>
-<td align="right">101.4538</td>
-<td align="right">100.00000</td>
-<td align="right">102.7328</td>
-<td align="right">103.4895</td>
-<td align="right">99.28058</td>
-<td align="right">81</td>
-<td align="right">12</td>
-<td align="right">16</td>
+<td align="left">2023-03-01</td>
+<td align="right">103.2514</td>
+<td align="right">104.5382</td>
+<td align="right">103.20405</td>
+<td align="right">102.57186</td>
+<td align="right">102.3290</td>
+<td align="right">103.3645</td>
+<td align="right">103.4762</td>
+<td align="right">103.6154</td>
+<td align="right">102.6622</td>
+<td align="right">103.4833</td>
+<td align="right">103.6304</td>
+<td align="right">101.77059</td>
+<td align="right">96</td>
+<td align="right">17</td>
+<td align="right">17</td>
+<td align="right">4</td>
+<td align="right">11</td>
 <td align="right">3</td>
-<td align="right">9</td>
+<td align="right">8</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">4</td>
 <td align="right">2</td>
 <td align="right">7</td>
-<td align="right">10</td>
-<td align="right">10</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">7</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">3.527965</td>
+<td align="right">3.028314</td>
+<td align="right">0.7206873</td>
+<td align="right">3.246298</td>
+<td align="right">0.8346649</td>
+<td align="right">0.9883808</td>
+<td align="right">2.509852</td>
+<td align="right">1.7077302</td>
+<td align="right">1.248873</td>
+<td align="right">0.3711834</td>
+<td align="right">1.019369</td>
 </tr>
 <tr class="even">
-<td align="left">2017-06-01</td>
-<td align="right">101.3238</td>
-<td align="right">102.8571</td>
-<td align="right">101.4553</td>
-<td align="right">107.6846</td>
-<td align="right">102.2917</td>
-<td align="right">102.04479</td>
-<td align="right">101.2846</td>
-<td align="right">100.5192</td>
-<td align="right">97.33728</td>
-<td align="right">101.2146</td>
-<td align="right">105.0847</td>
-<td align="right">99.58890</td>
-<td align="right">81</td>
-<td align="right">12</td>
-<td align="right">16</td>
+<td align="left">2023-04-01</td>
+<td align="right">104.7581</td>
+<td align="right">106.1306</td>
+<td align="right">104.97470</td>
+<td align="right">102.42057</td>
+<td align="right">103.7846</td>
+<td align="right">102.7414</td>
+<td align="right">103.7995</td>
+<td align="right">105.5053</td>
+<td align="right">103.9933</td>
+<td align="right">106.9666</td>
+<td align="right">104.6205</td>
+<td align="right">103.77213</td>
+<td align="right">96</td>
+<td align="right">17</td>
+<td align="right">17</td>
+<td align="right">4</td>
+<td align="right">11</td>
 <td align="right">3</td>
-<td align="right">9</td>
+<td align="right">8</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">4</td>
 <td align="right">2</td>
 <td align="right">7</td>
-<td align="right">10</td>
-<td align="right">10</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">7</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">3.419636</td>
+<td align="right">3.016140</td>
+<td align="right">0.6188370</td>
+<td align="right">3.199265</td>
+<td align="right">0.8327166</td>
+<td align="right">0.9886099</td>
+<td align="right">2.597733</td>
+<td align="right">1.6554439</td>
+<td align="right">1.260770</td>
+<td align="right">0.3617517</td>
+<td align="right">1.190089</td>
 </tr>
 </tbody>
 </table>
@@ -580,9 +580,9 @@ non-alcoholic drinks inflation.</p>
 <span></span>
 <span><span class="va">cont</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2021-07-01"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Contribution to annual food and non-alc inflation rate"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Contribution to annual food and non-alc CPIH inflation rate"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contribution_files/figure-html/cpih_contribution-1.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -590,18 +590,9 @@ non-alcoholic drinks inflation.</p>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Select and unchain food indices</span></span>
-<span><span class="va">food_cdids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D7BU"</span>,</span>
-<span>                <span class="st">"D7D5"</span>,</span>
-<span>                <span class="st">"D7D6"</span>,</span>
-<span>                <span class="st">"D7D7"</span>,</span>
-<span>                <span class="st">"D7D8"</span>,</span>
-<span>                <span class="st">"D7D9"</span>,</span>
-<span>                <span class="st">"D7DA"</span>,</span>
-<span>                <span class="st">"D7DB"</span>,</span>
-<span>                <span class="st">"D7DC"</span>,</span>
-<span>                <span class="st">"D7DD"</span>,</span>
-<span>                <span class="st">"D7DE"</span>,</span>
-<span>                <span class="st">"D7DF"</span><span class="op">)</span></span>
+<span><span class="va">food_cdids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D7BU"</span>, <span class="st">"D7D5"</span>, <span class="st">"D7D6"</span>, <span class="st">"D7D7"</span>,</span>
+<span>                <span class="st">"D7D8"</span>, <span class="st">"D7D9"</span>, <span class="st">"D7DA"</span>, <span class="st">"D7DB"</span>,</span>
+<span>                <span class="st">"D7DC"</span>,  <span class="st">"D7DD"</span>,<span class="st">"D7DE"</span>, <span class="st">"D7DF"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="va">food_unchained</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span> </span>
@@ -614,22 +605,13 @@ non-alcoholic drinks inflation.</p>
 <span></span>
 <span></span>
 <span><span class="co"># Extract the relevant food weights</span></span>
-<span><span class="va">food_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CHZR"</span>,</span>
-<span>                  <span class="st">"CJWB"</span>,</span>
-<span>                  <span class="st">"CJWC"</span>,</span>
-<span>                  <span class="st">"CJWD"</span>,</span>
-<span>                  <span class="st">"CJWE"</span>,</span>
-<span>                  <span class="st">"CJWF"</span>,</span>
-<span>                  <span class="st">"CJWG"</span>,</span>
-<span>                  <span class="st">"CJWH"</span>,</span>
-<span>                  <span class="st">"CJWI"</span>,</span>
-<span>                  <span class="st">"CJWJ"</span>,</span>
-<span>                  <span class="st">"CJWK"</span>,</span>
-<span>                  <span class="st">"CJWL"</span><span class="op">)</span></span>
+<span><span class="va">food_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CHZR"</span>, <span class="st">"CJWB"</span>, <span class="st">"CJWC"</span>, <span class="st">"CJWD"</span>,</span>
+<span>                  <span class="st">"CJWE"</span>, <span class="st">"CJWF"</span>, <span class="st">"CJWG"</span>, <span class="st">"CJWH"</span>,</span>
+<span>                  <span class="st">"CJWI"</span>, <span class="st">"CJWJ"</span>, <span class="st">"CJWK"</span>, <span class="st">"CJWL"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">cpi_wts</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-03-01"</span><span class="op">)</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-04-01"</span><span class="op">)</span> </span>
 <span></span>
 <span></span>
 <span><span class="co"># Combine the indices and weights and calculate the contribution to annual rate</span></span>
@@ -695,7 +677,317 @@ non-alcoholic drinks inflation.</p>
 <span>                              component_weight <span class="op">=</span> <span class="va">CJWL</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">contribution</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="4%">
+<col width="2%">
+<col width="2%">
+<col width="5%">
+<col width="3%">
+<col width="2%">
+<col width="2%">
+<col width="7%">
+<col width="5%">
+<col width="4%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">date</th>
+<th align="right">D7BU</th>
+<th align="right">D7D5</th>
+<th align="right">D7D6</th>
+<th align="right">D7D7</th>
+<th align="right">D7D8</th>
+<th align="right">D7D9</th>
+<th align="right">D7DA</th>
+<th align="right">D7DB</th>
+<th align="right">D7DC</th>
+<th align="right">D7DD</th>
+<th align="right">D7DE</th>
+<th align="right">D7DF</th>
+<th align="right">CHZR</th>
+<th align="right">CJWB</th>
+<th align="right">CJWC</th>
+<th align="right">CJWD</th>
+<th align="right">CJWE</th>
+<th align="right">CJWF</th>
+<th align="right">CJWG</th>
+<th align="right">CJWH</th>
+<th align="right">CJWI</th>
+<th align="right">CJWJ</th>
+<th align="right">CJWK</th>
+<th align="right">CJWL</th>
+<th align="right">Bread and cereals</th>
+<th align="right">Meat</th>
+<th align="right">Fish</th>
+<th align="right">Milk, cheese and eggs</th>
+<th align="right">Oils and fats</th>
+<th align="right">Fruit</th>
+<th align="right">Vegetables</th>
+<th align="right">Sugar, jam and confectionery</th>
+<th align="right">Food products (nec)</th>
+<th align="right">Coffee and tea</th>
+<th align="right">Mineral waters, soft drinks</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2022-11-01</td>
+<td align="right">114.1929</td>
+<td align="right">114.5891</td>
+<td align="right">113.77304</td>
+<td align="right">113.56080</td>
+<td align="right">125.5725</td>
+<td align="right">123.2833</td>
+<td align="right">106.1697</td>
+<td align="right">113.0930</td>
+<td align="right">107.6779</td>
+<td align="right">122.0276</td>
+<td align="right">108.5446</td>
+<td align="right">112.84322</td>
+<td align="right">116</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">12</td>
+<td align="right">3</td>
+<td align="right">11</td>
+<td align="right">16</td>
+<td align="right">12</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">9</td>
+<td align="right">2.965851</td>
+<td align="right">2.853914</td>
+<td align="right">0.6906999</td>
+<td align="right">2.790949</td>
+<td align="right">0.7188737</td>
+<td align="right">0.7667269</td>
+<td align="right">2.189350</td>
+<td align="right">0.9833036</td>
+<td align="right">1.035818</td>
+<td align="right">0.1870965</td>
+<td align="right">1.222307</td>
+</tr>
+<tr class="even">
+<td align="left">2022-12-01</td>
+<td align="right">116.0482</td>
+<td align="right">115.7895</td>
+<td align="right">115.13094</td>
+<td align="right">116.97288</td>
+<td align="right">130.8206</td>
+<td align="right">126.3615</td>
+<td align="right">105.7412</td>
+<td align="right">114.3264</td>
+<td align="right">109.8315</td>
+<td align="right">124.1475</td>
+<td align="right">108.2629</td>
+<td align="right">115.50044</td>
+<td align="right">116</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">12</td>
+<td align="right">3</td>
+<td align="right">11</td>
+<td align="right">16</td>
+<td align="right">12</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">9</td>
+<td align="right">2.760861</td>
+<td align="right">2.676149</td>
+<td align="right">0.8327564</td>
+<td align="right">3.160057</td>
+<td align="right">0.7446638</td>
+<td align="right">0.6134388</td>
+<td align="right">2.054711</td>
+<td align="right">1.3535301</td>
+<td align="right">1.043673</td>
+<td align="right">0.1797624</td>
+<td align="right">1.386174</td>
+</tr>
+<tr class="odd">
+<td align="left">2023-01-01</td>
+<td align="right">100.5596</td>
+<td align="right">100.1595</td>
+<td align="right">99.91575</td>
+<td align="right">98.87809</td>
+<td align="right">100.2188</td>
+<td align="right">100.2498</td>
+<td align="right">100.2431</td>
+<td align="right">100.9959</td>
+<td align="right">102.4723</td>
+<td align="right">102.3014</td>
+<td align="right">105.1171</td>
+<td align="right">99.61656</td>
+<td align="right">117</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">13</td>
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">12</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">2.881406</td>
+<td align="right">2.604760</td>
+<td align="right">0.6911051</td>
+<td align="right">3.211793</td>
+<td align="right">0.7236450</td>
+<td align="right">0.5721311</td>
+<td align="right">2.133024</td>
+<td align="right">1.3025904</td>
+<td align="right">1.156647</td>
+<td align="right">0.3209449</td>
+<td align="right">1.195736</td>
+</tr>
+<tr class="even">
+<td align="left">2023-02-01</td>
+<td align="right">102.1463</td>
+<td align="right">102.3089</td>
+<td align="right">101.77066</td>
+<td align="right">101.28593</td>
+<td align="right">102.4017</td>
+<td align="right">101.4330</td>
+<td align="right">102.1019</td>
+<td align="right">103.3689</td>
+<td align="right">100.7488</td>
+<td align="right">103.3382</td>
+<td align="right">103.7129</td>
+<td align="right">101.77059</td>
+<td align="right">119</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">14</td>
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">13</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">3.034737</td>
+<td align="right">2.794060</td>
+<td align="right">0.6802018</td>
+<td align="right">3.238518</td>
+<td align="right">0.8108880</td>
+<td align="right">0.7262140</td>
+<td align="right">2.435400</td>
+<td align="right">1.5457613</td>
+<td align="right">1.224783</td>
+<td align="right">0.3829222</td>
+<td align="right">1.168995</td>
+</tr>
+<tr class="odd">
+<td align="left">2023-03-01</td>
+<td align="right">103.2591</td>
+<td align="right">104.5382</td>
+<td align="right">103.20405</td>
+<td align="right">102.57186</td>
+<td align="right">102.3290</td>
+<td align="right">103.3645</td>
+<td align="right">103.4762</td>
+<td align="right">103.6154</td>
+<td align="right">102.6622</td>
+<td align="right">103.4833</td>
+<td align="right">103.6304</td>
+<td align="right">101.77059</td>
+<td align="right">119</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">14</td>
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">13</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">3.502526</td>
+<td align="right">3.003377</td>
+<td align="right">0.7232883</td>
+<td align="right">3.147566</td>
+<td align="right">0.7054065</td>
+<td align="right">0.9793788</td>
+<td align="right">2.585508</td>
+<td align="right">1.8143355</td>
+<td align="right">1.254271</td>
+<td align="right">0.3833724</td>
+<td align="right">1.052382</td>
+</tr>
+<tr class="even">
+<td align="left">2023-04-01</td>
+<td align="right">104.6900</td>
+<td align="right">106.1306</td>
+<td align="right">104.97470</td>
+<td align="right">102.42057</td>
+<td align="right">103.7846</td>
+<td align="right">102.7414</td>
+<td align="right">103.7995</td>
+<td align="right">105.5053</td>
+<td align="right">103.9933</td>
+<td align="right">106.9666</td>
+<td align="right">104.6205</td>
+<td align="right">103.77213</td>
+<td align="right">119</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">14</td>
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">13</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">3.393676</td>
+<td align="right">2.969740</td>
+<td align="right">0.6204947</td>
+<td align="right">3.111200</td>
+<td align="right">0.6966145</td>
+<td align="right">0.9793928</td>
+<td align="right">2.638109</td>
+<td align="right">1.7536435</td>
+<td align="right">1.265930</td>
+<td align="right">0.3837793</td>
+<td align="right">1.228323</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># put the data back into tidy form and plot some results</span></span>
 <span><span class="va">cont</span> <span class="op">&lt;-</span> <span class="va">contribution</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">`Bread and cereals`</span><span class="op">:</span><span class="va">`Mineral waters, soft drinks`</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -704,9 +996,9 @@ non-alcoholic drinks inflation.</p>
 <span></span>
 <span><span class="va">cont</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2020-01-01"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Contribution to annual food and non-alc inflation rate"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Contribution to annual food and non-alc inflation rate"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contribution_files/figure-html/cpi_contribution-1.png" width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
