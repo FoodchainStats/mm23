@@ -48,6 +48,9 @@ get_cpih_weights_jan <- function() {
 
 #' Create a CPIH weights dataset
 #'
+#' @param rawfile A downloaded mm23.csv file. If missing will attempt to
+#'   download from ONS.
+#'
 #' @return A dataframe of monthly CPIH weights, including the January weights
 #'   which are not exposed in mm23 but only available in the Table 11 sheet of
 #'   the reference tables spreadsheet.
@@ -57,9 +60,14 @@ get_cpih_weights_jan <- function() {
 #' \dontrun{
 #' weights <- get_cpih_weights()
 #' }
-get_cpih_weights <- function() {
+get_cpih_weights <- function(rawfile) {
 
-  mm23 <- acquire_mm23()
+  if(missing(rawfile)){
+    mm23 <- acquire_mm23()
+  } else {
+    mm23 <- rawfile
+  }
+
   metadata <- get_mm23_metadata(mm23)
   yr <- get_mm23_year(mm23)
   janweights <- get_cpih_weights_jan()
@@ -176,6 +184,10 @@ get_cpi_weights_jan <- function() {
 
 #' Create a CPI weights dataset
 #'
+#' @param rawfile A downloaded mm23.csv file. If missing will attempt to
+#'   download from ONS.
+#'
+#'
 #' @return A dataframe of monthly CPIH weights, including the January weights
 #'   which are not exposed in mm23 but only available in the Table 11 sheet of
 #'   the reference tables spreadsheet.
@@ -185,7 +197,13 @@ get_cpi_weights_jan <- function() {
 #' \dontrun{
 #' weights <- get_cpi_weights()
 #' }
-get_cpi_weights <- function() {
+get_cpi_weights <- function(rawfile) {
+
+  if(missing(rawfile)){
+    mm23 <- acquire_mm23()
+  } else {
+    mm23 <- rawfile
+  }
 
   mm23 <- acquire_mm23()
   metadata <- get_mm23_metadata(mm23)

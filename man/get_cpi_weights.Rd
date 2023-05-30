@@ -4,7 +4,11 @@
 \alias{get_cpi_weights}
 \title{Create a CPI weights dataset}
 \usage{
-get_cpi_weights()
+get_cpi_weights(rawfile)
+}
+\arguments{
+\item{rawfile}{A downloaded mm23.csv file. If missing will attempt to
+download from ONS.}
 }
 \value{
 A dataframe of monthly CPIH weights, including the January weights

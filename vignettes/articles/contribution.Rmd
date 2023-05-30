@@ -104,8 +104,8 @@ library(ggplot2)
 # Get our data together
 mm23 <- acquire_mm23()
 data <- get_mm23_month(mm23)
-cpih_wts <- get_cpih_weights()
-cpi_wts <- get_cpi_weights()
+cpih_wts <- get_cpih_weights(mm23)
+cpi_wts <- get_cpi_weights(mm23)
 
 ```
 
@@ -204,7 +204,7 @@ contribution <- unchained |>
                                         component_weight = L5DS)
                    )
 
-head(contribution) |> knitr::kable()
+tail(contribution) |> knitr::kable()
 
 # put the data back into tidy form and plot some results
 cont <- contribution |> 
@@ -214,9 +214,9 @@ cont <- contribution |>
 
 cont |> 
   filter(date >= "2021-07-01") |> 
-  ggplot() +
-  geom_col(aes(x = date, y = value, fill = name)) +
-  labs(title = "Contribution to annual food and non-alc inflation rate")
+  ggplot2::ggplot() +
+  ggplot2::geom_col(aes(x = date, y = value, fill = name)) +
+  ggplot2::labs(title = "Contribution to annual food and non-alc CPIH inflation rate")
 
 ```
 
@@ -224,18 +224,9 @@ cont |>
 ## CPI food weight ontribution
 ```{r cpi_contribution, message=FALSE}
 # Select and unchain food indices
-food_cdids <- c("D7BU",
-                "D7D5",
-                "D7D6",
-                "D7D7",
-                "D7D8",
-                "D7D9",
-                "D7DA",
-                "D7DB",
-                "D7DC",
-                "D7DD",
-                "D7DE",
-                "D7DF")
+food_cdids <- c("D7BU", "D7D5", "D7D6", "D7D7",
+                "D7D8", "D7D9", "D7DA", "D7DB",
+                "D7DC",  "D7DD","D7DE", "D7DF")
 
 
 food_unchained <- data |> 
@@ -248,18 +239,9 @@ food_unchained <- data |>
 
 
 # Extract the relevant food weights
-food_weights <- c("CHZR",
-                  "CJWB",
-                  "CJWC",
-                  "CJWD",
-                  "CJWE",
-                  "CJWF",
-                  "CJWG",
-                  "CJWH",
-                  "CJWI",
-                  "CJWJ",
-                  "CJWK",
-                  "CJWL")
+food_weights <- c("CHZR", "CJWB", "CJWC", "CJWD",
+                  "CJWE", "CJWF", "CJWG", "CJWH",
+                  "CJWI", "CJWJ", "CJWK", "CJWL")
 
 
 foodwts <- cpi_wts |> 
@@ -329,6 +311,7 @@ contribution <- unchained |>
                               component_weight = CJWL)
   )
 
+tail(contribution) |> knitr::kable()
 
 # put the data back into tidy form and plot some results
 cont <- contribution |> 
@@ -338,9 +321,9 @@ cont <- contribution |>
 
 cont |> 
   filter(date >= "2020-01-01") |> 
-  ggplot() +
-  geom_col(aes(x = date, y = value, fill = name)) +
-  labs(title = "Contribution to annual food and non-alc inflation rate")
+  ggplot2::ggplot() +
+  ggplot2::geom_col(aes(x = date, y = value, fill = name)) +
+  ggplot2::labs(title = "Contribution to annual food and non-alc inflation rate")
 
 ```
 
