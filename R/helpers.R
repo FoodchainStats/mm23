@@ -91,3 +91,15 @@ unchain <- function(month, value) {
     month == 12 ~ value/dplyr::lag(value, 11) * 100
   )
 }
+
+
+#' To get rid of NOTE abouot use of ggplot in vignette
+#'
+#' https://r-pkgs.org/dependencies-in-practice.html#how-to-not-use-a-package-in-imports
+#'
+#' @return
+#'
+#' @examples
+ignore_unused_imports <- function() {
+  ggplot2::ggplot()
+}
