@@ -1,5 +1,5 @@
 ---
-title: "mm23"
+title: "Getting started witn mm23"
 ---
 
 ```{r, include = FALSE}
@@ -9,8 +9,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, echo=FALSE}
 library(mm23)
+
+mm23 <- mm23::acquire_mm23()
+
 ```
 
 ## Get MM23 data
@@ -18,3 +21,60 @@ library(mm23)
 Download the latest MM23 from ONS. `acquire_mm23()` will download the full latest
 `mm23.csv` file, and return its location. By default it puts it into a temporary
 file, but you can specify where you want to put it.
+
+```r
+library(mm23)
+
+# Puts the data in a temporary file and returns its name
+mm23 <- acquire_mm23()
+
+# Or specify a location
+mm23 <- acquire_mm23("~/data")
+data <- read.csv("~/data/mm23.csv")
+
+```
+
+## Wrangling MM23 data series and metadata
+
+The `get_mm23_*` functions will return data in a tidy format, eg:
+
+```{r message=FALSE, warning=TRUE, echo=FALSE}
+
+mm23::get_mm23_month(mm23) |> head() |> knitr::kable()
+
+```
+
+
+Its more efficient to use `acquire_mm23` first so as to only download the data
+once. But if used without parameters the `get_mm23_*` functions will download
+the latest data.
+
+
+```r
+mm23 <- acquire_mm23()
+m <- get_mm23_month(mm23)
+q <- get_mm23_quarter(mm23)
+y <- get_mm23_year(mm23)
+
+data <- dplyr::bind_rows(m, q, y)
+```
+
+Use `get_mm23_metadata()` to return details of what each series CDID represents.
+Here is a random sample of its output. You can join data and metadata by CDID,
+for example with:
+
+```r
+mm23 <- acquire_mm23()
+metadata <- get_mm23_metadata(mm23)
+
+m |>
+filter(cdid == "L55O") |>
+left_join(metadata)
+
+```
+
+```{r message=FALSE, warning=TRUE, echo=FALSE}
+
+mm23::get_mm23_metadata(mm23) |> dplyr::slice_sample(n = 5) |> knitr::kable()
+
+```
