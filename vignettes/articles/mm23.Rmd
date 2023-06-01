@@ -34,7 +34,21 @@ data <- read.csv("~/data/mm23.csv")
 
 ```
 
-## Wrangling MM23 data series and metadata
+However, the raw `mm23.csv` file is not very user-friendly. The key metadata is
+in the first few rows. Yearly, quarterly and monthly series values are included
+in the csv file. Its hard to unpick the data. There are hundreds of series all
+included in a single csv file.
+
+```{r show-mm23}
+
+readr::read_csv(mm23) |> head() |> knitr::kable()
+
+```
+
+
+Which is mainly where `mm23` comes in.
+
+## Wrangling MM23 data series and metadata with `mm23`
 
 The `get_mm23_*` functions will return data in a tidy format, eg:
 
