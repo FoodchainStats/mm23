@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{ignore_unused_imports}
 \alias{ignore_unused_imports}
-\title{To get rid of NOTE abouot use of ggplot in vignette}
+\title{To get rid of NOTE about use of ggplot in vignette}
 \usage{
 ignore_unused_imports()
 }

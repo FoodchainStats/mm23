@@ -1,0 +1,20 @@
+---
+title: "mm23"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(mm23)
+```
+
+## Get MM23 data
+
+Download the latest MM23 from ONS. `acquire_mm23()` will download the full latest
+`mm23.csv` file, and return its location. By default it puts it into a temporary
+file, but you can specify where you want to put it.

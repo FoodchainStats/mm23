@@ -97,9 +97,9 @@ unchain <- function(month, value) {
 #'
 #' https://r-pkgs.org/dependencies-in-practice.html#how-to-not-use-a-package-in-imports
 #'
-#' @return
 #'
-#' @examples
+#'
+#'
 ignore_unused_imports <- function() {
   ggplot2::ggplot()
 }

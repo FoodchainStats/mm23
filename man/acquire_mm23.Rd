@@ -14,13 +14,14 @@ be created.}
 Path and filename of the downloaded file.
 }
 \description{
-Download a raw mm23.csv file
+\code{\link[=acquire_mm23]{acquire_mm23()}} is mainly a wrapper to download the file stored in
+\code{\link[=mm23_url]{mm23_url()}}. You can optionally specify where to save the downloaded file.
 }
 \examples{
 \dontrun{
 file <- acquire_mm23()
 data <- file |> get_mm23_metadata()
 
-my_mm23 <- get_mm23("~/data")
+my_mm23 <- acquire_mm23("~/data")
 }
 }

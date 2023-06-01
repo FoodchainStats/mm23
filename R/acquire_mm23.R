@@ -1,4 +1,7 @@
 #' Download a raw mm23.csv file
+#' @description
+#' [acquire_mm23()] is mainly a wrapper to download the file stored in
+#' [mm23_url()]. You can optionally specify where to save the downloaded file.
 #'
 #' @param path Folder to put the downloaded data in. If missing a tempfile will
 #'   be created.
