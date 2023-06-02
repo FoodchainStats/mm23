@@ -1,5 +1,5 @@
 ---
-title: "Getting started witn mm23"
+title: "Getting started with mm23"
 ---
 
 ```{r, include = FALSE}
