@@ -9,48 +9,40 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, echo=FALSE}
-library(mm23)
-
-mm23 <- mm23::acquire_mm23()
-
-```
 
 ## Get MM23 data
 
-Download the latest MM23 from ONS. `acquire_mm23()` will download the full latest
-`mm23.csv` file, and return its location. By default it puts it into a temporary
-file, but you can specify where you want to put it.
+Download the latest MM23 from ONS. `acquire_mm23()` simply downloads the full
+latest `mm23.csv` file, and returns its location. By default it puts it into a
+temporary file, but you can specify where you want to put it.
 
-```r
+```{r}
 library(mm23)
 
 # Puts the data in a temporary file and returns its name
 mm23 <- acquire_mm23()
+mm23
 
 # Or specify a location
-mm23 <- acquire_mm23("~/data")
-data <- read.csv("~/data/mm23.csv")
+# mm23 <- acquire_mm23("~/data")
+# data <- read.csv("~/data/mm23.csv")
 
 ```
 
 However, the raw `mm23.csv` file is not very user-friendly. The key metadata is
 in the first few rows. Yearly, quarterly and monthly series values are included
-in the csv file. Its hard to unpick the data. There are hundreds of series all
-included in a single csv file.
-
-```{r show-mm23}
-
-readr::read_csv(mm23) |> head() |> knitr::kable()
-
-```
-
+in the csv file in the same column. Its hard to unpick the data. There are
+thousands of series all included in a single csv file.
 
 Which is mainly where `mm23` comes in.
 
-## Wrangling MM23 data series and metadata with `mm23`
 
-The `get_mm23_*` functions will return data in a tidy format, eg:
+## Wrangling MM23 with `mm23`
+
+### Data
+
+The `get_mm23_*` functions will return data in a tidy format. Each series has a
+unique `CDID` identifier.
 
 ```{r message=FALSE, warning=TRUE, echo=FALSE}
 
@@ -70,25 +62,47 @@ m <- get_mm23_month(mm23)
 q <- get_mm23_quarter(mm23)
 y <- get_mm23_year(mm23)
 
-data <- dplyr::bind_rows(m, q, y)
 ```
+
+### Metadata
 
 Use `get_mm23_metadata()` to return details of what each series CDID represents.
-Here is a random sample of its output. You can join data and metadata by CDID,
-for example with:
+Below is a random sample of its output. For some series `get_mm23_metadata()`
+extracts the category of data included and puts it in the `category` field.
+Equally, it infers the COICOP digit level and adds that to the `level` field.
 
-```r
-mm23 <- acquire_mm23()
-metadata <- get_mm23_metadata(mm23)
+```{r message=FALSE, warning=TRUE, echo=TRUE}
 
-m |>
-filter(cdid == "L55O") |>
-left_join(metadata)
+mm23::get_mm23_metadata(mm23) |> dplyr::slice_sample(n = 5) |> knitr::kable()
 
 ```
 
-```{r message=FALSE, warning=TRUE, echo=FALSE}
 
-mm23::get_mm23_metadata(mm23) |> dplyr::slice_sample(n = 5) |> knitr::kable()
+
+
+You can join data and metadata by CDID, for analysis.
+
+```{r, message=FALSE}
+
+data <- get_mm23_month(mm23)
+metadata <- get_mm23_metadata(mm23)
+
+data |>
+  dplyr::filter(cdid %in% c("L55O", "L55P")) |>
+  dplyr::left_join(metadata) |> 
+  dplyr::select(date, cdid, value, title, category) |> 
+  head() |> 
+  knitr::kable()
+
+
+data |>
+  dplyr::filter(cdid %in% c("L55O", "L55P")) |>
+  dplyr::left_join(metadata) |> 
+  dplyr::select(date, cdid, value, title, category) |> 
+  ggplot2::ggplot() +
+  ggplot2::geom_line(ggplot2::aes(x = date, y = value, colour = title)) +
+  ggplot2::theme(legend.position = "bottom")
+
+
 
 ```
