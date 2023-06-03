@@ -25,13 +25,10 @@
     <loc>https://foodchainstats.github.io/mm23/index.html</loc>
   </url>
   <url>
-    <loc>https://foodchainstats.github.io/mm23/reference/I_x_Dec.html</loc>
-  </url>
-  <url>
-    <loc>https://foodchainstats.github.io/mm23/reference/I_x_Jan.html</loc>
-  </url>
-  <url>
     <loc>https://foodchainstats.github.io/mm23/reference/acquire_mm23.html</loc>
+  </url>
+  <url>
+    <loc>https://foodchainstats.github.io/mm23/reference/acquire_prices.html</loc>
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/contribution.html</loc>
@@ -40,16 +37,10 @@
     <loc>https://foodchainstats.github.io/mm23/reference/get_cpi_weights.html</loc>
   </url>
   <url>
-    <loc>https://foodchainstats.github.io/mm23/reference/get_cpi_weights_jan.html</loc>
-  </url>
-  <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_cpih_cdid_lookup.html</loc>
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_cpih_weights.html</loc>
-  </url>
-  <url>
-    <loc>https://foodchainstats.github.io/mm23/reference/get_cpih_weights_jan.html</loc>
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_mm23_metadata.html</loc>
@@ -68,9 +59,6 @@
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_price_metadata.html</loc>
-  </url>
-  <url>
-    <loc>https://foodchainstats.github.io/mm23/reference/ignore_unused_imports.html</loc>
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/index.html</loc>

@@ -82,8 +82,20 @@ download and wrangle the underlying dataset.</p>
 <div class="section level2">
 <h2 id="getting-shopping-price-data">Getting shopping price data<a class="anchor" aria-label="anchor" href="#getting-shopping-price-data"></a>
 </h2>
+<p>Download the latest data from ONS. <code><a href="../reference/acquire_prices.html">acquire_prices()</a></code>
+simply downloads the full latest data download file, and returns its
+location. By default it puts it into a temporary file, but you can
+specify where you want to put it.</p>
+<p>As of June 2023, its not clear if the url for the data is stable.
+<code><a href="../reference/acquire_prices.html">acquire_prices()</a></code> uses <code><a href="../reference/prices_url.html">prices_url()</a></code> for its
+download target. This may have to change.</p>
 </div>
-  </main>
+<div class="section level2">
+<h2 id="wrangling-prices-data">Wrangling prices data<a class="anchor" aria-label="anchor" href="#wrangling-prices-data"></a>
+</h2>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
