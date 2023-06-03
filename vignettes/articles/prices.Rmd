@@ -13,6 +13,9 @@ knitr::opts_chunk$set(
 library(mm23)
 ```
 
-The ONS Shopping Price tool is a new data source...
+The ONS Shopping Price tool is a new data source published in [May
+2023](https://www.ons.gov.uk/economy/inflationandpriceindices/articles/shoppingpricescomparisontool/2023-05-03).
+`mm23` contains some experimental functions to download and wrangle the
+underlying dataset.
 
 ## Getting shopping price data
