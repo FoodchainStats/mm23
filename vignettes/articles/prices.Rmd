@@ -19,3 +19,14 @@ The ONS Shopping Price tool is a new data source published in [May
 underlying dataset.
 
 ## Getting shopping price data
+
+Download the latest data from ONS. `acquire_prices()` simply downloads the full
+latest data download file, and returns its location. By default it puts it into a
+temporary file, but you can specify where you want to put it.
+
+As of June 2023, its not clear if the url for the data is stable.
+`acquire_prices()` uses `prices_url()` for its download target. This may have to
+change.
+
+## Wrangling prices data
+

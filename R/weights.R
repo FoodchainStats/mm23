@@ -1,13 +1,4 @@
-#' Get January CPIH weights
-#'
-#' @return A dataframe of the January weights as published in Table 11 of the
-#'   CPI reference tables spreadsheet. They are not included in mm23 which only
-#'   has the weight at annual level.
-#'
-#' @examples
-#' \dontrun{
-#' get_cpih_weights_jan()
-#' }
+
 get_cpih_weights_jan <- function() {
   url <- reftables_url()
 
@@ -15,8 +6,9 @@ get_cpih_weights_jan <- function() {
   utils::download.file(url, tmp)
 
 # Extract the January weights from Table 11 in the ONS detailed reference tables
-# spreadsheet. Exclude certain cdids since they are either duplicated or do not
-# appear in the mm23 data
+# spreadsheet. They are not included in mm23 which only has the weight at annual
+# level. Exclude certain cdids since they are either duplicated or do not appear
+# in the mm23 data
   janweights <- tidyxl::xlsx_cells(tmp, sheets = "Table 11") |>
     dplyr::filter(row >=7 & row < 371 & col > 1) |>
     unpivotr::behead("up", "year") |>
@@ -140,26 +132,16 @@ get_cpih_cdid_lookup <- function() {
 
 
 
-
-#' Get January CPI weights
-#'
-#' @return A dataframe of the January weights as published in Table 11 of the
-#'   CPI reference tables spreadsheet. They are not included in mm23 which only
-#'   has the weight at annual level.
-#'
-#' @examples
-#' \dontrun{
-#' get_cpi_weights_jan()
-#' }
 get_cpi_weights_jan <- function() {
   url <- reftables_url()
 
   tmp <- tempfile()
   utils::download.file(url, tmp)
 
-  # Extract the January weights from Table 11 in the ONS detailed reference tables
-  # spreadsheet. Exclude certain cdids since they are either duplicated or do not
-  # appear in the mm23 data
+  # Extract the January weights from Table 25 in the ONS detailed reference
+  # tables spreadsheet. They are not included in mm23 which only has the weight
+  # at annual level. Exclude certain cdids since they are either duplicated or
+  # do not appear in the mm23 data
   janweights <- tidyxl::xlsx_cells(tmp, sheets = "Table 25") |>
     dplyr::filter(row >=6 & row < 366 & col > 1) |>
     unpivotr::behead("up", "year") |>
