@@ -17,6 +17,11 @@
 #' my_mm23 <- acquire_mm23("~/data")
 #' }
 acquire_mm23 <- function(path){
+
+  if(!missing(path)) {
+    if(!dir.exists(path)) stop(paste(path, "does not exist"))
+  }
+
     url <- mm23_url()
 
   if(missing(path)){

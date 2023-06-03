@@ -18,6 +18,10 @@
 #' }
 get_mm23_year <- function(rawfile){
 
+  if(!missing(rawfile)){
+    if(!file.exists(rawfile)) stop(paste(rawfile, "does not exist"))
+  }
+
   if(missing(rawfile)){
     url <- mm23_url()
     tmp <- tempfile()

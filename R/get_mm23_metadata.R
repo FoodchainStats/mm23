@@ -17,6 +17,9 @@
 #' get_mm23_metadata(rawfile)
 #' }
 get_mm23_metadata <- function(rawfile){
+  if(!missing(rawfile)){
+    if(!file.exists(rawfile)) stop(paste(rawfile, "does not exist"))
+  }
 
     if(missing(rawfile)){
     url <- mm23_url()

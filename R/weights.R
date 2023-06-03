@@ -62,6 +62,10 @@ get_cpih_weights_jan <- function() {
 #' }
 get_cpih_weights <- function(rawfile) {
 
+  if(!missing(rawfile)){
+    if(!file.exists(rawfile)) stop(paste(rawfile, "does not exist"))
+  }
+
   if(missing(rawfile)){
     mm23 <- acquire_mm23()
   } else {
@@ -199,13 +203,16 @@ get_cpi_weights_jan <- function() {
 #' }
 get_cpi_weights <- function(rawfile) {
 
+  if(!missing(rawfile)){
+    if(!file.exists(rawfile)) stop(paste(rawfile, "does not exist"))
+  }
+
   if(missing(rawfile)){
     mm23 <- acquire_mm23()
   } else {
     mm23 <- rawfile
   }
 
-  mm23 <- acquire_mm23()
   metadata <- get_mm23_metadata(mm23)
   yr <- get_mm23_year(mm23)
   janweights <- get_cpi_weights_jan()
