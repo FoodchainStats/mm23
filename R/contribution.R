@@ -126,21 +126,17 @@ contribution <- function(
 
 
 
-#' Calculate Ix(Dec) for an index
-#'
-#' An index for December based on previous January = 100
-#'
-#' @param month A month number
-#' @param value An index value
-#'
-#' @return An index value for December
-#'
-#' @examples
-#' \dontrun{
-#' I_x_Dec(month, value)
-#' }
 I_x_Dec <- function(month, value){
-  dplyr::case_when(
+
+# Calculate Ix(Dec) for an index
+#
+# An index for December based on previous January = 100
+#
+# month A month number
+# value An index value
+
+
+    dplyr::case_when(
     month == 1 ~ dplyr::lag(value, 1),
     month == 2 ~ dplyr::lag(value, 2),
     month == 3 ~ dplyr::lag(value, 3),
@@ -157,20 +153,14 @@ I_x_Dec <- function(month, value){
 }
 
 
-#' Calculate Ix(Jan) for an index
-#'
-#' An index for January based on previous month (December) = 100
-#'
-#' @param month A month number
-#' @param value An index value
-#'
-#' @return An index value for January
-#'
-#' @examples
-#' \dontrun{
-#' I_x_Jan(month, value)
-#' }
 I_x_Jan <- function(month, value){
+
+# Calculate Ix(Jan) for an index
+# An index for January based on previous month (December) = 100
+#
+# month A month number
+# value An index value
+
   dplyr::case_when(
     month == 1 ~ dplyr::lag(value, 12),
     month == 2 ~ dplyr::lag(value),
