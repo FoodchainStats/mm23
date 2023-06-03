@@ -12,6 +12,10 @@
 #' }
 get_price_data <- function(file) {
 
+  if(!missing(file)){
+    if(!file.exists(file)) stop(paste(file, "does not exist"))
+  }
+
 
   if(missing(file)){
     url <- prices_url()
@@ -56,6 +60,10 @@ get_price_data <- function(file) {
 #' metadata <- get_price_metadata
 #' }
 get_price_metadata <- function(file) {
+
+  if(!missing(file)){
+    if(!file.exists(file)) stop(paste(file, "does not exist"))
+  }
 
   if(missing(file)){
     url <- prices_url()

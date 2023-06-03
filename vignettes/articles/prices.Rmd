@@ -1,0 +1,18 @@
+---
+title: "ONS Shopping Price Tool data"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(mm23)
+```
+
+The ONS Shopping Price tool is a new data source...
+
+## Getting shopping price data
