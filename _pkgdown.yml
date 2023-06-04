@@ -2,3 +2,35 @@ url: https://foodchainstats.github.io/mm23/
 template:
   bootstrap: 5
 
+reference:
+- title: Acquire data
+  desc: >
+    Download raw data files for mm23 shopping price data
+- contents:
+  - starts_with("acquire_")
+- title: Extract mm23 data
+  desc: >
+    Get mm23 data types and metadata from an mm23 raw data file
+- contents:
+  - starts_with("get_mm23_")
+- title: Extract prices data
+  desc: >
+    Get shopping price data and metadata from a data dowload file
+- contents:
+  - starts_with("get_price_")
+- title: Get CPI weights data
+  desc: >
+    Get weights data
+- contents:
+  - starts_with("get_cpi")
+- title: Contribution calculation
+  desc: >
+    Helpers for calcluatiing index contribution to 12 month rate
+- contents:
+  - unchain
+  - contribution
+- title: URLs
+  desc: >
+    Reference urls
+- contents:
+  - ends_with("_url")
