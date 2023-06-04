@@ -5,7 +5,7 @@ template:
 reference:
 - title: Acquire data
   desc: >
-    Download raw data files for mm23 shopping price data
+    Download raw data files. These are essentially wrappers for _download.file()_.
 - contents:
   - starts_with("acquire_")
 - title: Extract mm23 data
@@ -13,9 +13,10 @@ reference:
     Get mm23 data types and metadata from an mm23 raw data file
 - contents:
   - starts_with("get_mm23_")
-- title: Extract prices data
+- title: Extract ONS Shopping Prices data
   desc: >
-    Get shopping price data and metadata from a data dowload file
+    Get data and metadata from a dowload file from the ONS Shopping Price
+    comparison tool
 - contents:
   - starts_with("get_price_")
 - title: Get CPI weights data
@@ -25,12 +26,12 @@ reference:
   - starts_with("get_cpi")
 - title: Contribution calculation
   desc: >
-    Helpers for calcluatiing index contribution to 12 month rate
+    Helpers for calcluating index contribution to 12 month rate
 - contents:
   - unchain
   - contribution
 - title: URLs
   desc: >
-    Reference urls
+    Reference urls used by the package for for data downloads.
 - contents:
   - ends_with("_url")
