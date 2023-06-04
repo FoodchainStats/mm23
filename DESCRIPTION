@@ -26,6 +26,7 @@ Imports:
     tidyxl,
     unpivotr,
     utils
-URL: https://foodchainstats.github.io/mm23/
+URL: https://github.com/FoodchainStats/mm23
 Suggests: 
     rmarkdown
+BugReports: https://github.com/FoodchainStats/mm23/issues
