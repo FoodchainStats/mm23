@@ -94,7 +94,7 @@ specify where you want to put it.</p>
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">mm23</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmp2OqxLx/file1815293ce990"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpU0SLGm/file17a45039b483"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># mm23 &lt;- acquire_mm23("~/data")</span></span>
@@ -181,16 +181,16 @@ field.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_mm23_metadata.html">get_mm23_metadata</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="3%">
 <col width="39%">
-<col width="8%">
+<col width="7%">
 <col width="3%">
 <col width="5%">
 <col width="14%">
-<col width="8%">
-<col width="8%">
+<col width="7%">
+<col width="7%">
 <col width="9%">
 </colgroup>
 <thead><tr class="header">
@@ -206,58 +206,58 @@ field.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">L85G</td>
-<td align="left">01.1.9.1/2 Sauces, Condiments, Salt, Spices And
-Culinary Herbs</td>
-<td align="left">CPI Weights</td>
-<td align="right">4</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">24-05-2023</td>
-<td align="left">21 June 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">J2IU</td>
-<td align="left">01.1.4.6 Other Milk Products</td>
-<td align="left">CPIH Index</td>
-<td align="right">4</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">24-05-2023</td>
-<td align="left">21 June 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">J4HA</td>
-<td align="left">03.1.3.1 Other Articles Of Clothing</td>
-<td align="left">CPIH Weights</td>
-<td align="right">4</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">24-05-2023</td>
-<td align="left">21 June 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">SGSO</td>
-<td align="left">RPI: Percentage change over 1 month - Children’s
-outerwear</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">%</td>
-<td align="left">24-05-2023</td>
-<td align="left">21 June 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">DOAZ</td>
-<td align="left">RPI: food: vegetables (Jan 1987=100)</td>
+<td align="left">DOCR</td>
+<td align="left">RPI: personal goods &amp; services: personal services
+(Jan 1987=100)</td>
 <td align="left">NA</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
 <td align="left">Index, base year = 100</td>
+<td align="left">24-05-2023</td>
+<td align="left">21 June 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">CHBS</td>
+<td align="left">RPI: Food &amp; catering (Jan 1987=100)</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">Index, base year = 100</td>
+<td align="left">24-05-2023</td>
+<td align="left">21 June 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">L5F5</td>
+<td align="left">07.1.2/3 : Motor Cycles And Bicycles</td>
+<td align="left">CPIH Weights</td>
+<td align="right">4</td>
+<td align="left">NA</td>
+<td align="left">Parts per 1000</td>
+<td align="left">24-05-2023</td>
+<td align="left">21 June 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">L5EY</td>
+<td align="left">06.2.2 : Dental Services</td>
+<td align="left">CPIH Weights</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="left">Parts per 1000</td>
+<td align="left">24-05-2023</td>
+<td align="left">21 June 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">L5NJ</td>
+<td align="left">CPIH 1mth: Energy and unprocessed food (SP)
+2015=100</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="left">24-05-2023</td>
 <td align="left">21 June 2023</td>
 <td align="left">NA</td>
