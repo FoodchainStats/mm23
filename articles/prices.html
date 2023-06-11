@@ -96,10 +96,25 @@ specify where you want to put it.</p>
 <p>As of June 2023, its not clear if the url for the data is stable.
 <code><a href="../reference/acquire_prices.html">acquire_prices()</a></code> uses <code><a href="../reference/prices_url.html">prices_url()</a></code> for its
 download target. This may have to change.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/FoodchainStats/mm23" class="external-link">mm23</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
+<span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_prices.html">acquire_prices</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">prices</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp1V1aiA/file189f3598526b"</span></span>
+<span></span>
+<span><span class="co"># Or specify a location</span></span>
+<span><span class="co"># prices &lt;- acquire_prices("~/data")</span></span>
+<span><span class="co"># data &lt;- readxl::read_excel("~/data/datadownload.xlsx")</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="wrangling-prices-data">Wrangling prices data<a class="anchor" aria-label="anchor" href="#wrangling-prices-data"></a>
 </h2>
+<p>There are two complementary functions to access the prices data.
+<code>get_prices_metadata()</code> returns a dataset containing details
+of the data series available. <code>get_prices()</code> will return the
+actual data.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
