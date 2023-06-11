@@ -57,7 +57,7 @@ get_price_data <- function(file) {
 #'
 #' @examples
 #' \dontrun{
-#' metadata <- get_price_metadata
+#' metadata <- get_price_metadata()
 #' }
 get_price_metadata <- function(file) {
 

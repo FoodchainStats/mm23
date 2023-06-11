@@ -28,5 +28,19 @@ As of June 2023, its not clear if the url for the data is stable.
 `acquire_prices()` uses `prices_url()` for its download target. This may have to
 change.
 
+```{r}
+library(mm23)
+
+# Puts the data in a temporary file and returns its name
+prices <- acquire_prices()
+prices
+
+# Or specify a location
+# prices <- acquire_prices("~/data")
+# data <- readxl::read_excel("~/data/datadownload.xlsx")
+
+```
+
 ## Wrangling prices data
 
+There are two complementary functions to access the prices data. `get_prices_metadata()` returns a dataset containing details of the data series available. `get_prices()` will return the actual data.
