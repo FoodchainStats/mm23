@@ -43,4 +43,32 @@ prices
 
 ## Wrangling prices data
 
-There are two complementary functions to access the prices data. `get_prices_metadata()` returns a dataset containing details of the data series available. `get_prices()` will return the actual data.
+There are two complementary functions to access the prices data.
+`get_price_metadata()` returns a dataset containing details of the data series
+available. `get_price_data()` will return the actual data. Below is the
+structure of the metadata dataset, with a random record. Join metadata to data
+with `item_id`.
+
+```{r}
+
+dplyr::slice_sample(mm23::get_price_metadata(prices), n = 1) |> t() |> knitr::kable()
+
+```
+
+
+
+```{r, message=FALSE}
+
+items <- mm23::get_price_metadata(prices) |> 
+  dplyr::filter(category2 == "Crisps") |>
+  dplyr::select(item_id) |>
+  unlist()
+
+mm23::get_price_data(prices) |> 
+  dplyr::filter(item_id %in% items) |> 
+  dplyr::left_join(get_price_metadata(prices)) |> 
+  ggplot2::ggplot() +
+  ggplot2::geom_line(ggplot2::aes(x = date, y = value, colour = item_desc))
+
+```
+
