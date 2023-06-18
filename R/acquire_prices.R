@@ -9,7 +9,7 @@
 #' @param path Folder to put the downloaded data in. If missing a tempfile will
 #'   be created.
 #'
-#' @return
+#' @return The file path and name of the downloaded file.
 #' @export
 #'
 #' @examples
