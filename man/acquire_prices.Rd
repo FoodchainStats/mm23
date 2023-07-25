@@ -10,6 +10,9 @@ acquire_prices(path)
 \item{path}{Folder to put the downloaded data in. If missing a tempfile will
 be created.}
 }
+\value{
+The file path and name of the downloaded file.
+}
 \description{
 \code{\link[=acquire_prices]{acquire_prices()}} is mainly a wrapper to download the file stored in
 \code{\link[=prices_url]{prices_url()}}. You can optionally specify where to save the downloaded file.

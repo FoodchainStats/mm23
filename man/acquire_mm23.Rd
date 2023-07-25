@@ -20,7 +20,8 @@ Path and filename of the downloaded file.
 \examples{
 \dontrun{
 file <- acquire_mm23()
-data <- file |> get_mm23_metadata()
+data <- file |>
+          get_mm23_metadata()
 
 my_mm23 <- acquire_mm23("~/data")
 }

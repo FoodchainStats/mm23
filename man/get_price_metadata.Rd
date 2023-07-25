@@ -17,6 +17,6 @@ Get average price metadata from the ONS Shopping Price tool
 }
 \examples{
 \dontrun{
-metadata <- get_price_metadata
+metadata <- get_price_metadata()
 }
 }
