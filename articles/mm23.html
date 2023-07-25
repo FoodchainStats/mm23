@@ -94,7 +94,7 @@ specify where you want to put it.</p>
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">mm23</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpQ5rOrO/file18df36e8fda3"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpOH0VNT/file1808786423f4"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># mm23 &lt;- acquire_mm23("~/data")</span></span>
@@ -181,17 +181,17 @@ field.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_mm23_metadata.html">get_mm23_metadata</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="3%">
-<col width="30%">
+<col width="26%">
+<col width="16%">
+<col width="3%">
+<col width="5%">
 <col width="14%">
-<col width="4%">
-<col width="6%">
-<col width="10%">
+<col width="8%">
 <col width="9%">
 <col width="10%">
-<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">cdid</th>
@@ -206,30 +206,19 @@ field.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">L5M2</td>
-<td align="left">CPIH 12mth: Semi-durables (G) 2015=100</td>
-<td align="left">NA</td>
+<td align="left">GK8E</td>
+<td align="left">Broccoli</td>
+<td align="left">RPI Average price (pence)</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
-<td align="left">%</td>
+<td align="left">NA</td>
 <td align="left">19-07-2023</td>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">L56Y</td>
-<td align="left">04.4.3 : Sewerage Collection</td>
-<td align="left">CPIH Annual rate (%)</td>
-<td align="right">3</td>
-<td align="left">NA</td>
-<td align="left">%</td>
-<td align="left">19-07-2023</td>
-<td align="left">16 August 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">A9FA</td>
-<td align="left">CPI wts: Medical goods GOODS</td>
+<td align="left">ICVH</td>
+<td align="left">CPI WEIGHTS: Goods - estimated pre-96</td>
 <td align="left">NA</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
@@ -238,10 +227,10 @@ field.</p>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
-<td align="left">J4FP</td>
-<td align="left">01.1.8.1 Sugar</td>
-<td align="left">CPIH Weights</td>
+<tr class="odd">
+<td align="left">J3FC</td>
+<td align="left">09.3.3.1 Garden Products</td>
+<td align="left">CPIH Annual rate (%)</td>
 <td align="right">4</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -249,13 +238,24 @@ field.</p>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
 </tr>
+<tr class="even">
+<td align="left">DK9S</td>
+<td align="left">CPI INDEX: Industrial goods (G) 2015=100</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">Index, base year = 100</td>
+<td align="left">19-07-2023</td>
+<td align="left">16 August 2023</td>
+<td align="left">NA</td>
+</tr>
 <tr class="odd">
-<td align="left">J2IX</td>
-<td align="left">01.1.5.2 Margarine And Other Vegetable Fats</td>
-<td align="left">CPIH Index</td>
-<td align="right">4</td>
+<td align="left">L5M2</td>
+<td align="left">CPIH 12mth: Semi-durables (G) 2015=100</td>
 <td align="left">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
+<td align="left">%</td>
 <td align="left">19-07-2023</td>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
