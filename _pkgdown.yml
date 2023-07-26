@@ -19,11 +19,12 @@ reference:
     comparison tool
 - contents:
   - starts_with("get_price_")
-- title: Get CPI weights data
+- title: Get weights data
   desc: >
-    Get weights data
+    Get weights data for CPI or CPIH
 - contents:
-  - starts_with("get_cpi")
+  - get_weights
+  - get_cpih_cdid_lookup
 - title: Contribution calculation
   desc: >
     Helpers for calcluating index contribution to 12 month rate

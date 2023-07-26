@@ -104,8 +104,8 @@ library(ggplot2)
 # Get our data together
 mm23 <- acquire_mm23()
 data <- get_mm23_month(mm23)
-cpih_wts <- get_cpih_weights(mm23)
-cpi_wts <- get_cpi_weights(mm23)
+cpih_wts <- get_weights(mm23, measure = "cpih")
+cpi_wts <- get_weights(mm23, measure = "cpi")
 
 ```
 
@@ -138,7 +138,7 @@ food_weights <- c("L5CZ", "L5DH", "L5DI", "L5DJ",
 
 
 foodwts <- cpih_wts |> 
-  filter(cdid %in% food_weights & date >= "2017-01-01" & date <= "2023-04-01") 
+  filter(cdid %in% food_weights & date >= "2017-01-01") 
 
 
 # Combine the indices and weights and calculate the contribution to annual rate
@@ -245,7 +245,7 @@ food_weights <- c("CHZR", "CJWB", "CJWC", "CJWD",
 
 
 foodwts <- cpi_wts |> 
-  filter(cdid %in% food_weights & date >= "2017-01-01" & date <= "2023-04-01") 
+  filter(cdid %in% food_weights & date >= "2017-01-01") 
 
 
 # Combine the indices and weights and calculate the contribution to annual rate
