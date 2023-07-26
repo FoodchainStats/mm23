@@ -176,8 +176,8 @@ for lots of downloads.</p>
 <span><span class="co"># Get our data together</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mm23_month.html">get_mm23_month</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
-<span><span class="va">cpih_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpih_weights.html">get_cpih_weights</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span>
-<span><span class="va">cpi_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cpi_weights.html">get_cpi_weights</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">cpih_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_weights.html">get_weights</a></span><span class="op">(</span><span class="va">mm23</span>, measure <span class="op">=</span> <span class="st">"cpih"</span><span class="op">)</span></span>
+<span><span class="va">cpi_wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_weights.html">get_weights</a></span><span class="op">(</span><span class="va">mm23</span>, measure <span class="op">=</span> <span class="st">"cpi"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="cpih-food-weight-contribution">CPIH food weight contribution<a class="anchor" aria-label="anchor" href="#cpih-food-weight-contribution"></a>
@@ -206,7 +206,7 @@ non-alcoholic drinks inflation.</p>
 <span></span>
 <span></span>
 <span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">cpih_wts</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-04-01"</span><span class="op">)</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span><span class="op">)</span> </span>
 <span></span>
 <span></span>
 <span><span class="co"># Combine the indices and weights and calculate the contribution to annual rate</span></span>
@@ -517,29 +517,29 @@ non-alcoholic drinks inflation.</p>
 <td align="right">107.4746</td>
 <td align="right">102.8878</td>
 <td align="right">104.84988</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">96</td>
+<td align="right">17</td>
+<td align="right">17</td>
+<td align="right">4</td>
+<td align="right">11</td>
+<td align="right">3</td>
+<td align="right">8</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">3.250287</td>
+<td align="right">2.846141</td>
+<td align="right">0.7086430</td>
+<td align="right">2.999835</td>
+<td align="right">0.7356353</td>
+<td align="right">1.0114063</td>
+<td align="right">2.612437</td>
+<td align="right">1.660437</td>
+<td align="right">1.238823</td>
+<td align="right">0.2538876</td>
+<td align="right">1.100267</td>
 </tr>
 <tr class="even">
 <td align="left">2023-06-01</td>
@@ -555,29 +555,29 @@ non-alcoholic drinks inflation.</p>
 <td align="right">108.2729</td>
 <td align="right">104.6205</td>
 <td align="right">105.61971</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">96</td>
+<td align="right">17</td>
+<td align="right">17</td>
+<td align="right">4</td>
+<td align="right">11</td>
+<td align="right">3</td>
+<td align="right">8</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">3.046915</td>
+<td align="right">2.484155</td>
+<td align="right">0.5545647</td>
+<td align="right">2.548496</td>
+<td align="right">0.7393522</td>
+<td align="right">0.9220417</td>
+<td align="right">2.525917</td>
+<td align="right">1.896002</td>
+<td align="right">1.106426</td>
+<td align="right">0.2945244</td>
+<td align="right">1.262533</td>
 </tr>
 </tbody>
 </table>
@@ -622,7 +622,7 @@ non-alcoholic drinks inflation.</p>
 <span></span>
 <span></span>
 <span><span class="va">foodwts</span> <span class="op">&lt;-</span> <span class="va">cpi_wts</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&lt;=</span> <span class="st">"2023-04-01"</span><span class="op">)</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cdid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">food_weights</span> <span class="op">&amp;</span> <span class="va">date</span> <span class="op">&gt;=</span> <span class="st">"2017-01-01"</span><span class="op">)</span> </span>
 <span></span>
 <span></span>
 <span><span class="co"># Combine the indices and weights and calculate the contribution to annual rate</span></span>
@@ -933,29 +933,29 @@ non-alcoholic drinks inflation.</p>
 <td align="right">107.4746</td>
 <td align="right">102.8878</td>
 <td align="right">104.84988</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">119</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">14</td>
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">13</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">3.226752</td>
+<td align="right">2.795624</td>
+<td align="right">0.7109493</td>
+<td align="right">2.922951</td>
+<td align="right">0.6272701</td>
+<td align="right">1.0025961</td>
+<td align="right">2.610937</td>
+<td align="right">1.754937</td>
+<td align="right">1.244001</td>
+<td align="right">0.2794015</td>
+<td align="right">1.136201</td>
 </tr>
 <tr class="even">
 <td align="left">2023-06-01</td>
@@ -971,29 +971,29 @@ non-alcoholic drinks inflation.</p>
 <td align="right">108.2729</td>
 <td align="right">104.6205</td>
 <td align="right">105.61971</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="right">119</td>
+<td align="right">21</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">14</td>
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">13</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">3.028644</td>
+<td align="right">2.429467</td>
+<td align="right">0.5568182</td>
+<td align="right">2.486299</td>
+<td align="right">0.6397553</td>
+<td align="right">0.9148430</td>
+<td align="right">2.514310</td>
+<td align="right">2.007300</td>
+<td align="right">1.112460</td>
+<td align="right">0.3276061</td>
+<td align="right">1.304908</td>
 </tr>
 </tbody>
 </table>

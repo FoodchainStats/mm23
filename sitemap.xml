@@ -34,13 +34,7 @@
     <loc>https://foodchainstats.github.io/mm23/reference/contribution.html</loc>
   </url>
   <url>
-    <loc>https://foodchainstats.github.io/mm23/reference/get_cpi_weights.html</loc>
-  </url>
-  <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_cpih_cdid_lookup.html</loc>
-  </url>
-  <url>
-    <loc>https://foodchainstats.github.io/mm23/reference/get_cpih_weights.html</loc>
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_mm23_metadata.html</loc>
@@ -59,6 +53,9 @@
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_price_metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://foodchainstats.github.io/mm23/reference/get_weights.html</loc>
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/index.html</loc>
