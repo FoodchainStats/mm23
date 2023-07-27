@@ -90,17 +90,15 @@ download and wrangle the underlying dataset.</p>
 <p>Download the latest data from ONS. <code><a href="../reference/acquire_prices.html">acquire_prices()</a></code>
 simply downloads the full latest data download file, and returns its
 location. By default it puts it into a temporary file, but you can
-specify where you want to put it.</p>
-<p>As of June 2023, its not clear if the url for the data is stable.
-<code><a href="../reference/acquire_prices.html">acquire_prices()</a></code> uses <code><a href="../reference/prices_url.html">prices_url()</a></code> for its
-download target. This may have to change.</p>
+specify where you want to put it. <code><a href="../reference/acquire_prices.html">acquire_prices()</a></code> uses
+<code><a href="../reference/prices_url.html">prices_url()</a></code> for its download target.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/FoodchainStats/mm23" class="external-link">mm23</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_prices.html">acquire_prices</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">prices</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmp8MGn65/file18ad29cd8625"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpQqkp9n/file189d573e64ab"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># prices &lt;- acquire_prices("~/data")</span></span>
@@ -120,39 +118,39 @@ random record. Join metadata to data with <code>item_id</code>.</p>
 <table class="table"><tbody>
 <tr class="odd">
 <td align="left">item_id</td>
-<td align="left">610115</td>
+<td align="left">520136</td>
 </tr>
 <tr class="even">
 <td align="left">item_start</td>
-<td align="left">2023-02-01</td>
+<td align="left">2008-02-01</td>
 </tr>
 <tr class="odd">
 <td align="left">coicop2</td>
-<td align="left">Transport</td>
+<td align="left">Miscellaneous goods and services</td>
 </tr>
 <tr class="even">
 <td align="left">coicop3</td>
-<td align="left">Purchase of vehicles</td>
+<td align="left">Personal effects (nec)</td>
 </tr>
 <tr class="odd">
 <td align="left">coicop4</td>
-<td align="left">Motorcycles and bicycles</td>
+<td align="left">Other personal effects</td>
 </tr>
 <tr class="even">
 <td align="left">coicop5</td>
-<td align="left">Motor cycles</td>
+<td align="left">Other personal effects nec</td>
 </tr>
 <tr class="odd">
 <td align="left">category1</td>
-<td align="left">Transport</td>
+<td align="left">Household items</td>
 </tr>
 <tr class="even">
 <td align="left">category2</td>
-<td align="left">Bikes and cycling equipment</td>
+<td align="left">Furniture</td>
 </tr>
 <tr class="odd">
 <td align="left">item_desc</td>
-<td align="left">Adult electric bike</td>
+<td align="left">Photo frame</td>
 </tr>
 <tr class="even">
 <td align="left">weight_size</td>
