@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 Download the latest MM23 from ONS. `acquire_mm23()` simply downloads the full
 latest `mm23.csv` file, and returns its location. By default it puts it into a
-temporary file, but you can specify where you want to put it.
+temporary file, but you can specify a folder where you want to put it.
 
 ```{r}
 library(mm23)
@@ -41,8 +41,9 @@ Which is mainly where `mm23` comes in.
 
 ### Data
 
-The `get_mm23_*` functions will return data in a tidy format. Each series has a
-unique `CDID` identifier.
+The `get_mm23_*` functions will return data in a tidy format for a specific time
+frequency (yearly, quarterly or monthly). Each series has a unique `CDID`
+identifier.
 
 ```{r message=FALSE, warning=TRUE, echo=FALSE}
 
@@ -53,7 +54,7 @@ mm23::get_mm23_month(mm23) |> head() |> knitr::kable()
 
 Its more efficient to use `acquire_mm23` first so as to only download the data
 once. But if used without parameters the `get_mm23_*` functions will download
-the latest data.
+the latest data automatically.
 
 
 ```r
@@ -78,7 +79,7 @@ mm23::get_mm23_metadata(mm23) |> dplyr::slice_sample(n = 5) |> knitr::kable()
 ```
 
 
-
+### Joining data
 
 You can join data and metadata by CDID, for analysis.
 

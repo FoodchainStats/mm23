@@ -16,7 +16,8 @@ its parents annual inflation rate. These are quite niche, and rely on the data
 being in a specific structure. *Theres no real error checking in here (yet) so
 take care!*
 
-This article will explain the steps needed to reproduce the calculation. 
+This article will explain the steps needed to reproduce the calculation. It is
+informed by section 11.7 of the [ONS CPI Technical Manual](https://www.ons.gov.uk/economy/inflationandpriceindices/methodologies/consumerpricesindicestechnicalmanual2019).
 
 ## Weights
 
