@@ -28,5 +28,7 @@ Imports:
     utils
 URL: https://github.com/FoodchainStats/mm23
 Suggests: 
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 BugReports: https://github.com/FoodchainStats/mm23/issues
+Config/testthat/edition: 3
