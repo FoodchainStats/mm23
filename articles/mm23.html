@@ -94,7 +94,7 @@ specify a folder where you want to put it.</p>
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">mm23</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpS87oqF/file18334121b747"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpA9C6J0/file184b6097d6c5"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># mm23 &lt;- acquire_mm23("~/data")</span></span>
@@ -183,14 +183,14 @@ field.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_mm23_metadata.html">get_mm23_metadata</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
 <col width="3%">
 <col width="32%">
-<col width="13%">
+<col width="16%">
 <col width="3%">
 <col width="5%">
-<col width="14%">
+<col width="9%">
 <col width="8%">
 <col width="9%">
 <col width="10%">
@@ -208,20 +208,19 @@ field.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">DOBS</td>
-<td align="left">RPI: housing: water &amp; other charges (Jan
-1987=100)</td>
+<td align="left">J4XJ</td>
+<td align="left">09.5.3.0 Miscellaneous Printed Matter</td>
+<td align="left">CPIH Weights</td>
+<td align="right">4</td>
 <td align="left">NA</td>
-<td align="right">NA</td>
 <td align="left">NA</td>
-<td align="left">Index, base year = 100</td>
 <td align="left">19-07-2023</td>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">L5FR</td>
-<td align="left">09.3.1 : Games Toys And Hobbies</td>
+<td align="left">L5FW</td>
+<td align="left">09.4.1 : Recreational And Sporting Services</td>
 <td align="left">CPIH Weights</td>
 <td align="right">3</td>
 <td align="left">NA</td>
@@ -231,34 +230,34 @@ field.</p>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">L7XX</td>
-<td align="left">05.5.2.2 Miscellaneous Small Tool Accessories</td>
-<td align="left">CPI Monthly rate (%)</td>
-<td align="right">4</td>
+<td align="left">L5DM</td>
+<td align="left">01.1.6 : Fruit</td>
+<td align="left">CPIH Weights</td>
+<td align="right">3</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">Parts per 1000</td>
 <td align="left">19-07-2023</td>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">CRQT</td>
-<td align="left">CPIH 12mth: Excl council tax 2015=100</td>
-<td align="left">NA</td>
+<td align="left">CZMO</td>
+<td align="left">Coal, Per 50 Kg</td>
+<td align="left">RPI Average price (pence)</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">Pence</td>
 <td align="left">19-07-2023</td>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">J4LZ</td>
-<td align="left">08.3.0.2 Wireless Telephone Services</td>
-<td align="left">CPIH Weights</td>
-<td align="right">4</td>
+<td align="left">SGPQ</td>
+<td align="left">RPI: Percentage change over 1 month - Depreciation</td>
 <td align="left">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
+<td align="left">%</td>
 <td align="left">19-07-2023</td>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
