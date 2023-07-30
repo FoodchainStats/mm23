@@ -98,7 +98,7 @@ specify where you want to put it. <code><a href="../reference/acquire_prices.htm
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_prices.html">acquire_prices</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">prices</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpGT0Pxx/file186d2ac08fe4"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpwoPfY0/file18d292e7e12"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># prices &lt;- acquire_prices("~/data")</span></span>
@@ -115,19 +115,14 @@ random record. Join metadata to data with <code>item_id</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_price_metadata.html">get_price_metadata</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="15%">
-<col width="84%">
-</colgroup>
-<tbody>
+<table class="table"><tbody>
 <tr class="odd">
 <td align="left">item_id</td>
-<td align="left">620307</td>
+<td align="left">610231</td>
 </tr>
 <tr class="even">
 <td align="left">item_start</td>
-<td align="left">1993-02-01</td>
+<td align="left">2004-02-01</td>
 </tr>
 <tr class="odd">
 <td align="left">coicop2</td>
@@ -139,12 +134,11 @@ random record. Join metadata to data with <code>item_id</code>.</p>
 </tr>
 <tr class="odd">
 <td align="left">coicop4</td>
-<td align="left">Other services</td>
+<td align="left">Maintenance and repairs</td>
 </tr>
 <tr class="even">
 <td align="left">coicop5</td>
-<td align="left">Hire of garages; parking spaces and personal transport
-equipment</td>
+<td align="left">Maintenance and repairs</td>
 </tr>
 <tr class="odd">
 <td align="left">category1</td>
@@ -152,18 +146,17 @@ equipment</td>
 </tr>
 <tr class="even">
 <td align="left">category2</td>
-<td align="left">Vehicle hire</td>
+<td align="left">Services</td>
 </tr>
 <tr class="odd">
 <td align="left">item_desc</td>
-<td align="left">Self drive car hire</td>
+<td align="left">Car service (local garage)</td>
 </tr>
 <tr class="even">
 <td align="left">weight_size</td>
-<td align="left">per day</td>
+<td align="left">NA</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">items</span> <span class="op">&lt;-</span> <span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_price_metadata.html">get_price_metadata</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
