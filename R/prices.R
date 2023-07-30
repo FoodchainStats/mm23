@@ -29,10 +29,10 @@ get_price_data <- function(file) {
   }
 
   avgprice <- readxl::read_excel(file, sheet = "averageprice") |>
-    tidyr::pivot_longer(!.data$ITEM_ID) |>
+    tidyr::pivot_longer(!"ITEM_ID") |>
     dplyr::mutate(ITEM_ID = as.character(.data$ITEM_ID),
                   date = as.Date(as.numeric(.data$name), origin = "1899-12-30")) |>
-    dplyr::select(date, item_id = .data$ITEM_ID, .data$value)
+    dplyr::select(date, item_id = "ITEM_ID", "value")
 
 
 # tidyxl version kept crashing with the download
@@ -78,7 +78,7 @@ get_price_metadata <- function(file) {
 
   price_metadata <- readxl::read_excel(file, sheet = "metadata") |>
     dplyr::rename_with(tolower) |>
-    dplyr::rename(weight_size = .data$`weight\\size`) |>
+    dplyr::rename(weight_size = "weight\\size") |>
     dplyr::mutate(item_id = as.character(.data$item_id))
 
 

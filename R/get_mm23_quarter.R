@@ -32,7 +32,7 @@ get_mm23_quarter <- function(rawfile){
   mm23_quarter <- readr::read_csv(rawfile, skip = 1, show_col_types = FALSE) |>
     dplyr::filter(nchar(.data$CDID) == 7 & .data$CDID != "PreUnit") |>
     dplyr::mutate(CDID = lubridate::yq(.data$CDID)) |>
-    dplyr::rename(date = .data$CDID) |>
+    dplyr::rename(date = "CDID") |>
     tidyr::pivot_longer(cols = 2:tidyr::last_col(), names_to = "cdid") |>
     dplyr::mutate(value = as.numeric(.data$value),
                   period = "Q") |>

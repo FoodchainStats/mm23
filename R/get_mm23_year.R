@@ -36,7 +36,7 @@ get_mm23_year <- function(rawfile){
   mm23_year <- readr::read_csv(rawfile, skip = 1, show_col_types = FALSE) |>
     dplyr::filter(nchar(.data$CDID) == 4 & .data$CDID != "Unit") |>
     dplyr::mutate(CDID = lubridate::ymd(paste(.data$CDID, "-01-01"))) |>
-    dplyr::rename(date = .data$CDID) |>
+    dplyr::rename(date = "CDID") |>
     tidyr::pivot_longer(cols = 2:tidyr::last_col(), names_to = "cdid") |>
     dplyr::mutate(value = as.numeric(.data$value),
                   period = "Y") |>

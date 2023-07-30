@@ -38,7 +38,7 @@ get_mm23_metadata <- function(rawfile){
     # rename(series = Title) |>
     dplyr::filter(.data$Title != "Title") |>
     janitor::clean_names() |>
-    dplyr::relocate(.data$cdid)
+    dplyr::relocate("cdid")
 
   # CPIH annual rates ------------------------------------------------------------
   # Extract series and add a level flag to show hierarchy
@@ -401,8 +401,8 @@ get_mm23_metadata <- function(rawfile){
   metadata <- metadata |>
     dplyr::left_join(series, by = "cdid") |>
     dplyr::mutate(t2 = ifelse(is.na(.data$title.y), .data$title.x, .data$title.y)) |>
-    dplyr::rename(title_original = .data$title.x,
-           title = .data$t2) |>
+    dplyr::rename(title_original = "title.x",
+           title = "t2") |>
     dplyr::select("cdid",
                   "title",
                   "category",
