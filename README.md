@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/FoodchainStats/mm23/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FoodchainStats/mm23/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/FoodchainStats/mm23/branch/main/graph/badge.svg)](https://app.codecov.io/gh/FoodchainStats/mm23?branch=main)
 <!-- badges: end -->
 
 Wrangle MM23 data. Functions to acquire and manipulate consumer price
