@@ -42,7 +42,7 @@ get_weights_jan <- function(measure = "cpi") {
     dplyr::filter(stringr::str_detect(.data$year, "Jan") == TRUE) |>
     dplyr::mutate(date = lubridate::ym(.data$year),
                   cdid = stringr::str_trim(.data$cdid)) |>
-    dplyr::select(date, .data$cdid, value = numeric) |>
+    dplyr::select(date, "cdid", value = numeric) |>
     dplyr::filter(!.data$cdid %in% params$exclude) |>
     unique()
 
@@ -101,7 +101,7 @@ get_weights <- function(rawfile, measure = "cpi") {
 
   wts <- metadata |>
     dplyr::filter(.data$category == cat) |>
-    dplyr::select(.data$cdid) |>
+    dplyr::select("cdid") |>
     unlist()
 
   make_weight_series <- function(annual_data,
@@ -113,14 +113,18 @@ get_weights <- function(rawfile, measure = "cpi") {
     dates <- data.frame(date = (seq.Date(as.Date(start), as.Date(end),by = "month")))
     weights <- dates |>
       dplyr::left_join(data, by = dplyr::join_by(date)) |>
-      tidyr::fill(.data$cdid:.data$period, .direction = "down")
+      tidyr::fill("cdid":"period", .direction = "down")
 
     return(weights)
   }
 
-  weights <- purrr::map(wts, make_weight_series, annual_data = yr, .progress = "Getting weights") |>
+  weights <- purrr::map(wts,
+                        make_weight_series,
+                        annual_data = yr,
+                        .progress = paste("Getting", measure, "weights")) |>
     purrr::list_rbind() |>
-    dplyr::select(-.data$period)
+    dplyr::select(-"period") |>
+    tibble::as_tibble()
 
   final_weights <- dplyr::rows_update(weights, janweights, by = c("date", "cdid"))
 
