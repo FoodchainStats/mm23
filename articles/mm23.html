@@ -94,7 +94,7 @@ specify a folder where you want to put it.</p>
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">mm23</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmpq4GpU5/file183c335647fd"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpBOgFTT/file186f307d877"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># mm23 &lt;- acquire_mm23("~/data")</span></span>
@@ -183,17 +183,17 @@ field.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_mm23_metadata.html">get_mm23_metadata</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="2%">
-<col width="43%">
+<col width="3%">
+<col width="31%">
 <col width="13%">
 <col width="3%">
-<col width="4%">
+<col width="5%">
+<col width="14%">
 <col width="8%">
-<col width="6%">
-<col width="8%">
-<col width="8%">
+<col width="9%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">cdid</th>
@@ -208,34 +208,9 @@ field.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">CBYP</td>
-<td align="left">RPI:Weights (parts per 1000) Two-person pensioner -
-Poultry</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">Parts per 1000</td>
-<td align="left">19-07-2023</td>
-<td align="left">16 August 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">J48B</td>
-<td align="left">CPIHMONTHLYRATE 12.4.0.3Service to maintain people in
-their private home2015=100</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">19-07-2023</td>
-<td align="left">16 August 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">L79M</td>
-<td align="left">01.1.7.1 Fresh Or Chilled Vegetables Other Than
-Potatoes And Other Tubers</td>
-<td align="left">CPI Index</td>
+<td align="left">J42M</td>
+<td align="left">06.1.2.9 Other Medical Products N.e.c.</td>
+<td align="left">CPIH Monthly rate (%)</td>
 <td align="right">4</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -244,23 +219,45 @@ Potatoes And Other Tubers</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">CZPF</td>
-<td align="left">Beef: Home-Killed, Rump Steak, Per Kg</td>
-<td align="left">RPI Average price (pence)</td>
-<td align="right">NA</td>
+<td align="left">CJVB</td>
+<td align="left">03.2 : Footwear Including Repairs</td>
+<td align="left">CPI Weights</td>
+<td align="right">2</td>
 <td align="left">NA</td>
-<td align="left">Pence</td>
+<td align="left">Parts per 1000</td>
 <td align="left">19-07-2023</td>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">D7JS</td>
-<td align="left">12 : Miscellaneous Goods &amp; Services</td>
-<td align="left">CPI Monthly rate (%)</td>
+<td align="left">L53T</td>
+<td align="left">05.6.2 : Domestic Services And Household Services</td>
+<td align="left">CPIH Index</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="left">Index, base year = 100</td>
+<td align="left">19-07-2023</td>
+<td align="left">16 August 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">L7JT</td>
+<td align="left">01.1.1.6 Pasta Products And Couscous</td>
+<td align="left">CPI Annual rate (%)</td>
+<td align="right">4</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">19-07-2023</td>
+<td align="left">16 August 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">L527</td>
+<td align="left">05 : Furn, Hh Equip &amp; Routine Repair Of House</td>
+<td align="left">CPIH Index</td>
 <td align="right">1</td>
 <td align="left">NA</td>
-<td align="left">%</td>
+<td align="left">Index, base year = 100</td>
 <td align="left">19-07-2023</td>
 <td align="left">16 August 2023</td>
 <td align="left">NA</td>
