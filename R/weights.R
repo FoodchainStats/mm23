@@ -133,95 +133,6 @@ get_weights <- function(rawfile, measure = "cpi") {
 
 
 
-
-
-get_cpih_weights_jan <- function() {
-  url <- reftables_url()
-
-  tmp <- tempfile()
-  utils::download.file(url, tmp)
-
-# Extract the January weights from Table 11 in the ONS detailed reference tables
-# spreadsheet. They are not included in mm23 which only has the weight at annual
-# level. Exclude certain cdids since they are either duplicated or do not appear
-# in the mm23 data
-  janweights <- tidyxl::xlsx_cells(tmp, sheets = "Table 11") |>
-    dplyr::filter(row >=7 & row < 371 & col > 1) |>
-    unpivotr::behead("up", "year") |>
-    unpivotr::behead("left", "cdid") |>
-    unpivotr::behead("left", "title")  |>
-    dplyr::filter(!is.na(numeric)) |>
-    dplyr::filter(stringr::str_detect(.data$year, "Jan") == TRUE) |>
-    dplyr::mutate(date = lubridate::ym(.data$year),
-                  cdid = stringr::str_trim(.data$cdid)) |>
-    dplyr::select(date, .data$cdid, value = numeric) |>
-    dplyr::filter(!.data$cdid %in% c("L5DD",
-                                     "L5DE",
-                                     "L5F3",
-                                     "L5F4",
-                                     "L5FP",
-                                     "J4XP",
-                                     "L5G8")) |>
-    unique()
-
-  return(janweights)
-
-
-}
-
-
-
-
-
-
-get_cpih_weights <- function(rawfile) {
-
-  if(!missing(rawfile)){
-    if(!file.exists(rawfile)) stop(paste(rawfile, "does not exist"))
-  }
-
-  if(missing(rawfile)){
-    mm23 <- acquire_mm23()
-  } else {
-    mm23 <- rawfile
-  }
-
-  metadata <- get_mm23_metadata(mm23)
-  yr <- get_mm23_year(mm23)
-  janweights <- get_cpih_weights_jan()
-
-  wts <- metadata |>
-    dplyr::filter(.data$category == "CPIH Weights") |>
-    dplyr::select(.data$cdid) |>
-    unlist()
-
-  make_weight_series <- function(annual_data,
-                                 series,
-                                 start = "1998-01-01",
-                                 end = "2023-12-01") {
-    data <- annual_data |>
-      dplyr::filter(.data$cdid == series)
-    dates <- data.frame(date = (seq.Date(as.Date(start), as.Date(end),by = "month")))
-    weights <- dates |>
-      dplyr::left_join(data, by = dplyr::join_by(date)) |>
-      tidyr::fill(.data$cdid:.data$period, .direction = "down")
-
-    return(weights)
-  }
-
-  weights <- purrr::map(wts, make_weight_series, annual_data = yr, .progress = "Getting weights") |>
-    purrr::list_rbind() |>
-    dplyr::select(-.data$period)
-
-  final_weights <- dplyr::rows_update(weights, janweights, by = c("date", "cdid"))
-
-  return(final_weights)
-}
-
-
-
-
-
 #' Get a reference table of CPIH CDIDs
 #'
 #' @return A data frame of CDIDs for overall index, weight, 1 month rate and 12
@@ -244,97 +155,13 @@ get_cpih_cdid_lookup <- function() {
     unpivotr::behead("left", "index") |>
     unpivotr::behead("left", "rate_monthly") |>
     unpivotr::behead("left", "rate_annual") |>
-    dplyr::select(title = .data$character, .data$index, .data$weight, .data$rate_annual, .data$rate_monthly) |>
+    dplyr::select(title = "character", "index", "weight", "rate_annual", "rate_monthly") |>
     dplyr::filter(!is.na(.data$title) == TRUE)
 
   return(cpih_series_ref)
 
 
 }
-
-
-
-get_cpi_weights_jan <- function() {
-  url <- reftables_url()
-
-  tmp <- tempfile()
-  utils::download.file(url, tmp)
-
-  # Extract the January weights from Table 25 in the ONS detailed reference
-  # tables spreadsheet. They are not included in mm23 which only has the weight
-  # at annual level. Exclude certain cdids since they are either duplicated or
-  # do not appear in the mm23 data
-  janweights <- tidyxl::xlsx_cells(tmp, sheets = "Table 25") |>
-    dplyr::filter(row >=6 & row < 366 & col > 1) |>
-    unpivotr::behead("up", "year") |>
-    unpivotr::behead("left", "cdid") |>
-    unpivotr::behead("left", "title")  |>
-    dplyr::filter(!is.na(numeric)) |>
-    dplyr::filter(stringr::str_detect(.data$year, "Jan") == TRUE) |>
-    dplyr::mutate(date = lubridate::ym(.data$year),
-                  cdid = stringr::str_trim(.data$cdid)) |>
-    dplyr::select(date, .data$cdid, value = numeric) |>
-    dplyr::filter(!.data$cdid %in% c("ICVH",
-                                     "ICVI",
-                                     "CJXN",
-                                     "CJXO",
-                                     "CJYB",
-                                     "L8LF")) |>
-    unique()
-
-  return(janweights)
-
-
-}
-
-
-
-
-get_cpi_weights <- function(rawfile) {
-
-  if(!missing(rawfile)){
-    if(!file.exists(rawfile)) stop(paste(rawfile, "does not exist"))
-  }
-
-  if(missing(rawfile)){
-    mm23 <- acquire_mm23()
-  } else {
-    mm23 <- rawfile
-  }
-
-  metadata <- get_mm23_metadata(mm23)
-  yr <- get_mm23_year(mm23)
-  janweights <- get_cpi_weights_jan()
-
-  wts <- metadata |>
-    dplyr::filter(.data$category == "CPI Weights") |>
-    dplyr::select(.data$cdid) |>
-    unlist()
-
-  make_weight_series <- function(annual_data,
-                                 series,
-                                 start = "1998-01-01",
-                                 end = "2023-12-01") {
-    data <- annual_data |>
-      dplyr::filter(.data$cdid == series)
-    dates <- data.frame(date = (seq.Date(as.Date(start), as.Date(end),by = "month")))
-    weights <- dates |>
-      dplyr::left_join(data, by = dplyr::join_by(date)) |>
-      tidyr::fill(.data$cdid:.data$period, .direction = "down")
-
-    return(weights)
-  }
-
-  weights <- purrr::map(wts, make_weight_series, annual_data = yr, .progress = "Getting weights") |>
-    purrr::list_rbind() |>
-    dplyr::select(-.data$period)
-
-  final_weights <- dplyr::rows_update(weights, janweights, by = c("date", "cdid"))
-
-  return(final_weights)
-}
-
-
 
 
 
