@@ -1,6 +1,6 @@
 test_that("get_weights_jan returns a dataframe with positive length for CPI", {
   skip_on_cran()
-  # skip_on_os("windows")
+  skip_on_os("windows")
 
   df <- get_weights_jan(measure = "cpi")
 
@@ -12,7 +12,7 @@ test_that("get_weights_jan returns a dataframe with positive length for CPI", {
 
 test_that("get_weights_jan returns a dataframe with positive length for CPIH", {
   skip_on_cran()
-  # skip_on_os("windows")
+  skip_on_os("windows")
 
   df <- get_weights_jan(measure = "cpih")
 
@@ -25,7 +25,7 @@ test_that("get_weights_jan returns a dataframe with positive length for CPIH", {
 
 test_that("get_weights returns a dataframe with positive length for CPI", {
   skip_on_cran()
-  # skip_on_os("windows")
+  skip_on_os("windows")
 
   df <- get_weights(measure = "cpi")
 
@@ -37,7 +37,7 @@ test_that("get_weights returns a dataframe with positive length for CPI", {
 
 test_that("get_weights returns a dataframe with positive length for CPIH", {
   skip_on_cran()
-  # skip_on_os("windows")
+  skip_on_os("windows")
 
   df <- get_weights(measure = "cpih")
 
