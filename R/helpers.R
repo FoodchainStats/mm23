@@ -11,6 +11,20 @@ mm23_url <- function() {
 }
 
 
+#' Default url for the current mm22 PPI dataset
+#'
+#' @return url of mm22 data
+#' @export
+#'
+#' @examples
+#' url <- mm22_url()
+mm22_url <- function() {
+  url <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/producerpriceindex/current/mm22.csv"
+  return(url)
+}
+
+
+
 #' Default url for the CPI reference tables spreadsheet
 #'
 #' @description Its not clear yet if this url is stable, need to test over
