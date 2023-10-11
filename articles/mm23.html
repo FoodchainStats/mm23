@@ -97,7 +97,7 @@ specify a folder where you want to put it.</p>
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">mm23</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmphPDHE0/file18807bc24b47"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpesrbvK/file1b9d32c8318a"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># mm23 &lt;- acquire_mm23("~/data")</span></span>
@@ -186,17 +186,17 @@ field.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_mm23_metadata.html">get_mm23_metadata</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
+<col width="2%">
+<col width="38%">
+<col width="12%">
 <col width="3%">
-<col width="37%">
-<col width="15%">
-<col width="4%">
-<col width="6%">
-<col width="3%">
+<col width="5%">
+<col width="12%">
+<col width="7%">
 <col width="8%">
-<col width="10%">
-<col width="11%">
+<col width="8%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">cdid</th>
@@ -211,60 +211,61 @@ field.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">L7Y3</td>
-<td align="left">05.6.2.9 Other Domestic Services &amp; Household
-Services</td>
+<td align="left">A9FB</td>
+<td align="left">CPI wts: Vehicles, spare parts &amp; accessories
+GOODS</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">Parts per 1000</td>
+<td align="left">20-09-2023</td>
+<td align="left">18 October 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">L7Z5</td>
+<td align="left">09.1.1.9 Other Equip For The Recep,Record &amp; Reprod
+Of Sound/Pic</td>
 <td align="left">CPI Monthly rate (%)</td>
 <td align="right">4</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
-<td align="left">19-07-2023</td>
-<td align="left">16 August 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">L7B6</td>
-<td align="left">03.2.1.2 Footwear For Women</td>
-<td align="left">CPI Index</td>
-<td align="right">4</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">19-07-2023</td>
-<td align="left">16 August 2023</td>
+<td align="left">20-09-2023</td>
+<td align="left">18 October 2023</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">L5AQ</td>
-<td align="left">04.5.3 : Liquid Fuels</td>
+<td align="left">L53E</td>
+<td align="left">04.5.1 : Electricity</td>
+<td align="left">CPIH Index</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="left">Index, base year = 100</td>
+<td align="left">20-09-2023</td>
+<td align="left">18 October 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">J3ZX</td>
+<td align="left">05.2.0.3 Table Linen And Bathroom Linen</td>
 <td align="left">CPIH Monthly rate (%)</td>
-<td align="right">3</td>
+<td align="right">4</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
-<td align="left">19-07-2023</td>
-<td align="left">16 August 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">D7NE</td>
-<td align="left">09.5.3:Misc Printed Matter Stationery &amp; Drawing
-Mtrls</td>
-<td align="left">CPI Monthly rate (%)</td>
-<td align="right">3</td>
-<td align="left">NA</td>
-<td align="left">%</td>
-<td align="left">19-07-2023</td>
-<td align="left">16 August 2023</td>
+<td align="left">20-09-2023</td>
+<td align="left">18 October 2023</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">D7JE</td>
-<td align="left">12.5.2 : House Contents Insurance</td>
-<td align="left">CPI Annual rate (%)</td>
-<td align="right">3</td>
+<td align="left">JFX3</td>
+<td align="left">“CPI HISTORICAL MODELLED WEIGHTS 11 : HOTELS, CAFES AND
+RESTAURANTS”</td>
 <td align="left">NA</td>
-<td align="left">%</td>
-<td align="left">19-07-2023</td>
-<td align="left">16 August 2023</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">20-09-2023</td>
+<td align="left">18 October 2023</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
