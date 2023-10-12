@@ -34,6 +34,9 @@
     <loc>https://foodchainstats.github.io/mm23/reference/acquire_mm23.html</loc>
   </url>
   <url>
+    <loc>https://foodchainstats.github.io/mm23/reference/acquire_ppi.html</loc>
+  </url>
+  <url>
     <loc>https://foodchainstats.github.io/mm23/reference/acquire_prices.html</loc>
   </url>
   <url>
@@ -55,6 +58,9 @@
     <loc>https://foodchainstats.github.io/mm23/reference/get_mm23_year.html</loc>
   </url>
   <url>
+    <loc>https://foodchainstats.github.io/mm23/reference/get_ppi_metadata.html</loc>
+  </url>
+  <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_price_data.html</loc>
   </url>
   <url>
@@ -71,6 +77,9 @@
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/mm23_url.html</loc>
+  </url>
+  <url>
+    <loc>https://foodchainstats.github.io/mm23/reference/ppi_url.html</loc>
   </url>
   <url>
     <loc>https://foodchainstats.github.io/mm23/reference/prices_url.html</loc>
