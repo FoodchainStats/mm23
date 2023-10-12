@@ -13,6 +13,11 @@ reference:
     Get mm23 data types and metadata from an mm23 raw data file
 - contents:
   - starts_with("get_mm23_")
+- title: Extract PPI data
+  desc: >
+    Get ppi data types and metadata from a ppi raw data file
+- contents:
+  - starts_with("get_ppi_")
 - title: Extract ONS Shopping Prices data
   desc: >
     Get data and metadata from a dowload file from the ONS Shopping Price

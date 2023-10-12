@@ -23,7 +23,17 @@ mm22_url <- function() {
   return(url)
 }
 
-
+#' Default url for the current PPI dataset
+#'
+#' @return url of ppi dta
+#' @export
+#'
+#' @examples
+#' url <- ppi_url()
+ppi_url <- function() {
+  url <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/producerpriceindexstatisticalbulletindataset/current/ppi.csv"
+  return(url)
+}
 
 #' Default url for the CPI reference tables spreadsheet
 #'
