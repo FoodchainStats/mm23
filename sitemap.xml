@@ -61,6 +61,15 @@
     <loc>https://foodchainstats.github.io/mm23/reference/get_ppi_metadata.html</loc>
   </url>
   <url>
+    <loc>https://foodchainstats.github.io/mm23/reference/get_ppi_month.html</loc>
+  </url>
+  <url>
+    <loc>https://foodchainstats.github.io/mm23/reference/get_ppi_quarter.html</loc>
+  </url>
+  <url>
+    <loc>https://foodchainstats.github.io/mm23/reference/get_ppi_year.html</loc>
+  </url>
+  <url>
     <loc>https://foodchainstats.github.io/mm23/reference/get_price_data.html</loc>
   </url>
   <url>
