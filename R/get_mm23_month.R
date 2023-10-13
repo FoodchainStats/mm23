@@ -48,3 +48,35 @@ get_mm23_month <- function(rawfile){
 
   return(mm23_month)
 }
+
+
+#' Get monthly PPI data
+#'
+#' @param rawfile a downloaded ppi.csv file. If missing will attempt to
+#'  download from ONS.
+#'
+#' @return A tibble containint date, CDID and value.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_ppi_month()
+#' }
+get_ppi_month <- function(rawfile) {
+
+  if(!missing(rawfile)){
+    if(!file.exists(rawfile)) stop(paste(rawfile, "does not exist"))
+  }
+
+  if(missing(rawfile)){
+    url <- ppi_url()
+    tmp <- tempfile()
+    utils::download.file(url, tmp)
+    rawfile <- tmp
+  }
+
+  out <- get_mm23_month(rawfile)
+
+  return(out)
+
+}

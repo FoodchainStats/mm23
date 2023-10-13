@@ -30,15 +30,17 @@ get_mm23_metadata <- function(rawfile){
 
   message("Processing metadata")
 
-  metadata <- readr::read_csv(rawfile, n_max = 6, show_col_types = FALSE) |>
-    t() |>
-    tibble::as_tibble(rownames = "series", .name_repair = "unique") |>
-    (\(.) stats::setNames(., .[1,]))() |>
-    # setNames( .[1,]) |>
-    # rename(series = Title) |>
-    dplyr::filter(.data$Title != "Title") |>
-    janitor::clean_names() |>
-    dplyr::relocate("cdid")
+  metadata <- suppressMessages(get_metadata(rawfile))
+
+  # metadata <- readr::read_csv(rawfile, n_max = 6, show_col_types = FALSE) |>
+  #   t() |>
+  #   tibble::as_tibble(rownames = "series", .name_repair = "unique") |>
+  #   (\(.) stats::setNames(., .[1,]))() |>
+  #   # setNames( .[1,]) |>
+  #   # rename(series = Title) |>
+  #   dplyr::filter(.data$Title != "Title") |>
+  #   janitor::clean_names() |>
+  #   dplyr::relocate("cdid")
 
   # CPIH annual rates ------------------------------------------------------------
   # Extract series and add a level flag to show hierarchy

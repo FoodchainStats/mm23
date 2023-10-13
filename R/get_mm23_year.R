@@ -49,3 +49,35 @@ get_mm23_year <- function(rawfile){
 
   return(mm23_year)
 }
+
+
+
+#' Get yearly ppi data
+#'
+#' @param rawfile A downloaded ppi.csv file. If missing will attempt to
+#'   download from ONS.
+#'
+#' @return A tibble containing date, CDID and value.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_ppi_year()
+#' }
+get_ppi_year <- function(rawfile) {
+
+  if(!missing(rawfile)){
+    if(!file.exists(rawfile)) stop(paste(rawfile, "does not exist"))
+  }
+
+  if(missing(rawfile)){
+    url <- ppi_url()
+    tmp <- tempfile()
+    utils::download.file(url, tmp)
+    rawfile <- tmp
+  }
+
+  out <- get_mm23_year(rawfile)
+  return(out)
+
+}
