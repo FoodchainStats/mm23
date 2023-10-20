@@ -97,7 +97,7 @@ specify a folder where you want to put it.</p>
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">mm23</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_mm23.html">acquire_mm23</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">mm23</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmptkGA67/file1b0a690a4135"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpT4Wzd9/file1a727ebc61a5"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># mm23 &lt;- acquire_mm23("~/data")</span></span>
@@ -186,17 +186,17 @@ field.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_mm23_metadata.html">get_mm23_metadata</a></span><span class="op">(</span><span class="va">mm23</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="3%">
-<col width="32%">
-<col width="12%">
+<col width="2%">
+<col width="43%">
+<col width="11%">
 <col width="3%">
 <col width="5%">
-<col width="14%">
 <col width="8%">
-<col width="10%">
-<col width="10%">
+<col width="7%">
+<col width="9%">
+<col width="8%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">cdid</th>
@@ -211,58 +211,62 @@ field.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">CJVZ</td>
-<td align="left">12.5 : Insurance</td>
+<td align="left">L86A</td>
+<td align="left">03.1.2.3 Garments For Infants (0-2 Years) And Children
+(3-13 Years)</td>
 <td align="left">CPI Weights</td>
-<td align="right">2</td>
-<td align="left">NA</td>
-<td align="left">Parts per 1000</td>
-<td align="left">20-09-2023</td>
-<td align="left">18 October 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">CHBF</td>
-<td align="left">RPI: Housing (Jan 1987=100)</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">Index, base year = 100</td>
-<td align="left">20-09-2023</td>
-<td align="left">18 October 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">L5DS</td>
-<td align="left">01.2.2 : Mineral Waters, Soft Drinks And Juices</td>
-<td align="left">CPIH Weights</td>
-<td align="right">3</td>
-<td align="left">NA</td>
-<td align="left">Parts per 1000</td>
-<td align="left">20-09-2023</td>
-<td align="left">18 October 2023</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">L7PW</td>
-<td align="left">05.2.0.2 Bed Linen</td>
-<td align="left">CPI Annual rate (%)</td>
 <td align="right">4</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
-<td align="left">20-09-2023</td>
-<td align="left">18 October 2023</td>
+<td align="left">18-10-2023</td>
+<td align="left">15 November 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">DKL3</td>
+<td align="left">CPI 12mth: Seasonal food (G) 2015=100</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">%</td>
+<td align="left">18-10-2023</td>
+<td align="left">15 November 2023</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">JFEG</td>
-<td align="left">CPI HISTORICAL MODELLED ANNUAL RATE 07 : TRANSPORT</td>
+<td align="left">JFCZ</td>
+<td align="left">“CPIH HISTORICAL MODELLED ANNUAL RATE 11 : HOTELS,
+CAFES AND RESTAURANTS”</td>
 <td align="left">NA</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
-<td align="left">20-09-2023</td>
-<td align="left">18 October 2023</td>
+<td align="left">18-10-2023</td>
+<td align="left">15 November 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">D7J5</td>
+<td align="left">09.1.5: Repair Of Audio-Visual Equipment &amp; Related
+Products</td>
+<td align="left">CPI Annual rate (%)</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="left">%</td>
+<td align="left">18-10-2023</td>
+<td align="left">15 November 2023</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">CBWY</td>
+<td align="left">RPI:Weights (parts per 1000) One-person pensioner -
+Purchase of motor vehicles</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">Parts per 1000</td>
+<td align="left">18-10-2023</td>
+<td align="left">15 November 2023</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
