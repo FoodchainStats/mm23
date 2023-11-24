@@ -66,6 +66,18 @@ prices_url <- function() {
 }
 
 
+#' URL for the page containing CPI price quote downloads
+#'
+#' @return url of the ONS price quote page
+#' @export
+#'
+#' @examples
+#' url <- cpi_price_quotes_url()
+cpi_price_quotes_url <- function(){
+  url <- "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes"
+  return(url)
+}
+
 
 #' Unchains a CPI series
 #'

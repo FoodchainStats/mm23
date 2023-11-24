@@ -24,6 +24,11 @@ reference:
     comparison tool
 - contents:
   - starts_with("get_price_")
+- title: Extract CPI price quotes data
+  desc: >
+    Download CPI price quote data
+- contents:
+  - get_cpi_price_quotes
 - title: Get weights data
   desc: >
     Get weights data for CPI or CPIH
