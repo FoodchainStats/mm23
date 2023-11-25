@@ -2,22 +2,22 @@
 % Please edit documentation in R/get_cpi_quotes.R
 \name{get_cpi_price_quotes}
 \alias{get_cpi_price_quotes}
-\title{Creates a dataframe of CPI price quotes for food items.}
+\title{Get CPI price quotes for food items.}
 \usage{
-get_cpi_price_quotes(year, month, path = getwd())
+get_cpi_price_quotes(year, month, path)
 }
 \arguments{
 \item{year}{Year to extract}
 
 \item{month}{Month to extract}
 
-\item{path}{path to save data}
+\item{path}{Optional path to save data}
 }
 \value{
-a data frame of price quotes
+a tibble of price quotes
 }
 \description{
-Creates a dataframe of CPI price quotes for food items.
+Get CPI price quotes for food items.
 }
 \examples{
 \dontrun{
