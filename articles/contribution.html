@@ -5,68 +5,50 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="mm23">
 <title>Calculating contribution to annual rate • mm23</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Calculating contribution to annual rate">
-<meta property="og:description" content="mm23">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Calculating contribution to annual rate">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">mm23</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../articles/mm23.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../articles/mm23.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/contribution.html">Calculating contribution to annual rate</a>
-    <a class="dropdown-item" href="../articles/prices.html">ONS Shopping Price Tool data</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/contribution.html">Calculating contribution to annual rate</a></li>
+    <li><a class="dropdown-item" href="../articles/prices.html">ONS Shopping Price Tool data</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/FoodchainStats/mm23/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/FoodchainStats/mm23/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -75,10 +57,11 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Calculating contribution to annual rate</h1>
+
+      <h1>Calculating contribution to annual rate</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/FoodchainStats/mm23/blob/HEAD/vignettes/articles/contribution.Rmd" class="external-link"><code>vignettes/articles/contribution.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/FoodchainStats/mm23/blob/main/vignettes/articles/contribution.Rmd" class="external-link"><code>vignettes/articles/contribution.Rmd</code></a></small>
       <div class="d-none name"><code>contribution.Rmd</code></div>
     </div>
 
@@ -120,23 +103,16 @@ based on previous December = 100. Example code below.</p>
 <h2 id="calculating-contribution-to-all-items-12-month-rate">Calculating contribution to ‘all items’ 12 month rate<a class="anchor" aria-label="anchor" href="#calculating-contribution-to-all-items-12-month-rate"></a>
 </h2>
 <p>The calculation is as follows, where:</p>
-<p><span class="math inline">\(c = component\ c\)</span></p>
-<p><span class="math inline">\(a =\ 'all\ items'\ CPI\
-index\)</span></p>
-<p><span class="math inline">\(W^c_{y} = weight\ of\ component\ c\ in\
-year\ y\)</span> <span class="math inline">\(I^c_t = index\ for\
-component\ c\ in\ month\ t\ based\ on\ January\ of\ current\ year
-=100\)</span> <span class="math inline">\(I^a_{Jan} = all\ items\ index\
-for\ January\ based\ on\ previous\ month\ (December) = 100\)</span>
-<span class="math inline">\(I^a_{Dec} = all\ items\ index\ for\
-December\ based\ on\ previous\ January = 100\)</span></p>
-<p><span class="math display">\[
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mi>c</mi><mi>o</mi><mi>m</mi><mi>p</mi><mi>o</mi><mi>n</mi><mi>e</mi><mi>n</mi><mi>t</mi><mspace width="0.222em"></mspace><mi>c</mi></mrow><annotation encoding="application/x-tex">c = component\ c</annotation></semantics></math></p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mspace width="0.222em"></mspace><mi>′</mi><mi>a</mi><mi>l</mi><mi>l</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>t</mi><mi>e</mi><mi>m</mi><mi>s</mi><mi>′</mi><mspace width="0.222em"></mspace><mi>C</mi><mi>P</mi><mi>I</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">a =\ 'all\ items'\ CPI\ index</annotation></semantics></math></p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>W</mi><mi>y</mi><mi>c</mi></msubsup><mo>=</mo><mi>w</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mspace width="0.222em"></mspace><mi>o</mi><mi>f</mi><mspace width="0.222em"></mspace><mi>c</mi><mi>o</mi><mi>m</mi><mi>p</mi><mi>o</mi><mi>n</mi><mi>e</mi><mi>n</mi><mi>t</mi><mspace width="0.222em"></mspace><mi>c</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>n</mi><mspace width="0.222em"></mspace><mi>y</mi><mi>e</mi><mi>a</mi><mi>r</mi><mspace width="0.222em"></mspace><mi>y</mi></mrow><annotation encoding="application/x-tex">W^c_{y} = weight\ of\ component\ c\ in\ year\ y</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>I</mi><mi>t</mi><mi>c</mi></msubsup><mo>=</mo><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi><mspace width="0.222em"></mspace><mi>f</mi><mi>o</mi><mi>r</mi><mspace width="0.222em"></mspace><mi>c</mi><mi>o</mi><mi>m</mi><mi>p</mi><mi>o</mi><mi>n</mi><mi>e</mi><mi>n</mi><mi>t</mi><mspace width="0.222em"></mspace><mi>c</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>n</mi><mspace width="0.222em"></mspace><mi>m</mi><mi>o</mi><mi>n</mi><mi>t</mi><mi>h</mi><mspace width="0.222em"></mspace><mi>t</mi><mspace width="0.222em"></mspace><mi>b</mi><mi>a</mi><mi>s</mi><mi>e</mi><mi>d</mi><mspace width="0.222em"></mspace><mi>o</mi><mi>n</mi><mspace width="0.222em"></mspace><mi>J</mi><mi>a</mi><mi>n</mi><mi>u</mi><mi>a</mi><mi>r</mi><mi>y</mi><mspace width="0.222em"></mspace><mi>o</mi><mi>f</mi><mspace width="0.222em"></mspace><mi>c</mi><mi>u</mi><mi>r</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mspace width="0.222em"></mspace><mi>y</mi><mi>e</mi><mi>a</mi><mi>r</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">I^c_t = index\ for\ component\ c\ in\ month\ t\ based\ on\ January\ of\ current\ year =100</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>I</mi><mrow><mi>J</mi><mi>a</mi><mi>n</mi></mrow><mi>a</mi></msubsup><mo>=</mo><mi>a</mi><mi>l</mi><mi>l</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>t</mi><mi>e</mi><mi>m</mi><mi>s</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi><mspace width="0.222em"></mspace><mi>f</mi><mi>o</mi><mi>r</mi><mspace width="0.222em"></mspace><mi>J</mi><mi>a</mi><mi>n</mi><mi>u</mi><mi>a</mi><mi>r</mi><mi>y</mi><mspace width="0.222em"></mspace><mi>b</mi><mi>a</mi><mi>s</mi><mi>e</mi><mi>d</mi><mspace width="0.222em"></mspace><mi>o</mi><mi>n</mi><mspace width="0.222em"></mspace><mi>p</mi><mi>r</mi><mi>e</mi><mi>v</mi><mi>i</mi><mi>o</mi><mi>u</mi><mi>s</mi><mspace width="0.222em"></mspace><mi>m</mi><mi>o</mi><mi>n</mi><mi>t</mi><mi>h</mi><mspace width="0.222em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mi>D</mi><mi>e</mi><mi>c</mi><mi>e</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">I^a_{Jan} = all\ items\ index\ for\ January\ based\ on\ previous\ month\ (December) = 100</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>I</mi><mrow><mi>D</mi><mi>e</mi><mi>c</mi></mrow><mi>a</mi></msubsup><mo>=</mo><mi>a</mi><mi>l</mi><mi>l</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>t</mi><mi>e</mi><mi>m</mi><mi>s</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi><mspace width="0.222em"></mspace><mi>f</mi><mi>o</mi><mi>r</mi><mspace width="0.222em"></mspace><mi>D</mi><mi>e</mi><mi>c</mi><mi>e</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>r</mi><mspace width="0.222em"></mspace><mi>b</mi><mi>a</mi><mi>s</mi><mi>e</mi><mi>d</mi><mspace width="0.222em"></mspace><mi>o</mi><mi>n</mi><mspace width="0.222em"></mspace><mi>p</mi><mi>r</mi><mi>e</mi><mi>v</mi><mi>i</mi><mi>o</mi><mi>u</mi><mi>s</mi><mspace width="0.222em"></mspace><mi>J</mi><mi>a</mi><mi>n</mi><mi>u</mi><mi>a</mi><mi>r</mi><mi>y</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">I^a_{Dec} = all\ items\ index\ for\ December\ based\ on\ previous\ January = 100</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msubsup><mi>W</mi><mrow><mi>y</mi><mo>−</mo><mn>1</mn></mrow><mi>c</mi></msubsup><msubsup><mi>W</mi><mrow><mi>y</mi><mo>−</mo><mn>1</mn></mrow><mi>a</mi></msubsup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>×</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>I</mi><mrow><mi>D</mi><mi>e</mi><mi>c</mi></mrow><mi>c</mi></msubsup><mo>−</mo><msubsup><mi>I</mi><mrow><mi>t</mi><mo>−</mo><mn>12</mn></mrow><mi>c</mi></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><msubsup><mi>I</mi><mrow><mi>t</mi><mo>−</mo><mn>12</mn></mrow><mi>a</mi></msubsup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>×</mo><mn>100</mn><mspace width="0.222em"></mspace><mspace width="0.222em"></mspace><mo>+</mo><mspace width="0.222em"></mspace><mspace width="0.222em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msubsup><mi>W</mi><mi>y</mi><mi>c</mi></msubsup><msubsup><mi>W</mi><mi>y</mi><mi>a</mi></msubsup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>×</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>I</mi><mrow><mi>J</mi><mi>a</mi><mi>n</mi></mrow><mi>c</mi></msubsup><mo>−</mo><mn>100</mn><mo stretchy="true" form="postfix">)</mo></mrow><msubsup><mi>I</mi><mrow><mi>t</mi><mo>−</mo><mn>12</mn></mrow><mi>a</mi></msubsup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>×</mo><msubsup><mi>I</mi><mrow><mi>D</mi><mi>e</mi><mi>c</mi></mrow><mi>a</mi></msubsup><mspace width="0.222em"></mspace><mspace width="0.222em"></mspace><mo>+</mo><mspace width="0.222em"></mspace><mspace width="0.222em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msubsup><mi>W</mi><mi>y</mi><mi>c</mi></msubsup><msubsup><mi>W</mi><mi>y</mi><mi>a</mi></msubsup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>×</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>I</mi><mi>t</mi><mi>c</mi></msubsup><mo>−</mo><mn>100</mn><mo stretchy="true" form="postfix">)</mo></mrow><msubsup><mi>I</mi><mrow><mi>t</mi><mo>−</mo><mn>12</mn></mrow><mi>a</mi></msubsup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>×</mo><mfrac><msubsup><mi>I</mi><mrow><mi>J</mi><mi>a</mi><mi>n</mi></mrow><mi>a</mi></msubsup><mn>100</mn></mfrac><mo>×</mo><msubsup><mi>I</mi><mrow><mi>D</mi><mi>e</mi><mi>c</mi></mrow><mi>a</mi></msubsup></mrow><annotation encoding="application/x-tex">
 (\frac{W^c_{y-1}} {W^a_{y-1}})
 \times
 (\frac{({I^c_{Dec}} - {I^c_{t-12}})}{I^a_{t-12}})
 \times
 100
-\ \ +\ \
+\ \ +\ \ 
 (\frac{W^c_y}{W^a_y})
 \times
 (\frac{({I^c_{Jan}}-100)}{I^a_{t-12}})
@@ -150,7 +126,7 @@ I^a_{Dec}
 \frac{I^a_{Jan}}{100}
 \times
 I^a_{Dec}
-\]</span></p>
+</annotation></semantics></math></p>
 <p>Note that ‘all items’ doesn’t have to be all items CPIH, it can be a
 category total (such as food). It is important that the calculations are
 performed using <strong>unchained indices</strong> (i.e. based on
@@ -162,8 +138,14 @@ contributions to the <em>change</em> in the CPI 12-month rate.</p>
 <p>The <code><a href="../reference/contribution.html">contribution()</a></code> function applies this calculation to
 a wide dataset (1 column with month number or date, and the indices and
 weights in subsequent columns). It can then be used in a
-<code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate()</a></code> call. It takes <span class="math inline">\(I^a\)</span>, <span class="math inline">\(W^a\)</span>, <span class="math inline">\(I^c\)</span>, and <span class="math inline">\(W^c\)</span> as parameters, and leverages
-<code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html" class="external-link">dplyr::lag()</a></code> to do the rest. Example below.</p>
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate()</a></code> call. It takes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mi>a</mi></msup><annotation encoding="application/x-tex">I^a</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>W</mi><mi>a</mi></msup><annotation encoding="application/x-tex">W^a</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mi>c</mi></msup><annotation encoding="application/x-tex">I^c</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>W</mi><mi>c</mi></msup><annotation encoding="application/x-tex">W^c</annotation></semantics></math>
+as parameters, and leverages <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html" class="external-link">dplyr::lag()</a></code> to do the rest.
+Example below.</p>
 </div>
 <div class="section level2">
 <h2 id="contribution---data-setup">Contribution - data setup<a class="anchor" aria-label="anchor" href="#contribution---data-setup"></a>
@@ -277,33 +259,33 @@ non-alcoholic drinks inflation.</p>
 <span>                   <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">contribution</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
 <col width="3%">
+<col width="2%">
+<col width="2%">
 <col width="3%">
 <col width="3%">
 <col width="3%">
 <col width="3%">
+<col width="2%">
+<col width="2%">
 <col width="3%">
 <col width="3%">
 <col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
+<col width="2%">
 <col width="3%">
 <col width="3%">
 <col width="3%">
@@ -356,232 +338,232 @@ non-alcoholic drinks inflation.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2023-05-01</td>
-<td align="right">105.7098</td>
-<td align="right">107.0064</td>
-<td align="right">105.3963</td>
-<td align="right">104.2360</td>
-<td align="right">104.2940</td>
-<td align="right">103.6760</td>
-<td align="right">104.2037</td>
-<td align="right">107.6417</td>
-<td align="right">105.7404</td>
-<td align="right">107.4746</td>
-<td align="right">102.8878</td>
-<td align="right">104.8499</td>
-<td align="right">96</td>
-<td align="right">17</td>
-<td align="right">17</td>
-<td align="right">4</td>
-<td align="right">11</td>
-<td align="right">3</td>
-<td align="right">8</td>
-<td align="right">13</td>
-<td align="right">10</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="right">3.250287</td>
-<td align="right">2.846141</td>
-<td align="right">0.7086430</td>
-<td align="right">2.9998348</td>
-<td align="right">0.7356353</td>
-<td align="right">1.0114063</td>
-<td align="right">2.612437</td>
-<td align="right">1.660437</td>
-<td align="right">1.2388234</td>
-<td align="right">0.2538876</td>
-<td align="right">1.1002665</td>
+<td align="left">2024-11-01</td>
+<td align="right">101.9274</td>
+<td align="right">101.1046</td>
+<td align="right">100.55380</td>
+<td align="right">99.47800</td>
+<td align="right">101.70092</td>
+<td align="right">109.80958</td>
+<td align="right">102.1887</td>
+<td align="right">102.2642</td>
+<td align="right">103.80228</td>
+<td align="right">99.46773</td>
+<td align="right">104.31711</td>
+<td align="right">102.5253</td>
+<td align="right">91.3270</td>
+<td align="right">16.2085</td>
+<td align="right">16.1931</td>
+<td align="right">3.2381</td>
+<td align="right">10.4821</td>
+<td align="right">2.6154</td>
+<td align="right">7.7334</td>
+<td align="right">11.9345</td>
+<td align="right">9.4822</td>
+<td align="right">3.9755</td>
+<td align="right">2.0904</td>
+<td align="right">7.3737</td>
+<td align="right">0.2397799</td>
+<td align="right">0.0141069</td>
+<td align="right">-0.1297452</td>
+<td align="right">0.2092386</td>
+<td align="right">0.2790751</td>
+<td align="right">0.2049426</td>
+<td align="right">0.3595699</td>
+<td align="right">0.5731582</td>
+<td align="right">-0.0579390</td>
+<td align="right">0.0580878</td>
+<td align="right">0.2600242</td>
 </tr>
 <tr class="even">
-<td align="left">2023-06-01</td>
-<td align="right">106.1063</td>
-<td align="right">107.7229</td>
-<td align="right">105.9865</td>
-<td align="right">103.4796</td>
-<td align="right">103.7846</td>
-<td align="right">104.6729</td>
-<td align="right">103.8804</td>
-<td align="right">108.0526</td>
-<td align="right">106.3228</td>
-<td align="right">108.2729</td>
-<td align="right">104.6205</td>
-<td align="right">105.6197</td>
-<td align="right">96</td>
-<td align="right">17</td>
-<td align="right">17</td>
-<td align="right">4</td>
-<td align="right">11</td>
-<td align="right">3</td>
-<td align="right">8</td>
-<td align="right">13</td>
-<td align="right">10</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="right">3.046915</td>
-<td align="right">2.484155</td>
-<td align="right">0.5545647</td>
-<td align="right">2.5484961</td>
-<td align="right">0.7393522</td>
-<td align="right">0.9220417</td>
-<td align="right">2.525917</td>
-<td align="right">1.896002</td>
-<td align="right">1.1064259</td>
-<td align="right">0.2945244</td>
-<td align="right">1.2625328</td>
+<td align="left">2024-12-01</td>
+<td align="right">102.4463</td>
+<td align="right">101.8409</td>
+<td align="right">100.63291</td>
+<td align="right">98.73229</td>
+<td align="right">101.84266</td>
+<td align="right">111.36757</td>
+<td align="right">103.3962</td>
+<td align="right">102.7925</td>
+<td align="right">105.09506</td>
+<td align="right">99.46773</td>
+<td align="right">104.86656</td>
+<td align="right">102.5253</td>
+<td align="right">91.3270</td>
+<td align="right">16.2085</td>
+<td align="right">16.1931</td>
+<td align="right">3.2381</td>
+<td align="right">10.4821</td>
+<td align="right">2.6154</td>
+<td align="right">7.7334</td>
+<td align="right">11.9345</td>
+<td align="right">9.4822</td>
+<td align="right">3.9755</td>
+<td align="right">2.0904</td>
+<td align="right">7.3737</td>
+<td align="right">0.0931139</td>
+<td align="right">0.0002089</td>
+<td align="right">-0.1172670</td>
+<td align="right">0.1700282</td>
+<td align="right">0.2785660</td>
+<td align="right">0.3119533</td>
+<td align="right">0.3436031</td>
+<td align="right">0.7360874</td>
+<td align="right">-0.0660815</td>
+<td align="right">0.0703085</td>
+<td align="right">0.1855466</td>
 </tr>
 <tr class="odd">
-<td align="left">2023-07-01</td>
-<td align="right">106.1856</td>
-<td align="right">107.9618</td>
-<td align="right">106.4924</td>
-<td align="right">105.4463</td>
-<td align="right">103.4207</td>
-<td align="right">104.9844</td>
-<td align="right">102.7486</td>
-<td align="right">108.1348</td>
-<td align="right">106.4060</td>
-<td align="right">108.4906</td>
-<td align="right">103.1353</td>
-<td align="right">105.6197</td>
-<td align="right">96</td>
-<td align="right">17</td>
-<td align="right">17</td>
-<td align="right">4</td>
-<td align="right">11</td>
-<td align="right">3</td>
-<td align="right">8</td>
-<td align="right">13</td>
-<td align="right">10</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="right">2.618239</td>
-<td align="right">2.247436</td>
-<td align="right">0.5715696</td>
-<td align="right">2.0949469</td>
-<td align="right">0.5140784</td>
-<td align="right">0.7380357</td>
-<td align="right">2.209485</td>
-<td align="right">1.619702</td>
-<td align="right">0.9446947</td>
-<td align="right">0.2039961</td>
-<td align="right">1.1108776</td>
+<td align="left">2025-01-01</td>
+<td align="right">100.8683</td>
+<td align="right">100.4338</td>
+<td align="right">101.65094</td>
+<td align="right">100.30211</td>
+<td align="right">100.34795</td>
+<td align="right">98.96373</td>
+<td align="right">100.1460</td>
+<td align="right">100.0000</td>
+<td align="right">102.82200</td>
+<td align="right">99.39799</td>
+<td align="right">104.64072</td>
+<td align="right">101.4075</td>
+<td align="right">90.1944</td>
+<td align="right">15.7250</td>
+<td align="right">15.2398</td>
+<td align="right">2.9878</td>
+<td align="right">10.6920</td>
+<td align="right">2.7215</td>
+<td align="right">7.8108</td>
+<td align="right">12.2034</td>
+<td align="right">9.5957</td>
+<td align="right">3.6447</td>
+<td align="right">2.1407</td>
+<td align="right">7.4331</td>
+<td align="right">0.4041790</td>
+<td align="right">0.4011568</td>
+<td align="right">-0.0317736</td>
+<td align="right">0.2523243</td>
+<td align="right">0.2913247</td>
+<td align="right">0.3030455</td>
+<td align="right">0.3653365</td>
+<td align="right">0.8493949</td>
+<td align="right">-0.0460782</td>
+<td align="right">0.2221861</td>
+<td align="right">0.3228234</td>
 </tr>
 <tr class="even">
-<td align="left">2023-08-01</td>
-<td align="right">106.5821</td>
-<td align="right">108.7580</td>
-<td align="right">106.7454</td>
-<td align="right">102.4962</td>
-<td align="right">104.5852</td>
-<td align="right">104.5483</td>
-<td align="right">102.7486</td>
-<td align="right">107.6417</td>
-<td align="right">107.2379</td>
-<td align="right">109.3614</td>
-<td align="right">106.2706</td>
-<td align="right">106.7744</td>
-<td align="right">96</td>
-<td align="right">17</td>
-<td align="right">17</td>
-<td align="right">4</td>
-<td align="right">11</td>
-<td align="right">3</td>
-<td align="right">8</td>
-<td align="right">13</td>
-<td align="right">10</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="right">2.684673</td>
-<td align="right">2.110546</td>
-<td align="right">0.2983533</td>
-<td align="right">1.7574599</td>
-<td align="right">0.4177840</td>
-<td align="right">0.7198594</td>
-<td align="right">1.871868</td>
-<td align="right">1.523355</td>
-<td align="right">0.8684646</td>
-<td align="right">0.2946555</td>
-<td align="right">1.0751099</td>
+<td align="left">2025-02-01</td>
+<td align="right">100.2152</td>
+<td align="right">100.7919</td>
+<td align="right">99.92266</td>
+<td align="right">100.00000</td>
+<td align="right">99.37587</td>
+<td align="right">100.15707</td>
+<td align="right">100.3644</td>
+<td align="right">100.0734</td>
+<td align="right">100.91485</td>
+<td align="right">100.74024</td>
+<td align="right">98.99857</td>
+<td align="right">100.3470</td>
+<td align="right">90.1944</td>
+<td align="right">15.7250</td>
+<td align="right">15.2398</td>
+<td align="right">2.9878</td>
+<td align="right">10.6920</td>
+<td align="right">2.7215</td>
+<td align="right">7.8108</td>
+<td align="right">12.2034</td>
+<td align="right">9.5957</td>
+<td align="right">3.6447</td>
+<td align="right">2.1407</td>
+<td align="right">7.4331</td>
+<td align="right">0.4935172</td>
+<td align="right">0.3276556</td>
+<td align="right">-0.0267039</td>
+<td align="right">0.1687838</td>
+<td align="right">0.2482791</td>
+<td align="right">0.3579173</td>
+<td align="right">0.2562592</td>
+<td align="right">0.9823436</td>
+<td align="right">-0.0142532</td>
+<td align="right">0.1472391</td>
+<td align="right">0.3689217</td>
 </tr>
 <tr class="odd">
-<td align="left">2023-09-01</td>
-<td align="right">106.4235</td>
-<td align="right">108.9968</td>
-<td align="right">106.9140</td>
-<td align="right">103.1770</td>
-<td align="right">102.9112</td>
-<td align="right">105.1713</td>
-<td align="right">102.3444</td>
-<td align="right">108.5456</td>
-<td align="right">107.1547</td>
-<td align="right">109.6517</td>
-<td align="right">104.5380</td>
-<td align="right">104.9269</td>
-<td align="right">96</td>
-<td align="right">17</td>
-<td align="right">17</td>
-<td align="right">4</td>
-<td align="right">11</td>
-<td align="right">3</td>
-<td align="right">8</td>
-<td align="right">13</td>
-<td align="right">10</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="right">2.440981</td>
-<td align="right">1.877994</td>
-<td align="right">0.3725901</td>
-<td align="right">1.4156809</td>
-<td align="right">0.3602009</td>
-<td align="right">0.5342435</td>
-<td align="right">1.914243</td>
-<td align="right">1.399471</td>
-<td align="right">0.8574583</td>
-<td align="right">0.2187483</td>
-<td align="right">0.7889379</td>
+<td align="left">2025-03-01</td>
+<td align="right">100.1435</td>
+<td align="right">101.1519</td>
+<td align="right">99.61330</td>
+<td align="right">97.66566</td>
+<td align="right">100.13870</td>
+<td align="right">99.52880</td>
+<td align="right">100.2187</td>
+<td align="right">100.6608</td>
+<td align="right">99.78888</td>
+<td align="right">101.00942</td>
+<td align="right">97.99714</td>
+<td align="right">100.3470</td>
+<td align="right">90.1944</td>
+<td align="right">15.7250</td>
+<td align="right">15.2398</td>
+<td align="right">2.9878</td>
+<td align="right">10.6920</td>
+<td align="right">2.7215</td>
+<td align="right">7.8108</td>
+<td align="right">12.2034</td>
+<td align="right">9.5957</td>
+<td align="right">3.6447</td>
+<td align="right">2.1407</td>
+<td align="right">7.4331</td>
+<td align="right">0.5179568</td>
+<td align="right">0.3569476</td>
+<td align="right">-0.0746107</td>
+<td align="right">0.3343265</td>
+<td align="right">0.2167102</td>
+<td align="right">0.3123252</td>
+<td align="right">0.2589002</td>
+<td align="right">0.6761359</td>
+<td align="right">0.0315697</td>
+<td align="right">0.1224608</td>
+<td align="right">0.2869109</td>
 </tr>
 <tr class="even">
-<td align="left">2023-10-01</td>
-<td align="right">106.5821</td>
-<td align="right">108.7580</td>
-<td align="right">106.7454</td>
-<td align="right">103.4796</td>
-<td align="right">102.4745</td>
-<td align="right">108.0997</td>
-<td align="right">104.7696</td>
-<td align="right">107.7239</td>
-<td align="right">106.6556</td>
-<td align="right">110.3048</td>
-<td align="right">106.4356</td>
-<td align="right">105.3888</td>
-<td align="right">96</td>
-<td align="right">17</td>
-<td align="right">17</td>
-<td align="right">4</td>
-<td align="right">11</td>
-<td align="right">3</td>
-<td align="right">8</td>
-<td align="right">13</td>
-<td align="right">10</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">7</td>
-<td align="right">2.169942</td>
-<td align="right">1.603374</td>
-<td align="right">0.2350517</td>
-<td align="right">0.9183047</td>
-<td align="right">0.3507855</td>
-<td align="right">0.4830351</td>
-<td align="right">1.458131</td>
-<td align="right">1.302153</td>
-<td align="right">0.6686924</td>
-<td align="right">0.2570965</td>
-<td align="right">0.6665861</td>
+<td align="left">2025-04-01</td>
+<td align="right">100.8608</td>
+<td align="right">101.7999</td>
+<td align="right">101.54679</td>
+<td align="right">98.41867</td>
+<td align="right">99.51456</td>
+<td align="right">101.15183</td>
+<td align="right">99.4898</td>
+<td align="right">100.0000</td>
+<td align="right">101.68895</td>
+<td align="right">101.34589</td>
+<td align="right">100.14306</td>
+<td align="right">102.0819</td>
+<td align="right">90.1944</td>
+<td align="right">15.7250</td>
+<td align="right">15.2398</td>
+<td align="right">2.9878</td>
+<td align="right">10.6920</td>
+<td align="right">2.7215</td>
+<td align="right">7.8108</td>
+<td align="right">12.2034</td>
+<td align="right">9.5957</td>
+<td align="right">3.6447</td>
+<td align="right">2.1407</td>
+<td align="right">7.4331</td>
+<td align="right">0.5804171</td>
+<td align="right">0.6074584</td>
+<td align="right">-0.0750497</td>
+<td align="right">0.2655243</td>
+<td align="right">0.2056142</td>
+<td align="right">0.2720361</td>
+<td align="right">0.1370597</td>
+<td align="right">0.7952864</td>
+<td align="right">0.0425487</td>
+<td align="right">0.1404590</td>
+<td align="right">0.4616383</td>
 </tr>
 </tbody>
 </table>
@@ -695,7 +677,6 @@ non-alcoholic drinks inflation.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">contribution</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="3%">
 <col width="2%">
 <col width="2%">
 <col width="2%">
@@ -708,7 +689,8 @@ non-alcoholic drinks inflation.</p>
 <col width="2%">
 <col width="2%">
 <col width="2%">
-<col width="1%">
+<col width="2%">
+<col width="2%">
 <col width="1%">
 <col width="1%">
 <col width="1%">
@@ -723,14 +705,14 @@ non-alcoholic drinks inflation.</p>
 <col width="4%">
 <col width="2%">
 <col width="2%">
-<col width="6%">
-<col width="3%">
-<col width="2%">
-<col width="3%">
-<col width="7%">
 <col width="5%">
-<col width="4%">
+<col width="3%">
+<col width="2%">
+<col width="2%">
 <col width="7%">
+<col width="4%">
+<col width="3%">
+<col width="6%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">date</th>
@@ -772,232 +754,232 @@ non-alcoholic drinks inflation.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">2023-05-01</td>
-<td align="right">105.6439</td>
-<td align="right">107.0064</td>
-<td align="right">105.3963</td>
-<td align="right">104.2360</td>
-<td align="right">104.2940</td>
-<td align="right">103.6760</td>
-<td align="right">104.2037</td>
-<td align="right">107.6417</td>
-<td align="right">105.7404</td>
-<td align="right">107.4746</td>
-<td align="right">102.8878</td>
-<td align="right">104.8499</td>
-<td align="right">119</td>
-<td align="right">21</td>
-<td align="right">20</td>
-<td align="right">5</td>
-<td align="right">14</td>
-<td align="right">4</td>
-<td align="right">10</td>
-<td align="right">15</td>
-<td align="right">13</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">9</td>
-<td align="right">3.226752</td>
-<td align="right">2.795624</td>
-<td align="right">0.7109493</td>
-<td align="right">2.9229514</td>
-<td align="right">0.6272701</td>
-<td align="right">1.0025961</td>
-<td align="right">2.610937</td>
-<td align="right">1.754937</td>
-<td align="right">1.2440014</td>
-<td align="right">0.2794015</td>
-<td align="right">1.1362012</td>
+<td align="left">2024-11-01</td>
+<td align="right">101.8574</td>
+<td align="right">101.1046</td>
+<td align="right">100.55380</td>
+<td align="right">99.47800</td>
+<td align="right">101.70092</td>
+<td align="right">109.80958</td>
+<td align="right">102.1887</td>
+<td align="right">102.2642</td>
+<td align="right">103.80228</td>
+<td align="right">99.46773</td>
+<td align="right">104.31711</td>
+<td align="right">102.5253</td>
+<td align="right">113.1464</td>
+<td align="right">20.081</td>
+<td align="right">20.0618</td>
+<td align="right">4.0117</td>
+<td align="right">12.9864</td>
+<td align="right">3.2403</td>
+<td align="right">9.5811</td>
+<td align="right">14.7858</td>
+<td align="right">11.7476</td>
+<td align="right">4.9253</td>
+<td align="right">2.5899</td>
+<td align="right">9.1354</td>
+<td align="right">0.2391270</td>
+<td align="right">0.0127719</td>
+<td align="right">-0.1301043</td>
+<td align="right">0.2108764</td>
+<td align="right">0.2826209</td>
+<td align="right">0.2050262</td>
+<td align="right">0.3540759</td>
+<td align="right">0.5718534</td>
+<td align="right">-0.0578805</td>
+<td align="right">0.0581625</td>
+<td align="right">0.2629572</td>
 </tr>
 <tr class="even">
-<td align="left">2023-06-01</td>
-<td align="right">106.0413</td>
-<td align="right">107.7229</td>
-<td align="right">105.9865</td>
-<td align="right">103.4796</td>
-<td align="right">103.7846</td>
-<td align="right">104.6729</td>
-<td align="right">103.8804</td>
-<td align="right">108.0526</td>
-<td align="right">106.3228</td>
-<td align="right">108.2729</td>
-<td align="right">104.6205</td>
-<td align="right">105.6197</td>
-<td align="right">119</td>
-<td align="right">21</td>
-<td align="right">20</td>
-<td align="right">5</td>
-<td align="right">14</td>
-<td align="right">4</td>
-<td align="right">10</td>
-<td align="right">15</td>
-<td align="right">13</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">9</td>
-<td align="right">3.028644</td>
-<td align="right">2.429467</td>
-<td align="right">0.5568182</td>
-<td align="right">2.4862995</td>
-<td align="right">0.6397553</td>
-<td align="right">0.9148430</td>
-<td align="right">2.514310</td>
-<td align="right">2.007300</td>
-<td align="right">1.1124602</td>
-<td align="right">0.3276061</td>
-<td align="right">1.3049075</td>
+<td align="left">2024-12-01</td>
+<td align="right">102.3774</td>
+<td align="right">101.8409</td>
+<td align="right">100.63291</td>
+<td align="right">98.73229</td>
+<td align="right">101.84266</td>
+<td align="right">111.36757</td>
+<td align="right">103.3962</td>
+<td align="right">102.7925</td>
+<td align="right">105.09506</td>
+<td align="right">99.46773</td>
+<td align="right">104.86656</td>
+<td align="right">102.5253</td>
+<td align="right">113.1464</td>
+<td align="right">20.081</td>
+<td align="right">20.0618</td>
+<td align="right">4.0117</td>
+<td align="right">12.9864</td>
+<td align="right">3.2403</td>
+<td align="right">9.5811</td>
+<td align="right">14.7858</td>
+<td align="right">11.7476</td>
+<td align="right">4.9253</td>
+<td align="right">2.5899</td>
+<td align="right">9.1354</td>
+<td align="right">0.0933516</td>
+<td align="right">0.0002905</td>
+<td align="right">-0.1172988</td>
+<td align="right">0.1701815</td>
+<td align="right">0.2788062</td>
+<td align="right">0.3121648</td>
+<td align="right">0.3438676</td>
+<td align="right">0.7364695</td>
+<td align="right">-0.0660982</td>
+<td align="right">0.0703914</td>
+<td align="right">0.1856950</td>
 </tr>
 <tr class="odd">
-<td align="left">2023-07-01</td>
-<td align="right">106.1208</td>
-<td align="right">107.9618</td>
-<td align="right">106.4924</td>
-<td align="right">105.4463</td>
-<td align="right">103.4207</td>
-<td align="right">104.9844</td>
-<td align="right">102.7486</td>
-<td align="right">108.1348</td>
-<td align="right">106.4060</td>
-<td align="right">108.4906</td>
-<td align="right">103.1353</td>
-<td align="right">105.6197</td>
-<td align="right">119</td>
-<td align="right">21</td>
-<td align="right">20</td>
-<td align="right">5</td>
-<td align="right">14</td>
-<td align="right">4</td>
-<td align="right">10</td>
-<td align="right">15</td>
-<td align="right">13</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">9</td>
-<td align="right">2.603677</td>
-<td align="right">2.188112</td>
-<td align="right">0.5743324</td>
-<td align="right">2.0458725</td>
-<td align="right">0.4608219</td>
-<td align="right">0.7312602</td>
-<td align="right">2.178184</td>
-<td align="right">1.711887</td>
-<td align="right">0.9501919</td>
-<td align="right">0.2392672</td>
-<td align="right">1.1483379</td>
+<td align="left">2025-01-01</td>
+<td align="right">100.8708</td>
+<td align="right">100.4338</td>
+<td align="right">101.65094</td>
+<td align="right">100.30211</td>
+<td align="right">100.34795</td>
+<td align="right">98.96373</td>
+<td align="right">100.1460</td>
+<td align="right">100.0000</td>
+<td align="right">102.82200</td>
+<td align="right">99.39799</td>
+<td align="right">104.64072</td>
+<td align="right">101.4075</td>
+<td align="right">112.5699</td>
+<td align="right">19.626</td>
+<td align="right">19.0204</td>
+<td align="right">3.7290</td>
+<td align="right">13.3445</td>
+<td align="right">3.3966</td>
+<td align="right">9.7484</td>
+<td align="right">15.2309</td>
+<td align="right">11.9762</td>
+<td align="right">4.5488</td>
+<td align="right">2.6717</td>
+<td align="right">9.2772</td>
+<td align="right">0.4040479</td>
+<td align="right">0.4009521</td>
+<td align="right">-0.0317029</td>
+<td align="right">0.2521709</td>
+<td align="right">0.2911494</td>
+<td align="right">0.3028086</td>
+<td align="right">0.3650831</td>
+<td align="right">0.8486430</td>
+<td align="right">-0.0460172</td>
+<td align="right">0.2220621</td>
+<td align="right">0.3226082</td>
 </tr>
 <tr class="even">
-<td align="left">2023-08-01</td>
-<td align="right">106.5183</td>
-<td align="right">108.7580</td>
-<td align="right">106.7454</td>
-<td align="right">102.4962</td>
-<td align="right">104.5852</td>
-<td align="right">104.5483</td>
-<td align="right">102.7486</td>
-<td align="right">107.6417</td>
-<td align="right">107.2379</td>
-<td align="right">109.3614</td>
-<td align="right">106.2706</td>
-<td align="right">106.7744</td>
-<td align="right">119</td>
-<td align="right">21</td>
-<td align="right">20</td>
-<td align="right">5</td>
-<td align="right">14</td>
-<td align="right">4</td>
-<td align="right">10</td>
-<td align="right">15</td>
-<td align="right">13</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">9</td>
-<td align="right">2.670143</td>
-<td align="right">2.049137</td>
-<td align="right">0.2995527</td>
-<td align="right">1.7295994</td>
-<td align="right">0.3788814</td>
-<td align="right">0.7133018</td>
-<td align="right">1.829490</td>
-<td align="right">1.607139</td>
-<td align="right">0.8738912</td>
-<td align="right">0.3393130</td>
-<td align="right">1.1118942</td>
+<td align="left">2025-02-01</td>
+<td align="right">100.2158</td>
+<td align="right">100.7919</td>
+<td align="right">99.92266</td>
+<td align="right">100.00000</td>
+<td align="right">99.37587</td>
+<td align="right">100.15707</td>
+<td align="right">100.3644</td>
+<td align="right">100.0734</td>
+<td align="right">100.91485</td>
+<td align="right">100.74024</td>
+<td align="right">98.99857</td>
+<td align="right">100.3470</td>
+<td align="right">112.5699</td>
+<td align="right">19.626</td>
+<td align="right">19.0204</td>
+<td align="right">3.7290</td>
+<td align="right">13.3445</td>
+<td align="right">3.3966</td>
+<td align="right">9.7484</td>
+<td align="right">15.2309</td>
+<td align="right">11.9762</td>
+<td align="right">4.5488</td>
+<td align="right">2.6717</td>
+<td align="right">9.2772</td>
+<td align="right">0.4933705</td>
+<td align="right">0.3274694</td>
+<td align="right">-0.0267104</td>
+<td align="right">0.1688034</td>
+<td align="right">0.2483001</td>
+<td align="right">0.3578877</td>
+<td align="right">0.2562508</td>
+<td align="right">0.9820653</td>
+<td align="right">-0.0142564</td>
+<td align="right">0.1471780</td>
+<td align="right">0.3688228</td>
 </tr>
 <tr class="odd">
-<td align="left">2023-09-01</td>
-<td align="right">106.3593</td>
-<td align="right">108.9968</td>
-<td align="right">106.9140</td>
-<td align="right">103.1770</td>
-<td align="right">102.9112</td>
-<td align="right">105.1713</td>
-<td align="right">102.3444</td>
-<td align="right">108.5456</td>
-<td align="right">107.1547</td>
-<td align="right">109.6517</td>
-<td align="right">104.5380</td>
-<td align="right">104.9269</td>
-<td align="right">119</td>
-<td align="right">21</td>
-<td align="right">20</td>
-<td align="right">5</td>
-<td align="right">14</td>
-<td align="right">4</td>
-<td align="right">10</td>
-<td align="right">15</td>
-<td align="right">13</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">9</td>
-<td align="right">2.428714</td>
-<td align="right">1.814919</td>
-<td align="right">0.3741574</td>
-<td align="right">1.3871341</td>
-<td align="right">0.3378147</td>
-<td align="right">0.5302047</td>
-<td align="right">1.858745</td>
-<td align="right">1.475013</td>
-<td align="right">0.8628706</td>
-<td align="right">0.2617606</td>
-<td align="right">0.8158193</td>
+<td align="left">2025-03-01</td>
+<td align="right">100.1439</td>
+<td align="right">101.1519</td>
+<td align="right">99.61330</td>
+<td align="right">97.66566</td>
+<td align="right">100.13870</td>
+<td align="right">99.52880</td>
+<td align="right">100.2187</td>
+<td align="right">100.6608</td>
+<td align="right">99.78888</td>
+<td align="right">101.00942</td>
+<td align="right">97.99714</td>
+<td align="right">100.3470</td>
+<td align="right">112.5699</td>
+<td align="right">19.626</td>
+<td align="right">19.0204</td>
+<td align="right">3.7290</td>
+<td align="right">13.3445</td>
+<td align="right">3.3966</td>
+<td align="right">9.7484</td>
+<td align="right">15.2309</td>
+<td align="right">11.9762</td>
+<td align="right">4.5488</td>
+<td align="right">2.6717</td>
+<td align="right">9.2772</td>
+<td align="right">0.5181489</td>
+<td align="right">0.3570588</td>
+<td align="right">-0.0746202</td>
+<td align="right">0.3345308</td>
+<td align="right">0.2169035</td>
+<td align="right">0.3125338</td>
+<td align="right">0.2590298</td>
+<td align="right">0.6764372</td>
+<td align="right">0.0315820</td>
+<td align="right">0.1225064</td>
+<td align="right">0.2870235</td>
 </tr>
 <tr class="even">
-<td align="left">2023-10-01</td>
-<td align="right">106.5183</td>
-<td align="right">108.7580</td>
-<td align="right">106.7454</td>
-<td align="right">103.4796</td>
-<td align="right">102.4745</td>
-<td align="right">108.0997</td>
-<td align="right">104.7696</td>
-<td align="right">107.7239</td>
-<td align="right">106.6556</td>
-<td align="right">110.3048</td>
-<td align="right">106.4356</td>
-<td align="right">105.3888</td>
-<td align="right">119</td>
-<td align="right">21</td>
-<td align="right">20</td>
-<td align="right">5</td>
-<td align="right">14</td>
-<td align="right">4</td>
-<td align="right">10</td>
-<td align="right">15</td>
-<td align="right">13</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">9</td>
-<td align="right">2.159566</td>
-<td align="right">1.542449</td>
-<td align="right">0.2362845</td>
-<td align="right">0.9044685</td>
-<td align="right">0.3551539</td>
-<td align="right">0.4856940</td>
-<td align="right">1.390456</td>
-<td align="right">1.372397</td>
-<td align="right">0.6736419</td>
-<td align="right">0.3074852</td>
-<td align="right">0.6897477</td>
+<td align="left">2025-04-01</td>
+<td align="right">100.8633</td>
+<td align="right">101.7999</td>
+<td align="right">101.54679</td>
+<td align="right">98.41867</td>
+<td align="right">99.51456</td>
+<td align="right">101.15183</td>
+<td align="right">99.4898</td>
+<td align="right">100.0000</td>
+<td align="right">101.68895</td>
+<td align="right">101.34589</td>
+<td align="right">100.14306</td>
+<td align="right">102.0819</td>
+<td align="right">112.5699</td>
+<td align="right">19.626</td>
+<td align="right">19.0204</td>
+<td align="right">3.7290</td>
+<td align="right">13.3445</td>
+<td align="right">3.3966</td>
+<td align="right">9.7484</td>
+<td align="right">15.2309</td>
+<td align="right">11.9762</td>
+<td align="right">4.5488</td>
+<td align="right">2.6717</td>
+<td align="right">9.2772</td>
+<td align="right">0.5801466</td>
+<td align="right">0.6070812</td>
+<td align="right">-0.0750201</td>
+<td align="right">0.2655292</td>
+<td align="right">0.2056117</td>
+<td align="right">0.2720551</td>
+<td align="right">0.1370571</td>
+<td align="right">0.7949475</td>
+<td align="right">0.0425280</td>
+<td align="right">0.1403770</td>
+<td align="right">0.4614407</td>
 </tr>
 </tbody>
 </table>
@@ -1016,28 +998,26 @@ non-alcoholic drinks inflation.</p>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Contribution to annual food and non-alc inflation rate"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contribution_files/figure-html/cpi_contribution-1.png" width="700"></p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by David Lee.</p>
+  <p>Developed by David Lee.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
