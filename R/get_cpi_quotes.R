@@ -1,3 +1,12 @@
+valid_url <- function(url_in,t=2){
+  con <- url(url_in)
+  check <- suppressWarnings(try(open.connection(con,open="rt",timeout=t),silent=T)[1])
+  suppressWarnings(try(close.connection(con),silent=T))
+  ifelse(is.null(check),TRUE,FALSE)
+}
+
+
+
 read_quotes <- function(year, month) {
 
   if(year <= 2019) {stop("Does not work with dates before 2020 - use the make_archive function to get all 2010-2019 data")}
@@ -23,59 +32,70 @@ read_quotes <- function(year, month) {
 
       if(year == 2021 & month == 5) {
         url <- paste(base, "pricequotesmay2021/upload-pricequotes2021051.csv", sep = "")
-      } else {
+      } else
 
-        url <- paste(base,
-                     "pricequotes", tolower(month.name[month]), year,
-                     "/upload-pricequotes", year, formatC(month, width = 2, format = "d", flag = "0"),
-                     ".csv",
-                     sep = ""
-        )
-      }
+        if(year == 2025 & month == 4){
+          url <- paste(base, "pricequotesapril2025/pricequotes202504.xlsx", sep = "")
+        } else {
 
-  colspec <- readr::cols(
-    QUOTE_DATE = readr::col_double(),
-    ITEM_ID = readr::col_double(),
-    ITEM_DESC = readr::col_character(),
-    VALIDITY = readr::col_double(),
-    SHOP_CODE = readr::col_double(),
-    PRICE = readr::col_double(),
-    INDICATOR_BOX = readr::col_character(),
-    ORIG_INDICATOR_BOX = readr::col_character(),
-    PRICE_RELATIVE = readr::col_double(),
-    LOG_PRICE_RELATIVE = readr::col_double(),
-    STRATUM_WEIGHT = readr::col_double(),
-    STRATUM_TYPE = readr::col_double(),
-    START_DATE = readr::col_double(),
-    END_DATE = readr::col_double(),
-    REGION = readr::col_double(),
-    SHOP_TYPE = readr::col_double(),
-    SHOP_WEIGHT = readr::col_double(),
-    BASE_PRICE = readr::col_double(),
-    BASE_VALIDITY = readr::col_double(),
-    STRATUM_CELL = readr::col_double()
-  )
+          url <- paste(base,
+                       "pricequotes", tolower(month.name[month]), year,
+                       "/upload-pricequotes", year, formatC(month, width = 2, format = "d", flag = "0"),
+                       ".csv",
+                       sep = ""
+          )
+        }
 
-  data <- readr::read_csv(url, col_types = colspec)
+
+  if(year == 2025 & month == 4){
+    data <- openxlsx::read.xlsx(url)
+  } else {
+    data <- readr::read_csv(url, show_col_types = FALSE)
+  }
+
 
   data <- data |>
     janitor::clean_names() |>
-    dplyr::filter(.data$item_id <= 400000) |>
-    dplyr::select("quote_date",
-                  "item_id",
-                  "item_desc",
-                  "validity",
-                  "shop_code",
-                  "price",
-                  "indicator_box",
-                  "region",
-                  "shop_type",
-                  "shop_weight") |>
     dplyr::mutate(quote_date = lubridate::ym(.data$quote_date))
+
+
+  if("cs_id" %in% names(data)) {
+    data <- data |>
+      dplyr::select(.data$cs_id,
+                    .data$cs_desc,
+                    .data$quote_date,
+                    .data$item_id,
+                    .data$item_desc,
+                    .data$validity,
+                    .data$shop_code,
+                    .data$price,
+                    .data$indicator_box,
+                    .data$region,
+                    .data$shop_type,
+                    .data$shop_weight)
+  } else {
+    data <- data |>
+      dplyr::mutate(cs_id = NA,
+                    cs_desc = NA) |>
+      dplyr::select(.data$cs_id,
+                    .data$cs_desc,
+                    .data$quote_date,
+                    .data$item_id,
+                    .data$item_desc,
+                    .data$validity,
+                    .data$shop_code,
+                    .data$price,
+                    .data$indicator_box,
+                    .data$region,
+                    .data$shop_type,
+                    .data$shop_weight)
+
+  }
 
   return(data)
 
 }
+
 
 
 
@@ -102,11 +122,13 @@ get_cpi_price_quotes <- function(year, month, path){
 
   if(missing(path)){
     purrr::map2(year1, month1, \(year1, month1){
+      Sys.sleep(2)
       x <- read_quotes(year1, month1)
     }) |> purrr::list_rbind()
 
   } else {
   purrr::map2(year1, month1, \(year1, month1){
+    Sys.sleep(2)
     x <- read_quotes(year1, month1)
     filename <- paste0(path, "/", year1, "-", formatC(month1, flag = "0", width = 2), "-price-quotes.rds")
     message(paste("Saving", filename))
