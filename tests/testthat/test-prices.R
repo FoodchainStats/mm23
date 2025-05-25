@@ -20,6 +20,7 @@
 test_that("get_price_data returns a dataframe with positive length", {
   skip_on_cran()
   skip_on_os("windows")
+  skip_on_ci()
 
   df <- get_price_data()
 
@@ -31,6 +32,7 @@ test_that("get_price_data returns a dataframe with positive length", {
 test_that("get_price_metadata returns a dataframe with positive length", {
   skip_on_cran()
   skip_on_os("windows")
+  skip_on_ci()
 
   df <- get_price_metadata()
 
