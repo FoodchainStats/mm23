@@ -75,8 +75,602 @@
 the variables over the years.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/FoodchainStats/mm23" class="external-link">mm23</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="raw-data-format-feb-2025-onwards">Raw data format (Feb 2025 onwards)<a class="anchor" aria-label="anchor" href="#raw-data-format-feb-2025-onwards"></a>
+</h3>
+<table class="table">
+<colgroup>
+<col width="14%">
+<col width="85%">
+</colgroup>
+<thead><tr class="header">
+<th>COLUMN HEADING</th>
+<th>DESCRIPTION</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>QUOTE_DATE</td>
+<td>The year and month in which the individual price observation was
+collected.</td>
+</tr>
+<tr class="even">
+<td>CS_ID</td>
+<td>Unique identification number of the Consumption Segment or Item
+collected. Value is equal to ITEM_ID if no CS alternative is
+available.</td>
+</tr>
+<tr class="odd">
+<td>CS_DESC</td>
+<td>Description of the Consumption Segment or Item collected.</td>
+</tr>
+<tr class="even">
+<td>ITEM_ID</td>
+<td>Unique identification number of the Item collected.</td>
+</tr>
+<tr class="odd">
+<td>ITEM_DESC</td>
+<td>Description of the Item collected.</td>
+</tr>
+<tr class="even">
+<td>VALIDITY</td>
+<td>The status of the individual price quote:</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>TRUE = Quote included in the current months index.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>FALSE = Quote not included in the current months index.</td>
+</tr>
+<tr class="odd">
+<td>SHOP_CODE</td>
+<td>Shop code from which the individual price quote was obtained.</td>
+</tr>
+<tr class="even">
+<td>PRICE</td>
+<td>Observed price on date of collection (in £GBP).</td>
+</tr>
+<tr class="odd">
+<td>INDICATOR_BOX</td>
+<td>Indicator used to highlight any item or price change:</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>C = Comparable – change in product being priced, new product is
+similar to the previous product.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>M = Missing – not sold at shop.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>N = Non-comparable – change in product being priced, new product is
+not comparable to the previous product.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>P = Current price unavailable for the period.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Q = Supplementary message has been provided (the message is not
+published due to ONS disclosure rules).</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>R = Recovery of price at end of sale or special offer.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>S = Sale price or special offer.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>T = Temporarily out of stock.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>W = Size change.</td>
+</tr>
+<tr class="odd">
+<td>PRICE_RELATIVE_CPI</td>
+<td>The quote index for the individual price observation.
+(PRICE/BASE_PRICE_CPI).</td>
+</tr>
+<tr class="even">
+<td>PRICE_RELATIVE_RPI</td>
+<td>The quote index for the individual price observation.
+(PRICE/BASE_PRICE_RPI).</td>
+</tr>
+<tr class="odd">
+<td>LOG_PRICE_RELATIVE_CPI</td>
+<td>The natural logarithm of the individual price relative
+(PRICE_RELATIVE_CPI).</td>
+</tr>
+<tr class="even">
+<td>LOG_PRICE_RELATIVE_RPI</td>
+<td>The natural logarithm of the individual price relative
+(PRICE_RELATIVE_RPI).</td>
+</tr>
+<tr class="odd">
+<td>STRATUM_WEIGHT</td>
+<td>The stratum weight applicable to the item/stratum combination for
+the period.</td>
+</tr>
+<tr class="even">
+<td>STRATUM_TYPE</td>
+<td>Describes the items stratification method:</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>0 = Not stratified.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>1 = Stratified by REGION.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>2 = Stratified by REGION and SHOP_TYPE.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3 = Stratified by SHOP_TYPE.</td>
+</tr>
+<tr class="odd">
+<td>REGION</td>
+<td>Approximation to Government Office Regions (GOR):</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>1 = Catalogue collections (head office).</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>2 = London.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3 = SE.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>4 = SW.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>5 = East Anglia.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>6 = East Midlands.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>7 = West Midlands.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>8 = Yorks &amp; Humber.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>9 = NW.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>10 = North.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>11 = Wales.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>12 = Scotland.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>13 = Northern Ireland.</td>
+</tr>
+<tr class="odd">
+<td>SHOP_TYPE</td>
+<td>Shop type indicator:</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>1 = Multiple (10 or more outlets).</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>2 = Independents (less than 10 outlets).</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3 = Item not stratified by retailer.</td>
+</tr>
+<tr class="odd">
+<td>SHOP_WEIGHT</td>
+<td>The relative weight (replication factor) for the shop/item
+combination.</td>
+</tr>
+<tr class="even">
+<td>BASE_PRICE_CPI</td>
+<td>Observed or imputed base period price (CPI).</td>
+</tr>
+<tr class="odd">
+<td>BASE_PRICE_RPI</td>
+<td>Observed or imputed base period price (RPI).</td>
+</tr>
+<tr class="even">
+<td>STRATUM_CELL</td>
+<td>Stratum cell of the individual price quote. This is dependent on
+STRATUM_TYPE (see above):</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>If STRATUM_TYPE = 0, STRATUM_CELL = 0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>If STRATUM_TYPE = 1, STRATUM_CELL = REGION (as derived above)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>If STRATUM_TYPE = 3, STRATUM_CELL = SHOP_TYPE (as derived
+above)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>If STRATUM_TYPE = 2 and SHOP_TYPE = 1, then STRATUM_CELL =
+REGION</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>If STRATUM_TYPE = 2 and SHOP_TYPE = 2, then STRATUM_CELL = REGION
++13</td>
+</tr>
+<tr class="even">
+<td>TEMPORAL</td>
+<td>Quotes collected on the Friday before the main index day (usually
+Tuesday) and excluded from the calculation of RPI.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>TRUE = Temporal quotes</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>FALSE = Non-temporal quote</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Use VALIDITY = TRUE and TEMPORAL = FALSE to filter quotes that have
+contributed to the construction of the RPI index.</td>
+</tr>
+<tr class="even">
+<td>INDEX_ALGORITHM_RPI</td>
+<td>The formula method used for RPI calculations (as set out in section
+3.4 of the CPIH Technical Manual, 2019 edition):</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>1 = Dutot (RA).</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2 = Carli (AR).</td>
+</tr>
+</tbody>
+</table>
 </div>
-  </main>
+<div class="section level3">
+<h3 id="raw-data-format-pre-feb-2025">Raw data format (Pre Feb 2025)<a class="anchor" aria-label="anchor" href="#raw-data-format-pre-feb-2025"></a>
+</h3>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="84%">
+</colgroup>
+<thead><tr class="header">
+<th>Column Heading</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>quote_date</td>
+<td>year and month of data collection (yyyymm)</td>
+</tr>
+<tr class="odd">
+<td>item_id</td>
+<td>identification of the item collected</td>
+</tr>
+<tr class="even">
+<td>validity</td>
+<td>validity of the quote (only codes 3 and 4 used, except where
+indicator_box = ‘N’)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>3 = Validated by system</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>4 = Accepted internally by ONS staff</td>
+</tr>
+<tr class="odd">
+<td>shop_code</td>
+<td>code of shop that the price was collected from</td>
+</tr>
+<tr class="even">
+<td>price</td>
+<td>price of the item collected in the quote month</td>
+</tr>
+<tr class="odd">
+<td>indicator_box</td>
+<td>indicator used to highlight any item or price change</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>S = Sale</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>R = Recovery</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>M = Missing</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>C = Comparable</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>N = Non comparable</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>T = Temporarily out of stock</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>X = Comparable item on sale</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Z = Non comparable item on sale</td>
+</tr>
+<tr class="even">
+<td>price_relative</td>
+<td>collected price (current month) divided by base price</td>
+</tr>
+<tr class="odd">
+<td>stratum_weight</td>
+<td>the weight of the stratum that the price quote contributes to</td>
+</tr>
+<tr class="even">
+<td>stratum_type</td>
+<td>type of stratification used</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>0 = not stratified</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>1 = region.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>2 = region and shop</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3 =shop</td>
+</tr>
+<tr class="odd">
+<td>end_date</td>
+<td>where end = 999999 price contributed to index for period otherwise
+price was omitted</td>
+</tr>
+<tr class="even">
+<td>region</td>
+<td>where the location is</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>1 = Catalogue collections</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2 = London</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>3 = SE</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>4 = SW</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>5 = East Anglia</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>6 = East Midlands</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>7 = West Midlands</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>8 = Yorks &amp; Humber</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>9 = NW</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>10 = North</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>11 = Wales</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>12 = Scotland</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>13 = NI</td>
+</tr>
+<tr class="even">
+<td>shop_type</td>
+<td>either multiple or independents.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>1 = Multiple (10 or more outlets)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2 = Independents (less than 10 outlets)</td>
+</tr>
+<tr class="odd">
+<td>shop_weight</td>
+<td>estimated number of a specific supermarket within a region</td>
+</tr>
+<tr class="even">
+<td>base_price</td>
+<td>price of an item at the base date (January of that year).</td>
+</tr>
+<tr class="odd">
+<td>base_validity</td>
+<td>validity in the base month (see validity above)</td>
+</tr>
+<tr class="even">
+<td>stratum_cell</td>
+<td>type of stratification used</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>There are 3 types of stratum,</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>by shop, by region and by region and shop.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>The stratum types and cells are as follows,</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Not stratified = 0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>By shop;</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>1 = Multiple (10 or more outlets)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>2 = Independents (less than 10 outlets)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>By region,</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>2 = London</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3 = SE</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>4 = SW</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>5 = East Anglia</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>6 = East Midlands</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>7 = West Midlands</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>8 = Yorks &amp; Humber</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>9 = NW</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>10 = North</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>11 = Wales</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>12 = Scotland</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>13 = NI</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>By region and shop type,</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>If the shop type is a multiple, then the stratum cell is</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>equal to the regional stratum code.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>If the shop type is an independent,</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>then the stratum cell is equal to the multiple code + 13</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
