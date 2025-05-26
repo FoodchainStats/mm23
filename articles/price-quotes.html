@@ -71,13 +71,261 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>Need to explain how to use the price quote functions and changes to
-the variables over the years.</p>
+<p>The price quote functions will generally access and download the
+price quote data, but changes to the variables over the years and the
+nature of the data means that you’ll probably have to do some wrangling
+to get what you need - assuming what youtre interested in is the average
+retail price of stuff. The relevant functioons are:</p>
+<ul>
+<li>
+<code><a href="../reference/make_cpi_quote_archive.html">make_cpi_quote_archive()</a></code> for historic data, and</li>
+<li>
+<code><a href="../reference/get_cpi_price_quotes.html">get_cpi_price_quotes()</a></code> for the latest</li>
+</ul>
+<div class="section level4">
+<h4 id="historic-data">Historic data<a class="anchor" aria-label="anchor" href="#historic-data"></a>
+</h4>
+<p>The <code><a href="../reference/make_cpi_quote_archive.html">make_cpi_quote_archive()</a></code> will generate a large rds
+file with all the price quote data available from the CPI price quotes
+page for 2010 - 2019. This page is accessible from
+<code><a href="../reference/cpi_price_quotes_url.html">cpi_price_quotes_url()</a></code>. For data from 2020 onwards, use
+<code><a href="../reference/get_cpi_price_quotes.html">get_cpi_price_quotes()</a></code>. The main thing is to filter by
+validity, which is numeric until Feb 2025, when it becomes TRUE/FALSE.
+So it might bepreferaebl to make a distinction.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/FoodchainStats/mm23" class="external-link">mm23</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_cpi_price_quotes.html">get_cpi_price_quotes</a></span><span class="op">(</span><span class="fl">2021</span>, <span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Reading  2021 6</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="11%">
+<col width="25%">
+<col width="8%">
+<col width="13%">
+<col width="16%">
+<col width="25%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">cs_id</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">cs_desc</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">quote_date</td>
+<td align="left">2021-06-01</td>
+<td align="left">2021-06-01</td>
+<td align="left">2021-06-01</td>
+<td align="left">2021-06-01</td>
+<td align="left">2021-06-01</td>
+</tr>
+<tr class="even">
+<td align="left">item_id</td>
+<td align="left">410637</td>
+<td align="left">510106</td>
+<td align="left">212715</td>
+<td align="left">212309</td>
+<td align="left">310426</td>
+</tr>
+<tr class="odd">
+<td align="left">item_desc</td>
+<td align="left">CERAMI TILES 15X15-25X50CM BOX</td>
+<td align="left">MENS JEANS</td>
+<td align="left">GRAPEFRUIT-EACH</td>
+<td align="left">POTATOES-NEW-PER KG</td>
+<td align="left">SPARKLING WINE 75CL MIN 11%ABV</td>
+</tr>
+<tr class="even">
+<td align="left">validity</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">3</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">shop_code</td>
+<td align="left">40</td>
+<td align="left">940</td>
+<td align="left">941</td>
+<td align="left">36</td>
+<td align="left">964</td>
+</tr>
+<tr class="even">
+<td align="left">price</td>
+<td align="left">5.69</td>
+<td align="left">20.00</td>
+<td align="left">0.60</td>
+<td align="left">2.18</td>
+<td align="left">9.99</td>
+</tr>
+<tr class="odd">
+<td align="left">indicator_box</td>
+<td align="left">NA</td>
+<td align="left">C</td>
+<td align="left">N</td>
+<td align="left">NA</td>
+<td align="left">R</td>
+</tr>
+<tr class="even">
+<td align="left">region</td>
+<td align="left">5</td>
+<td align="left">10</td>
+<td align="left">6</td>
+<td align="left">10</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">shop_type</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">shop_weight</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section level3">
-<h3 id="raw-data-format-feb-2025-onwards">Raw data format (Feb 2025 onwards)<a class="anchor" aria-label="anchor" href="#raw-data-format-feb-2025-onwards"></a>
+<h3 id="latest-post-jan-2025-data">Latest (post Jan 2025) data<a class="anchor" aria-label="anchor" href="#latest-post-jan-2025-data"></a>
 </h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">mm23</span><span class="fu">::</span><span class="fu"><a href="../reference/get_cpi_price_quotes.html">get_cpi_price_quotes</a></span><span class="op">(</span><span class="fl">2025</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Reading  2025 3</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="6%">
+<col width="16%">
+<col width="14%">
+<col width="11%">
+<col width="14%">
+<col width="35%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">cs_id</td>
+<td align="left">610115</td>
+<td align="left">430235</td>
+<td align="left">CP0125001</td>
+<td align="left">CP0118601</td>
+<td align="left">CP0117901</td>
+</tr>
+<tr class="even">
+<td align="left">cs_desc</td>
+<td align="left">E-BIKE, ADULT, SPEC GEARS &amp; WATTAGE</td>
+<td align="left">FLOOR RUG</td>
+<td align="left">WATER</td>
+<td align="left">ICE CREAM TUBS (INCL. YOGHURT)</td>
+<td align="left">VEGETABLES, TUBERS AND PULSES, CANNED OR JARRED (EXCL.
+PICKLED VEGETABLES)</td>
+</tr>
+<tr class="odd">
+<td align="left">quote_date</td>
+<td align="left">2025-03-01</td>
+<td align="left">2025-03-01</td>
+<td align="left">2025-03-01</td>
+<td align="left">2025-03-01</td>
+<td align="left">2025-03-01</td>
+</tr>
+<tr class="even">
+<td align="left">item_id</td>
+<td align="left">610115</td>
+<td align="left">430235</td>
+<td align="left">212021</td>
+<td align="left">212933</td>
+<td align="left">212601</td>
+</tr>
+<tr class="odd">
+<td align="left">item_desc</td>
+<td align="left">E BIKE ADULT SPEC GEARS AND WA</td>
+<td align="left">FLOOR RUG STATE SIZE &amp; MATERIA</td>
+<td align="left">BOTTLE STILL WATER 500ML</td>
+<td align="left">ICE CREAM 450ML-1L</td>
+<td align="left">CANNED TOMATOES 390-400G</td>
+</tr>
+<tr class="even">
+<td align="left">validity</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">shop_code</td>
+<td align="left">917</td>
+<td align="left">947</td>
+<td align="left">1</td>
+<td align="left">9807</td>
+<td align="left">41</td>
+</tr>
+<tr class="even">
+<td align="left">price</td>
+<td align="left">1099.00</td>
+<td align="left">350.00</td>
+<td align="left">0.25</td>
+<td align="left">0.00</td>
+<td align="left">0.75</td>
+</tr>
+<tr class="odd">
+<td align="left">indicator_box</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">M</td>
+<td align="left">S</td>
+</tr>
+<tr class="even">
+<td align="left">region</td>
+<td align="left">2</td>
+<td align="left">13</td>
+<td align="left">12</td>
+<td align="left">4</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">shop_type</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">shop_weight</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="raw-data-formats">Raw data formats<a class="anchor" aria-label="anchor" href="#raw-data-formats"></a>
+</h3>
+<div class="section level4">
+<h4 id="raw-data-format-feb-2025-onwards">Raw data format (Feb 2025 onwards)<a class="anchor" aria-label="anchor" href="#raw-data-format-feb-2025-onwards"></a>
+</h4>
 <table class="table">
 <colgroup>
 <col width="14%">
@@ -366,9 +614,9 @@ contributed to the construction of the RPI index.</td>
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="raw-data-format-pre-feb-2025">Raw data format (Pre Feb 2025)<a class="anchor" aria-label="anchor" href="#raw-data-format-pre-feb-2025"></a>
-</h3>
+<div class="section level4">
+<h4 id="raw-data-format-pre-feb-2025">Raw data format (Pre Feb 2025)<a class="anchor" aria-label="anchor" href="#raw-data-format-pre-feb-2025"></a>
+</h4>
 <table class="table">
 <colgroup>
 <col width="15%">
@@ -667,6 +915,7 @@ price was omitted</td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
