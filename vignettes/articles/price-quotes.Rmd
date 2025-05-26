@@ -7,20 +7,46 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+library(mm23)
+
 ```
 
 ## Introduction
 
-Need to explain how to use the price quote functions and changes to the
-variables over the years.
+The price quote functions will generally access and download the price quote
+data, but changes to the variables over the years and the nature of the data
+means that you'll probably have to do some wrangling to get what you need -
+assuming what youtre interested in is the average retail price of stuff. The relevant functioons are:
+
+ * `make_cpi_quote_archive()` for historic data, and
+ * `get_cpi_price_quotes()` for the latest
+
+#### Historic data
+
+The `make_cpi_quote_archive()` will generate a large rds file with all the price
+quote data available from the CPI price quotes page for 2010 - 2019. This page
+is accessible from `cpi_price_quotes_url()`. For data from 2020 onwards, use
+`get_cpi_price_quotes()`. The main thing is to filter by validity, which is
+numeric until Feb 2025, when it becomes TRUE/FALSE. So it might bepreferaebl to
+make a distinction.
 
 
-```{r setup}
-library(mm23)
+```{r}
+mm23::get_cpi_price_quotes(2021, 6) |> dplyr::slice_sample(n = 5) |> t() |> knitr::kable()
 ```
 
 
-### Raw data format (Feb 2025 onwards)
+### Latest (post Jan 2025) data
+
+```{r}
+mm23::get_cpi_price_quotes(2025, 3) |> dplyr::slice_sample(n = 5) |> t() |> knitr::kable()
+```
+
+
+### Raw data formats
+
+#### Raw data format (Feb 2025 onwards)
 
 | COLUMN HEADING         | DESCRIPTION                                                                                                                             |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
@@ -90,7 +116,7 @@ library(mm23)
 |                        | 2 = Carli (AR).                                                                                                                         |
 
 
-### Raw data format (Pre Feb 2025)
+#### Raw data format (Pre Feb 2025)
 
 | Column Heading | Description                                                                          |
 |----------------|--------------------------------------------------------------------------------------|
