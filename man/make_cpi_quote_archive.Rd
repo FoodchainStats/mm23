@@ -4,10 +4,10 @@
 \alias{make_cpi_quote_archive}
 \title{Create an rds containing 2010-2019 CPI price quotes.}
 \usage{
-make_cpi_quote_archive(dir = getwd())
+make_cpi_quote_archive(path)
 }
 \arguments{
-\item{dir}{The folder to put the final archive into.}
+\item{path}{The folder to put the final archive into.}
 }
 \value{
 creates an rds file in the chosen folder
