@@ -1,6 +1,6 @@
 #' Create an rds containing 2010-2019 CPI price quotes.
 #'
-#' @param dir The folder to put the final archive into.
+#' @param path The folder to put the final archive into.
 #'
 #' @return creates an rds file in the chosen folder
 #' @export
@@ -9,7 +9,11 @@
 #' \dontrun{
 #' make_cpi_quote_archive(dir = "~")
 #' }
-make_cpi_quote_archive <- function(dir = getwd()) {
+make_cpi_quote_archive <- function(path) {
+
+  if(!missing(path)) {
+    if(!dir.exists(path)) stop(paste(path, "does not exist"))
+  }
 
   tmpdir <- tempdir()
   # https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/itemindicesdecember2019/upload-itemindices201912v1.csv
@@ -198,8 +202,19 @@ make_cpi_quote_archive <- function(dir = getwd()) {
                   .data$shop_type,
                   .data$shop_weight)
 
-  message(paste("Saving archive cpi_price_quote_archive_2010_2019.rds in", dir))
-  saveRDS(archive, paste(dir, "/", "cpi_price_quote_archive_2010_2019.rds", sep = ""))
+
+  if(missing(path)){
+    # outdir <- tempdir()
+    # message(paste("Saving archive cpi_price_quote_archive_2010_2019.rds in", outdir))
+    # saveRDS(archive, paste(outdir, "/", "cpi_price_quote_archive_2010_2019.rds", sep = ""))
+    return(archive)
+  } else {
+    message(paste("Saving archive cpi_price_quote_archive_2010_2019.rds in", path))
+    saveRDS(archive, paste(path, "/", "cpi_price_quote_archive_2010_2019.rds", sep = ""))
+    return(archive)
+  }
+
+
   unlink(list.files(tmpdir, pattern = "*.csv", full.names = TRUE))
 
 }
