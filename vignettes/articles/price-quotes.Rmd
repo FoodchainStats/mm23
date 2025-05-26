@@ -1,0 +1,20 @@
+---
+title: "CPI Price Quotes"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+Need to explain how to use the price quote functions and changes to the
+variables over the years.
+
+
+```{r setup}
+library(mm23)
+```

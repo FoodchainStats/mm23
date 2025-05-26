@@ -13,7 +13,7 @@ make_cpi_quote_archive(dir = getwd())
 creates an rds file in the chosen folder
 }
 \description{
-Creates an rds containing 2010-2019 CPI price quotes
+Creates an rds containing 2010-2019 CPI price quotes.
 }
 \examples{
 \dontrun{
