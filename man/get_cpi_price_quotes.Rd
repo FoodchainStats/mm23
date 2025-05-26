@@ -17,10 +17,16 @@ get_cpi_price_quotes(year, month, path)
 a tibble of price quotes
 }
 \description{
-Get CPI price quotes for food items.
+See \href{https://foodchainstats.github.io/mm23/articles/price-quotes.html}{Price quotes} article.
 }
 \examples{
 \dontrun{
 get_cpi_price_quotes(2021, 8)
+
+# You can extract multiple months, but beware that the format changes over
+time
+
+get_cpi_price_quotes(2024, 1:12)
+
 }
 }

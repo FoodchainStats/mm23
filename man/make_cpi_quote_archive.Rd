@@ -2,7 +2,7 @@
 % Please edit documentation in R/cpi_quote_archive.R
 \name{make_cpi_quote_archive}
 \alias{make_cpi_quote_archive}
-\title{make_archive}
+\title{Create an rds containing 2010-2019 CPI price quotes.}
 \usage{
 make_cpi_quote_archive(dir = getwd())
 }
@@ -13,7 +13,7 @@ make_cpi_quote_archive(dir = getwd())
 creates an rds file in the chosen folder
 }
 \description{
-Creates an rds containing 2010-2019 CPI price quotes.
+Create an rds containing 2010-2019 CPI price quotes.
 }
 \examples{
 \dontrun{

@@ -102,6 +102,8 @@ read_quotes <- function(year, month) {
 
 #' Get CPI price quotes for food items.
 #'
+#' See [Price quotes](https://foodchainstats.github.io/mm23/articles/price-quotes.html) article.
+#'
 #' @param year Year to extract
 #' @param month Month to extract
 #' @param path Optional path to save data
@@ -112,6 +114,12 @@ read_quotes <- function(year, month) {
 #' @examples
 #' \dontrun{
 #' get_cpi_price_quotes(2021, 8)
+#'
+#' # You can extract multiple months, but beware that the format changes over
+#' time
+#'
+#' get_cpi_price_quotes(2024, 1:12)
+#'
 #' }
 get_cpi_price_quotes <- function(year, month, path){
 

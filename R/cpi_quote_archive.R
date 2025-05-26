@@ -1,7 +1,4 @@
-
-#' make_archive
-#'
-#' Creates an rds containing 2010-2019 CPI price quotes.
+#' Create an rds containing 2010-2019 CPI price quotes.
 #'
 #' @param dir The folder to put the final archive into.
 #'

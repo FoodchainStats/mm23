@@ -18,3 +18,150 @@ variables over the years.
 ```{r setup}
 library(mm23)
 ```
+
+
+### Raw data format (Feb 2025 onwards)
+
+| COLUMN HEADING         | DESCRIPTION                                                                                                                             |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| QUOTE_DATE             | The year and month in which the individual price observation was collected.                                                             |
+| CS_ID                  | Unique identification number of the Consumption Segment or Item collected. Value is equal to ITEM_ID if no CS alternative is available. |
+| CS_DESC                | Description of the Consumption Segment or Item collected.                                                                               |
+| ITEM_ID                | Unique identification number of the Item collected.                                                                                     |
+| ITEM_DESC              | Description of the Item collected.                                                                                                      |
+| VALIDITY               | The status of the individual price quote:                                                                                               |
+|                        | TRUE = Quote included in the current months index.                                                                                      |
+|                        | FALSE = Quote not included in the current months index.                                                                                 |
+| SHOP_CODE              | Shop code from which the individual price quote was obtained.                                                                           |
+| PRICE                  | Observed price on date of collection (in £GBP).                                                                                         |
+| INDICATOR_BOX          | Indicator used to highlight any item or price change:                                                                                   |
+|                        | C = Comparable – change in product being priced, new product is similar to the previous product.                                        |
+|                        | M = Missing – not sold at shop.                                                                                                         |
+|                        | N = Non-comparable – change in product being priced, new product is not comparable to the previous product.                             |
+|                        | P = Current price unavailable for the period.                                                                                           |
+|                        | Q = Supplementary message has been provided (the message is not published due to ONS disclosure rules).                                 |
+|                        | R = Recovery of price at end of sale or special offer.                                                                                  |
+|                        | S = Sale price or special offer.                                                                                                        |
+|                        | T = Temporarily out of stock.                                                                                                           |
+|                        | W = Size change.                                                                                                                        |
+| PRICE_RELATIVE_CPI     | The quote index for the individual price observation. (PRICE/BASE_PRICE_CPI).                                                           |
+| PRICE_RELATIVE_RPI     | The quote index for the individual price observation. (PRICE/BASE_PRICE_RPI).                                                           |
+| LOG_PRICE_RELATIVE_CPI | The natural logarithm of the individual price relative (PRICE_RELATIVE_CPI).                                                            |
+| LOG_PRICE_RELATIVE_RPI | The natural logarithm of the individual price relative (PRICE_RELATIVE_RPI).                                                            |
+| STRATUM_WEIGHT         | The stratum weight applicable to the item/stratum combination for the period.                                                           |
+| STRATUM_TYPE           | Describes the items stratification method:                                                                                              |
+|                        | 0 = Not stratified.                                                                                                                     |
+|                        | 1 = Stratified by REGION.                                                                                                               |
+|                        | 2 = Stratified by REGION and SHOP_TYPE.                                                                                                 |
+|                        | 3 = Stratified by SHOP_TYPE.                                                                                                            |
+| REGION                 | Approximation to Government Office Regions (GOR):                                                                                       |
+|                        | 1 = Catalogue collections (head office).                                                                                                |
+|                        | 2 = London.                                                                                                                             |
+|                        | 3 = SE.                                                                                                                                 |
+|                        | 4 = SW.                                                                                                                                 |
+|                        | 5 = East Anglia.                                                                                                                        |
+|                        | 6 = East Midlands.                                                                                                                      |
+|                        | 7  = West Midlands.                                                                                                                     |
+|                        | 8 = Yorks & Humber.                                                                                                                     |
+|                        | 9 = NW.                                                                                                                                 |
+|                        | 10 = North.                                                                                                                             |
+|                        | 11 = Wales.                                                                                                                             |
+|                        | 12 = Scotland.                                                                                                                          |
+|                        | 13 = Northern Ireland.                                                                                                                  |
+| SHOP_TYPE              | Shop type indicator:                                                                                                                    |
+|                        | 1 = Multiple (10 or more outlets).                                                                                                      |
+|                        | 2 = Independents (less than 10 outlets).                                                                                                |
+|                        | 3 = Item not stratified by retailer.                                                                                                    |
+| SHOP_WEIGHT            | The relative weight (replication factor) for the shop/item combination.                                                                 |
+| BASE_PRICE_CPI         | Observed or imputed base period price (CPI).                                                                                            |
+| BASE_PRICE_RPI         | Observed or imputed base period price (RPI).                                                                                            |
+| STRATUM_CELL           | Stratum cell of the individual price quote. This is dependent on STRATUM_TYPE (see above):                                              |
+|                        | If STRATUM_TYPE = 0, STRATUM_CELL = 0                                                                                                   |
+|                        | If STRATUM_TYPE = 1, STRATUM_CELL = REGION (as derived above)                                                                           |
+|                        | If STRATUM_TYPE = 3, STRATUM_CELL = SHOP_TYPE (as derived above)                                                                        |
+|                        | If STRATUM_TYPE = 2 and SHOP_TYPE = 1, then STRATUM_CELL = REGION                                                                       |
+|                        | If STRATUM_TYPE = 2 and SHOP_TYPE = 2, then STRATUM_CELL = REGION +13                                                                   |
+| TEMPORAL               | Quotes collected on the Friday before the main index day (usually Tuesday) and excluded from the calculation of RPI.                    |
+|                        | TRUE = Temporal quotes                                                                                                                  |
+|                        | FALSE = Non-temporal quote                                                                                                              |
+|                        | Use VALIDITY = TRUE and TEMPORAL = FALSE to filter quotes that have contributed to the construction of the RPI index.                   |
+| INDEX_ALGORITHM_RPI    | The formula method used for RPI calculations (as set out in section 3.4 of the CPIH Technical Manual, 2019 edition):                    |
+|                        | 1 = Dutot (RA).                                                                                                                         |
+|                        | 2 = Carli (AR).                                                                                                                         |
+
+
+### Raw data format (Pre Feb 2025)
+
+| Column Heading | Description                                                                          |
+|----------------|--------------------------------------------------------------------------------------|
+|                |                                                                                      |
+| quote_date     | year and month of data collection (yyyymm)                                           |
+| item_id        | identification of the item collected                                                 |
+| validity       | validity of the quote (only codes 3 and 4 used, except where indicator_box = 'N')    |
+|                | 3 = Validated by system                                                              |
+|                | 4 = Accepted internally by ONS staff                                                 |
+| shop_code      | code of shop that the price was collected from                                       |
+| price          | price of the item collected in the quote month                                       |
+| indicator_box  | indicator used to highlight any item or price change                                 |
+|                | S = Sale                                                                             |
+|                | R = Recovery                                                                         |
+|                | M = Missing                                                                          |
+|                | C = Comparable                                                                       |
+|                | N = Non comparable                                                                   |
+|                | T = Temporarily out of stock                                                         |
+|                | X = Comparable item on sale                                                          |
+|                | Z = Non comparable item on sale                                                      |
+| price_relative | collected price (current month) divided by base price                                |
+| stratum_weight | the weight of the stratum that the price quote contributes to                        |
+| stratum_type   | type of stratification used                                                          |
+|                | 0 = not stratified                                                                   |
+|                | 1 = region.                                                                          |
+|                | 2 = region and shop                                                                  |
+|                | 3 =shop                                                                              |
+| end_date       | where end = 999999 price contributed to index for period otherwise price was omitted |
+| region         | where the location is                                                                |
+|                | 1 = Catalogue collections                                                            |
+|                | 2 = London                                                                           |
+|                | 3 = SE                                                                               |
+|                | 4 = SW                                                                               |
+|                | 5 = East Anglia                                                                      |
+|                | 6 = East Midlands                                                                    |
+|                | 7  = West Midlands                                                                   |
+|                | 8 = Yorks & Humber                                                                   |
+|                | 9 = NW                                                                               |
+|                | 10 = North                                                                           |
+|                | 11 = Wales                                                                           |
+|                | 12 = Scotland                                                                        |
+|                | 13 = NI                                                                              |
+| shop_type      | either multiple or independents.                                                     |
+|                | 1 = Multiple (10 or more outlets)                                                    |
+|                | 2 = Independents (less than 10 outlets)                                              |
+| shop_weight    | estimated number of a specific supermarket within a region                           |
+| base_price     | price of an item at the base date (January of that year).                            |
+| base_validity  | validity in the base month (see validity above)                                      |
+| stratum_cell   | type of stratification used                                                          |
+|                | There are 3 types of stratum,                                                        |
+|                | by shop, by region and by region and shop.                                           |
+|                | The stratum types and cells are as follows,                                          |
+|                | Not stratified = 0                                                                   |
+|                | By shop;                                                                             |
+|                | 1 = Multiple (10 or more outlets)                                                    |
+|                | 2 = Independents (less than 10 outlets)                                              |
+|                | By region,                                                                           |
+|                | 2 = London                                                                           |
+|                | 3 = SE                                                                               |
+|                | 4 = SW                                                                               |
+|                | 5 = East Anglia                                                                      |
+|                | 6 = East Midlands                                                                    |
+|                | 7  = West Midlands                                                                   |
+|                | 8 = Yorks & Humber                                                                   |
+|                | 9 = NW                                                                               |
+|                | 10 = North                                                                           |
+|                | 11 = Wales                                                                           |
+|                | 12 = Scotland                                                                        |
+|                | 13 = NI                                                                              |
+|                | By region and shop type,                                                             |
+|                | If the shop type is a multiple, then the stratum cell is                             |
+|                | equal to the regional stratum code.                                                  |
+|                | If the shop type is an independent,                                                  |
+|                | then the stratum cell is equal to the multiple code + 13                             |
