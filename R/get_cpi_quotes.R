@@ -61,34 +61,34 @@ read_quotes <- function(year, month) {
 
   if("cs_id" %in% names(data)) {
     data <- data |>
-      dplyr::select(.data$cs_id,
-                    .data$cs_desc,
-                    .data$quote_date,
-                    .data$item_id,
-                    .data$item_desc,
-                    .data$validity,
-                    .data$shop_code,
-                    .data$price,
-                    .data$indicator_box,
-                    .data$region,
-                    .data$shop_type,
-                    .data$shop_weight)
+      dplyr::select("cs_id",
+                    "cs_desc",
+                    "quote_date",
+                    "item_id",
+                    "item_desc",
+                    "validity",
+                    "shop_code",
+                    "price",
+                    "indicator_box",
+                    "region",
+                    "shop_type",
+                    "shop_weight")
   } else {
     data <- data |>
       dplyr::mutate(cs_id = NA,
                     cs_desc = NA) |>
-      dplyr::select(.data$cs_id,
-                    .data$cs_desc,
-                    .data$quote_date,
-                    .data$item_id,
-                    .data$item_desc,
-                    .data$validity,
-                    .data$shop_code,
-                    .data$price,
-                    .data$indicator_box,
-                    .data$region,
-                    .data$shop_type,
-                    .data$shop_weight)
+      dplyr::select("cs_id",
+                    "cs_desc",
+                    "quote_date",
+                    "item_id",
+                    "item_desc",
+                    "validity",
+                    "shop_code",
+                    "price",
+                    "indicator_box",
+                    "region",
+                    "shop_type",
+                    "shop_weight")
 
   }
 

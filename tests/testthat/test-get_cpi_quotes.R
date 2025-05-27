@@ -5,4 +5,5 @@ test_that("get_cpi_price_quotes returns a dataframe with positive length", {
 
   expect_equal(class(df), c("tbl_df", "tbl", "data.frame"))
   expect_true(nrow(df) > 0)
+  expect_true(ncol(df) == 12)
 })
