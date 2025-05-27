@@ -1,6 +1,8 @@
 #' Create an rds containing 2010-2019 CPI price quotes.
 #'
 #' @param path The folder to put the final archive into.
+#' @param foodonly whether to exclude non-food products from the output. Can
+#'   help if your computer has memory issues with compiling the full dataset.
 #'
 #' @return creates an rds file in the chosen folder
 #' @export
@@ -9,7 +11,7 @@
 #' \dontrun{
 #' make_cpi_quote_archive(dir = "~")
 #' }
-make_cpi_quote_archive <- function(path) {
+make_cpi_quote_archive <- function(path, foodonly = TRUE) {
 
   if(!missing(path)) {
     if(!dir.exists(path)) stop(paste(path, "does not exist"))
@@ -178,12 +180,20 @@ make_cpi_quote_archive <- function(path) {
     message(paste("Reading", x))
     data <- readr::read_csv(x, show_col_types = FALSE)
 
+    if(foodonly == TRUE) {
     data <- data |>
       janitor::clean_names() |>
-      # dplyr::filter(item_id <= 400000) |>
+      dplyr::filter(item_id <= 320000 & item_id >= 210000) |>
       dplyr::mutate(quote_date = lubridate::ym(.data$quote_date)) |>
       dplyr::mutate(cs_id = NA,
                     cs_desc = NA)
+    } else {
+      data <- data |>
+        janitor::clean_names() |>
+        dplyr::mutate(quote_date = lubridate::ym(.data$quote_date)) |>
+        dplyr::mutate(cs_id = NA,
+                      cs_desc = NA)
+    }
 
     return(data)
 

@@ -4,10 +4,13 @@
 \alias{make_cpi_quote_archive}
 \title{Create an rds containing 2010-2019 CPI price quotes.}
 \usage{
-make_cpi_quote_archive(path)
+make_cpi_quote_archive(path, foodonly = TRUE)
 }
 \arguments{
 \item{path}{The folder to put the final archive into.}
+
+\item{foodonly}{whether to exclude non-food products from the output. Can
+help if your computer has memory issues with compiling the full dataset.}
 }
 \value{
 creates an rds file in the chosen folder
