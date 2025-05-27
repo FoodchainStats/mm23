@@ -36,7 +36,6 @@ make_cpi_quote_archive <- function(path, foodonly = TRUE) {
 
   # function to download zipped prices files
   get_cpi_zips <- function(url_stub, exdir = tmpdir) {
-    Sys.sleep(2)
     message(paste("Acquiring", url_stub))
     base <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
     url <- paste(base, url_stub, sep = "")
@@ -82,7 +81,6 @@ make_cpi_quote_archive <- function(path, foodonly = TRUE) {
 
   purrr::map(stubs, \(x){
     message(paste("Acquiring", x))
-    Sys.sleep(2)
     base <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
     url <- paste(base, x, sep = "")
     acquire_safe(url,
@@ -168,7 +166,6 @@ make_cpi_quote_archive <- function(path, foodonly = TRUE) {
 
   purrr::map(stubs, \(x){
     message(paste("Acquiring", x))
-    Sys.sleep(2)
     base <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
     url <- paste(base, x, sep = "")
     acquire_safe(url,
