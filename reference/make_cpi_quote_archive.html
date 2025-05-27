@@ -46,7 +46,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_cpi_quote_archive</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_cpi_quote_archive</span><span class="op">(</span><span class="va">path</span>, foodonly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -55,6 +55,11 @@
 
 <dl><dt id="arg-path">path<a class="anchor" aria-label="anchor" href="#arg-path"></a></dt>
 <dd><p>The folder to put the final archive into.</p></dd>
+
+
+<dt id="arg-foodonly">foodonly<a class="anchor" aria-label="anchor" href="#arg-foodonly"></a></dt>
+<dd><p>whether to exclude non-food products from the output. Can
+help if your computer has memory issues with compiling the full dataset.</p></dd>
 
 </dl></div>
     <div class="section level2">
