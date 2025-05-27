@@ -26,13 +26,12 @@ acquire_mm22 <- function(path){
   url <- mm22_url()
 
   if(missing(path)){
-    tmp <- tempfile()
-    utils::download.file(url, tmp)
-    mm22file <- tmp
+    fname <- tempfile()
   } else {
-    utils::download.file(url, destfile = paste0(path, "/", "mm22.csv"))
-    mm22file <- paste0(path, "/", "mm22.csv")
+    fname <- paste0(path, "/", "mm22.csv")
   }
 
-  return(mm22file)
+    acquire_safe(url, fname)
+    mm22file <- fname
+    return(mm22file)
 }

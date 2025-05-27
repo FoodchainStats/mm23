@@ -31,7 +31,7 @@ get_weights_jan <- function(measure = "cpi") {
   url <- reftables_url()
 
   tmp <- tempfile()
-  utils::download.file(url, tmp)
+  acquire_safe(url, tmp, type = "binary")
 
   janweights <- tidyxl::xlsx_cells(tmp, sheets = params$sheet) |>
     dplyr::filter(row >= params$rowmin & row < params$rowmax & col > params$colmin) |>
@@ -147,7 +147,7 @@ get_cpih_cdid_lookup <- function() {
   url <- reftables_url()
 
   tmp <- tempfile()
-  utils::download.file(url, tmp)
+  acquire_safe(url, tmp, type = "binary")
 
   cpih_series_ref <- tidyxl::xlsx_cells(tmp, sheets = "Table 3") |>
     dplyr::filter(row >= 10 & row <= 182 & col <= 6 & col != 5) |>

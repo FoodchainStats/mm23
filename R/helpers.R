@@ -129,6 +129,23 @@ unchain <- function(month, value) {
 }
 
 
+# download function which should respect ONS rate limiting. See
+# https://developer.ons.gov.uk/bots/
+acquire_safe <- function(url, filename, type = "string") {
+  resp <- httr2::request(url) |>
+    httr2::req_retry(max_tries = 3) |>
+    httr2::req_perform()
+if(type == "string") {
+  resp |>
+    httr2::resp_body_string() |>
+    readr::write_file(filename)
+} else {
+  resp |>
+    httr2::resp_body_raw() |>
+    readr::write_file(filename)
+}
+
+}
 
 ignore_unused_imports <- function() {
   # To get rid of NOTE about use of ggplot in vignette

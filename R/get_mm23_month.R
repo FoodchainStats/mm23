@@ -25,7 +25,7 @@ get_mm23_month <- function(rawfile){
   if(missing(rawfile)){
     url <- mm23_url()
     tmp <- tempfile()
-    utils::download.file(url, tmp)
+    acquire_safe(url, tmp)
     rawfile <- tmp
   }
 
@@ -71,7 +71,7 @@ get_ppi_month <- function(rawfile) {
   if(missing(rawfile)){
     url <- ppi_url()
     tmp <- tempfile()
-    utils::download.file(url, tmp)
+    acquire_safe(url, tmp)
     rawfile <- tmp
   }
 

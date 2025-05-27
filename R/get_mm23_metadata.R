@@ -24,7 +24,7 @@ get_mm23_metadata <- function(rawfile){
     if(missing(rawfile)){
     url <- mm23_url()
     tmp <- tempfile()
-    utils::download.file(url, tmp)
+    acquire_safe(url, tmp)
     rawfile <- tmp
   }
 

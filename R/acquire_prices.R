@@ -27,14 +27,13 @@ acquire_prices <- function(path) {
   url <- prices_url()
 
   if(missing(path)){
-    tmp <- tempfile()
-    utils::download.file(url, tmp)
-    pricesfile <- tmp
+    fname <- tempfile()
   } else {
-    utils::download.file(url, destfile = paste0(path, "/", "datadownload.xlsx"))
-    pricesfile <- paste0(path, "/", "datadownload.xlsx")
+    fname <- paste0(path, "/", "datadownload.xlsx")
   }
 
+    acquire_safe(url, fname, type = "binary")
+    pricesfile <- fname
   return(pricesfile)
 
 }

@@ -41,7 +41,8 @@ make_cpi_quote_archive <- function(path, foodonly = TRUE) {
     base <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
     url <- paste(base, url_stub, sep = "")
     tmp <- tempfile()
-    utils::download.file(url, destfile = tmp, quiet = TRUE)
+    # utils::download.file(url, destfile = tmp, quiet = TRUE)
+    acquire_safe(url, tmp, type = "binary")
     utils::unzip(tmp, exdir = exdir)
     unlink(tmp)
   }
@@ -84,9 +85,12 @@ make_cpi_quote_archive <- function(path, foodonly = TRUE) {
     Sys.sleep(2)
     base <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
     url <- paste(base, x, sep = "")
-    utils::download.file(url,
-                  destfile = paste(tmpdir, "/", stringr::str_extract(x, "([^/]+$)"), sep = ""),
-                  quiet = TRUE)
+    acquire_safe(url,
+                 filename = paste(tmpdir, "/", stringr::str_extract(x, "([^/]+$)"), sep = ""),
+                 type = "string")
+    # utils::download.file(url,
+    #               destfile = paste(tmpdir, "/", stringr::str_extract(x, "([^/]+$)"), sep = ""),
+    #               quiet = TRUE)
 
   })
 
@@ -167,9 +171,12 @@ make_cpi_quote_archive <- function(path, foodonly = TRUE) {
     Sys.sleep(2)
     base <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
     url <- paste(base, x, sep = "")
-    utils::download.file(url,
-                  destfile = paste(tmpdir, "/", stringr::str_extract(x, "([^/]+$)"), sep = ""),
-                  quiet = TRUE)
+    acquire_safe(url,
+                 filename = paste(tmpdir, "/", stringr::str_extract(x, "([^/]+$)"), sep = ""),
+                 type = "string")
+    # utils::download.file(url,
+    #               destfile = paste(tmpdir, "/", stringr::str_extract(x, "([^/]+$)"), sep = ""),
+    #               quiet = TRUE)
 
   })
 
