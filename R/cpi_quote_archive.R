@@ -232,3 +232,65 @@ make_cpi_quote_archive <- function(path, foodonly = TRUE) {
   unlink(list.files(tmpdir, pattern = "*.csv", full.names = TRUE))
 
 }
+
+
+
+
+archive_stubs <- function() {
+  stub <- c(
+    "pricequotes2010/pricequote2010.zip",
+    "pricequotes2011/pricequote2011.zip",
+    "pricequotes2012/pricequote2012.zip",
+    "pricesquote2013/pricequote2013.zip",
+    "pricequotes2014/pricequote2014.zip",
+    "pricequotesquarter12015/upload-pricequote2015q1.csv",
+    "pricequotesquarter22015/upload-pricequote2015q2.csv",
+    "pricequotesquarter32015/upload-pricequote2015q3.csv",
+    "pricequotequarter42015/upload-pricequote2015q4.csv",
+    "pricequotequarter12016/upload-pricequote2016q1.csv",
+    "pricequotequarter22016/upload-pricequote2016q2.csv",
+    "pricequotequarter32016/upload-pricequote2016q3.csv",
+    "pricequotesquarter42016/upload-pricequote2016q4.csv",
+    "pricequotes2017/pricequote201703to201711.zip",
+    "pricequotesdecember2017/pricequote201712.zip",
+    "pricequotejanuary2018/pricequote201801.zip",
+    "pricequotefebruary2018/pricequote201802.zip",
+    "pricequotemarch2018/pricequote201803.zip",
+    "pricequoteapril2018/pricequote201804.zip",
+    "pricequotemay2018/pricequote201805.zip",
+    "pricequotejune2018/pricequote201806.zip",
+    "pricequotejuly2018/pricequote201807.zip",
+    "pricequoteaugust2018/pricequote201808.zip",
+    "pricequoteseptember2018/pricequote201809.zip",
+    "pricequoteoctober2018/pricequote201810.zip",
+    "pricequotenovember2018/pricequote201811.zip",
+    "pricequotesdecember2018/upload-pricequotes201812.csv",
+    "pricequotes2019/previous/v1/upload-pricequotes201901.csv",
+    "pricequotes2019/previous/v2/upload-pricequotes201902.csv",
+    "pricequotes2019/previous/v3/upload-pricequotes201903.csv",
+    "pricequotes2019/previous/v4/upload-pricequote201904.csv",
+    "pricequotes2019/previous/v5/upload-pricequote201905.csv",
+    "pricequotes2019/previous/v6/upload-pricequotes201906.csv",
+    "pricequotes2019/previous/v7/upload-pricequotes201907.csv",
+    "pricequotes2019/upload-pricequotes201908.csv",
+    "pricequotesseptember2019/upload-pricequotes201909.csv",
+    "pricequotesoctober2019/upload-pricequotes201910.csv",
+    "pricequotesnovember2019/upload-pricequotes201911.csv",
+    "pricequotesdecember2019/upload-pricequotes201912v1.csv"
+  )
+
+  yr <- c(2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015, 2015, 2015, 2015,
+          2016, 2016, 2016, 2016,
+          2017, 2017,
+          2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018,
+          2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019)
+
+  x <- data.frame(yr, stub)
+  return(x)
+
+}
