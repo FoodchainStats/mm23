@@ -106,6 +106,7 @@ read_quotes <- function(year, month) {
 #'
 #' @param year Year to extract
 #' @param month Month to extract
+#' @param foodonly whether to exclude non-food products from the output.
 #' @param path Optional path to save data
 #'
 #' @return a tibble of price quotes
@@ -121,7 +122,7 @@ read_quotes <- function(year, month) {
 #' get_cpi_price_quotes(2024, 1:12)
 #'
 #' }
-get_cpi_price_quotes <- function(year, month, path){
+get_cpi_price_quotes <- function(year, month, foodonly = TRUE, path){
 
   if(min(year) <= 2019) {stop("Does not work with dates before 2020 - use the make_archive function to get all 2010-2019 data")}
 
@@ -132,15 +133,19 @@ get_cpi_price_quotes <- function(year, month, path){
     purrr::map2(year1, month1, \(year1, month1){
       Sys.sleep(2)
       x <- read_quotes(year1, month1)
+      if(foodonly == TRUE) {x <- x |> dplyr::filter(item_id <= 320000 & item_id >= 210000)}
+      return(x)
     }) |> purrr::list_rbind()
 
   } else {
   purrr::map2(year1, month1, \(year1, month1){
     Sys.sleep(2)
     x <- read_quotes(year1, month1)
+    if(foodonly == TRUE) {x <- x |> dplyr::filter(item_id <= 320000 & item_id >= 210000)}
     filename <- paste0(path, "/", year1, "-", formatC(month1, flag = "0", width = 2), "-price-quotes.rds")
     message(paste("Saving", filename))
     saveRDS(x, filename)
+    return(x)
   }) |> purrr::list_c()
 
   }

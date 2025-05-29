@@ -4,12 +4,14 @@
 \alias{get_cpi_price_quotes}
 \title{Get CPI price quotes for food items.}
 \usage{
-get_cpi_price_quotes(year, month, path)
+get_cpi_price_quotes(year, month, foodonly = TRUE, path)
 }
 \arguments{
 \item{year}{Year to extract}
 
 \item{month}{Month to extract}
+
+\item{foodonly}{whether to exclude non-food products from the output.}
 
 \item{path}{Optional path to save data}
 }
