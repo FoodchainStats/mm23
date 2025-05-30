@@ -294,3 +294,81 @@ archive_stubs <- function() {
   return(x)
 
 }
+
+
+archive <- function(year, path, foodonly = TRUE) {
+
+  if(!missing(path)) {
+    if(!dir.exists(path)) stop(paste(path, "does not exist"))
+  }
+
+  tmpdir <- "~/test"
+  base <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
+
+  stubs <- archive_stubs() |> dplyr::filter(yr %in% year) |> dplyr::select(stub) |> as.list()
+  urls <- purrr::map2(base, stubs, paste0) |> unlist()
+  files <- basename(urls)
+
+  purrr::walk2(urls, files, \(urls,files){
+    acquire_safe(urls,paste0(tmpdir, "/",files))
+  })
+
+  list.files(tmpdir,pattern = "*.zip", full.names = TRUE) |>
+    purrr::walk(\(x) {
+      utils::unzip(x, exdir = tmpdir)
+      unlink(x)
+      })
+
+  # double unzip in 2017
+  list.files(tmpdir,pattern = ".*2017.*\\.zip", full.names = TRUE) |>
+    purrr::walk(\(x) {
+      utils::unzip(x, exdir = tmpdir)
+      unlink(x)
+      })
+
+  # Build dataset
+  output <- purrr::map(list.files(tmpdir, pattern = "*.csv", full.names = TRUE), \(x) {
+    message(paste("Reading", x))
+    data <- readr::read_csv(x, show_col_types = FALSE)
+
+    if(foodonly == TRUE) {
+      data <- data |>
+        janitor::clean_names() |>
+        dplyr::filter(item_id <= 320000 & item_id >= 210000) |>
+        dplyr::mutate(quote_date = lubridate::ym(.data$quote_date)) |>
+        dplyr::mutate(cs_id = NA,
+                      cs_desc = NA) |>
+        dplyr::rowwise() |>
+        dplyr::mutate(item_desc = ifelse("item_desc" %in% names(.data), item_desc, NA))
+    } else {
+      data <- data |>
+        janitor::clean_names() |>
+        dplyr::mutate(quote_date = lubridate::ym(.data$quote_date)) |>
+        dplyr::mutate(cs_id = NA,
+                      cs_desc = NA) |>
+        dplyr::rowwise() |>
+        dplyr::mutate(item_desc = ifelse("item_desc" %in% names(.data), item_desc, NA))
+    }
+
+    return(data)
+
+  }) |>
+    dplyr::bind_rows()  |>
+    dplyr::select(.data$cs_id,
+                  .data$cs_desc,
+                  .data$quote_date,
+                  .data$item_id,
+                  .data$item_desc,
+                  .data$validity,
+                  .data$shop_code,
+                  .data$price,
+                  .data$indicator_box,
+                  .data$region,
+                  .data$shop_type,
+                  .data$shop_weight)
+
+
+  return(output)
+
+}
+

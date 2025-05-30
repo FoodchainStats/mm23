@@ -135,14 +135,26 @@ acquire_safe <- function(url, filename, type = "string") {
   resp <- httr2::request(url) |>
     httr2::req_retry(max_tries = 3) |>
     httr2::req_perform()
-if(type == "string") {
+
+  ext <- tools::file_ext(basename(url))
+
+if(ext %in% c("csv")) {
+  message("text type detected")
+  message(filename)
   resp |>
     httr2::resp_body_string() |>
-    readr::write_file(filename)
-} else {
+    # readr::write_file(filename)
+    write(filename)
+} else
+if(ext %in% c("xls", "xlsx", "zip")) {
+  message("binary file type detected")
+  message(filename)
   resp |>
     httr2::resp_body_raw() |>
-    readr::write_file(filename)
+    # readr::write_file(filename)
+    writeBin(con = filename)
+} else {
+  stop("unknown file type")
 }
 
 }
