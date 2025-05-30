@@ -337,17 +337,17 @@ archive <- function(year, path, foodonly = TRUE) {
         dplyr::filter(item_id <= 320000 & item_id >= 210000) |>
         dplyr::mutate(quote_date = lubridate::ym(.data$quote_date)) |>
         dplyr::mutate(cs_id = NA,
-                      cs_desc = NA) |>
-        dplyr::rowwise() |>
-        dplyr::mutate(item_desc = ifelse("item_desc" %in% names(.data), item_desc, NA))
+                      cs_desc = NA)
     } else {
       data <- data |>
         janitor::clean_names() |>
         dplyr::mutate(quote_date = lubridate::ym(.data$quote_date)) |>
         dplyr::mutate(cs_id = NA,
-                      cs_desc = NA) |>
-        dplyr::rowwise() |>
-        dplyr::mutate(item_desc = ifelse("item_desc" %in% names(.data), item_desc, NA))
+                      cs_desc = NA)
+    }
+
+    if(!"item_desc" %in% names(data)) {
+      data <- data |> dplyr::mutate(item_desc = NA)
     }
 
     return(data)
