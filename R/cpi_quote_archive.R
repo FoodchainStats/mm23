@@ -302,7 +302,7 @@ archive <- function(year, path, foodonly = TRUE) {
     if(!dir.exists(path)) stop(paste(path, "does not exist"))
   }
 
-  tmpdir <- "~/test"
+  tmpdir <- tempdir()
   base <- "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
 
   stubs <- archive_stubs() |> dplyr::filter(yr %in% year) |> dplyr::select(stub) |> as.list()
@@ -328,7 +328,7 @@ archive <- function(year, path, foodonly = TRUE) {
 
   # Build dataset
   output <- purrr::map(list.files(tmpdir, pattern = "*.csv", full.names = TRUE), \(x) {
-    message(paste("Reading", x))
+    message(paste("Reading", basename(x)))
     data <- readr::read_csv(x, show_col_types = FALSE)
 
     if(foodonly == TRUE) {
@@ -346,14 +346,15 @@ archive <- function(year, path, foodonly = TRUE) {
                       cs_desc = NA)
     }
 
-    if(!"item_desc" %in% names(data)) {
+    if(! rlang::has_name(data, "item_desc")) {
       data <- data |> dplyr::mutate(item_desc = NA)
     }
+    # message(paste("item_desc exists:", rlang::has_name(data, "item_desc")))
 
     return(data)
 
   }) |>
-    dplyr::bind_rows()  |>
+    dplyr::bind_rows() |>
     dplyr::select(.data$cs_id,
                   .data$cs_desc,
                   .data$quote_date,
@@ -368,6 +369,7 @@ archive <- function(year, path, foodonly = TRUE) {
                   .data$shop_weight)
 
 
+  purrr::map(list.files(tmpdir, pattern = "*.csv", full.names = TRUE), unlink)
   return(output)
 
 }
