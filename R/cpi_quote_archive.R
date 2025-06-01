@@ -171,6 +171,7 @@ get_cpi_price_quotes_archive <- function(year, foodonly = TRUE) {
 #'   help if your computer has memory issues with compiling the full dataset.
 #'
 #' @return creates an rds file in the chosen folder
+#' @keywords internal
 #'
 #' @examples
 #' \dontrun{
