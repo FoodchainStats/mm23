@@ -29,7 +29,7 @@ reference:
     Download CPI price quote data
 - contents:
   - get_cpi_price_quotes
-  - make_cpi_quote_archive
+  - get_cpi_price_quotes_archive
 - title: Get weights data
   desc: >
     Get weights data for CPI or CPIH
