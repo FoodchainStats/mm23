@@ -25,3 +25,4 @@ the same thing but for specific years.
 make_cpi_quote_archive(dir = "~")
 }
 }
+\keyword{internal}
