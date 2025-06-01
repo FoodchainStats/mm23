@@ -16,7 +16,9 @@ help if your computer has memory issues with compiling the full dataset.}
 creates an rds file in the chosen folder
 }
 \description{
-Create an rds containing 2010-2019 CPI price quotes.
+This is older, more 'hardcoded' and was crashing on some computers with
+limited memory. The elegantly named get_cpi_price_quotes_archive() will do
+the same thing but for specific years.
 }
 \examples{
 \dontrun{
