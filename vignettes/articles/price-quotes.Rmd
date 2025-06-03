@@ -17,25 +17,84 @@ library(mm23)
 The price quote functions will generally access and download the price quote
 data, but changes to the variables over the years and the nature of the data
 means that you'll probably have to do some wrangling to get what you need -
-assuming what youtre interested in is the average retail price of stuff. The relevant functioons are:
+assuming what you're interested in is the average retail price of stuff. The
+relevant functions are:
 
- * `make_cpi_quote_archive()` for historic data, and
- * `get_cpi_price_quotes()` for the latest
+ * `get_cpi_price_quotes()` for data from 2020 onwards, and
+ * `get_cpi_price_quotes_archive()` for data from 2010-2019
+ 
+The data is accessed from the url stored in `cpi_price_quotes_url()`. The
+addresses of data 2010-2019 are stored in `archive_urls()`.
+
+The data is returned as is - in order to look at prices we need to exclude
+invalid records - pre February 2025 this is ones with a `validity` not 3 or 4,
+post February 2025 `validity is FALSE.
 
 #### Historic data
 
-The `make_cpi_quote_archive()` will generate a large rds file with all the price
-quote data available from the CPI price quotes page for 2010 - 2019. This page
-is accessible from `cpi_price_quotes_url()`. For data from 2020 onwards, use
-`get_cpi_price_quotes()`. The main thing is to filter by validity, which is
-numeric until Feb 2025, when it becomes TRUE/FALSE. So it might bepreferaebl to
-make a distinction.
-
+Lets look at some old bread prices.
 
 ```{r}
-mm23::get_cpi_price_quotes(2021, 6) |> dplyr::slice_sample(n = 5) |> t() |> knitr::kable()
+library(ggplot2)
+
+y <- 2013:2014
+
+bread <- purrr::map(y, \(y) {
+  get_cpi_price_quotes_archive(y, foodonly = TRUE) |> 
+    dplyr::filter(item_id %in% c(210102, 210111))
+}) |> dplyr::bind_rows()
+
+bread |> 
+  dplyr::filter(validity %in% c(3,4)) |> 
+  dplyr::group_by(lubridate::year(quote_date), item_desc) |>
+  dplyr::summarise(avg = mean(price)) |> 
+  knitr::kable()
+
 ```
 
+We can compare with some more recent data:
+
+```{r}
+
+# If you want to get more than 1 year you can do eg rep(2024:2025, 12) and
+# rep(1:12, 2). But you don't necessarily need purrr::map2
+y <- rep(2024)
+m <- rep(1:12)
+
+more_bread <- purrr::map2(y, m, \(y,m) {
+  get_cpi_price_quotes(y, m, foodonly = FALSE) |> 
+    dplyr::filter(item_id %in% c(210102, 210111))
+}) |> dplyr::bind_rows()
+
+more_bread |> 
+    dplyr::filter(validity %in% c(3,4)) |> 
+  dplyr::group_by(quote_date, item_desc) |>
+  dplyr::summarise(avg = mean(price)) |> 
+  ggplot2::ggplot() +
+  ggplot2::geom_line(ggplot2::aes(x = quote_date, y = avg, colour = item_desc))
+
+```
+
+The validity variable changed in Feb 2025:
+
+```{r}
+
+# Doing the same as more_bread, but without purrr::map2
+latest_bread <- get_cpi_price_quotes(2025, 1:4, foodonly = FALSE) |> 
+  dplyr::filter(item_id %in% c(210102, 210111)) |> 
+  dplyr::mutate(valid = dplyr::case_when(quote_date <= "2025-01-01" & validity %in% c(3,4) ~ "Y",
+                                  quote_date >= "2025-02-01" & validity == 1 ~ "Y",
+                                  .default = "N"))
+
+latest_bread |> 
+  dplyr::filter(valid == "Y", quote_date >= "2013-01-01") |>
+  dplyr::group_by(quote_date, item_desc) |> 
+  dplyr::summarise(avg_price = mean(price)) |> 
+  knitr::kable()
+
+```
+
+## Sample data
 
 ### Latest (post Jan 2025) data
 
@@ -43,10 +102,17 @@ mm23::get_cpi_price_quotes(2021, 6) |> dplyr::slice_sample(n = 5) |> t() |> knit
 mm23::get_cpi_price_quotes(2025, 3) |> dplyr::slice_sample(n = 5) |> t() |> knitr::kable()
 ```
 
+### Pre Feb 2025 data
 
-### Raw data formats
+```{r}
+mm23::get_cpi_price_quotes(2021, 6) |> dplyr::slice_sample(n = 5) |> t() |> knitr::kable()
+```
 
-#### Raw data format (Feb 2025 onwards)
+
+
+## Raw data formats
+
+### Raw data format (Feb 2025 onwards)
 
 | COLUMN HEADING         | DESCRIPTION                                                                                                                             |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
@@ -116,7 +182,7 @@ mm23::get_cpi_price_quotes(2025, 3) |> dplyr::slice_sample(n = 5) |> t() |> knit
 |                        | 2 = Carli (AR).                                                                                                                         |
 
 
-#### Raw data format (Pre Feb 2025)
+### Raw data format (Pre Feb 2025)
 
 | Column Heading | Description                                                                          |
 |----------------|--------------------------------------------------------------------------------------|

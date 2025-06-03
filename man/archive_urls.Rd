@@ -7,7 +7,7 @@
 archive_urls()
 }
 \value{
-A dataframe of yeqars and url stubs
+A dataframe of years and url stubs
 }
 \description{
 Contains the url endings for all the price quote downloads for 2010-2019.

@@ -5,7 +5,7 @@
 #' Each url stub needs to be appended to the base
 #' "https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceindicescpiandretailpricesindexrpiitemindicesandpricequotes/"
 #'
-#' @returns A dataframe of yeqars and url stubs
+#' @returns A dataframe of years and url stubs
 #' @export
 #'
 #' @examples
