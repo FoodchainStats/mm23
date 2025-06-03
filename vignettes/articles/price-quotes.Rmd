@@ -30,6 +30,8 @@ The data is returned as is - in order to look at prices we need to exclude
 invalid records - pre February 2025 this is ones with a `validity` not 3 or 4,
 post February 2025 `validity is FALSE.
 
+## Sample code
+
 #### Historic data
 
 Lets look at some old bread prices.
@@ -51,6 +53,8 @@ bread |>
   knitr::kable()
 
 ```
+
+### Recent data
 
 We can compare with some more recent data:
 
