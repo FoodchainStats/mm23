@@ -84,9 +84,9 @@ specify where you want to put it. <code><a href="../reference/acquire_prices.htm
 <span></span>
 <span><span class="co"># Puts the data in a temporary file and returns its name</span></span>
 <span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/acquire_prices.html">acquire_prices</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Acquiring file36c4598ebc2a</span></span>
+<span><span class="co">#&gt; Acquiring file37b243981d2</span></span>
 <span><span class="va">prices</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpXokyAi/file36c4598ebc2a"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpZBJNKb/file37b243981d2"</span></span>
 <span></span>
 <span><span class="co"># Or specify a location</span></span>
 <span><span class="co"># prices &lt;- acquire_prices("~/data")</span></span>
@@ -157,7 +157,7 @@ random record. Join metadata to data with <code>item_id</code>.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_price_metadata.html">get_price_metadata</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, colour <span class="op">=</span> <span class="va">item_desc</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 184 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; Warning: Removed 723 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_line()`).</span></span></code></pre></div>
 <p><img src="prices_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
