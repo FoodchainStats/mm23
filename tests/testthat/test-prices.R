@@ -25,7 +25,7 @@ test_that("get_price_data returns a dataframe with positive length", {
 
   expect_equal(class(df), c("tbl_df", "tbl", "data.frame"))
   expect_true(nrow(df) > 0)
-  expect_true(ncol(df) == 3)
+  expect_true(ncol(df) == 4)
 })
 
 test_that("get_price_metadata returns a dataframe with positive length", {

@@ -36,7 +36,7 @@ get_price_data <- function(file) {
       dplyr::mutate(ITEM_ID = as.character(.data$ITEM_ID),
                     date = as.Date(as.numeric(.data$name), origin = "1899-12-30"),
                     category = x) |>
-      dplyr::select(date, category, item_id = "ITEM_ID", "value")
+      dplyr::select(date, "category", item_id = "ITEM_ID", "value")
   }) |> dplyr::bind_rows()
 
 
