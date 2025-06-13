@@ -28,11 +28,16 @@ get_price_data <- function(file) {
     stop(paste("File", file, "is not an xlsx spreadsheet"))
   }
 
-  avgprice <- readxl::read_excel(file, sheet = "averageprice") |>
-    tidyr::pivot_longer(!"ITEM_ID") |>
-    dplyr::mutate(ITEM_ID = as.character(.data$ITEM_ID),
-                  date = as.Date(as.numeric(.data$name), origin = "1899-12-30")) |>
-    dplyr::select(date, item_id = "ITEM_ID", "value")
+  c <- list("chained", "averageprice", "monthlygrowth", "annualgrowth")
+
+  avgprice <- purrr::map(c, \(x) {
+    readxl::read_excel(file, sheet = x) |>
+      tidyr::pivot_longer(!"ITEM_ID") |>
+      dplyr::mutate(ITEM_ID = as.character(.data$ITEM_ID),
+                    date = as.Date(as.numeric(.data$name), origin = "1899-12-30"),
+                    category = x) |>
+      dplyr::select(date, category, item_id = "ITEM_ID", "value")
+  }) |> dplyr::bind_rows()
 
 
 # tidyxl version kept crashing with the download
